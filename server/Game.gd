@@ -4,8 +4,8 @@ var players = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("..").connect("player_added_to_game", self, "_player_added")
-	get_node("..").connect("player_removed_from_game", self, "_player_removed")
+	get_node("..").connect("player_added", self, "_player_added")
+	get_node("..").connect("player_removed", self, "_player_removed")
 
 func _server_created():
 	# Need a function to generate map here.

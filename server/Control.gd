@@ -1,9 +1,7 @@
 extends Node
 
-signal player_added_to_game(room, pid)
-signal player_removed_from_game(room, pid)
-
-signal invalid_ship
+signal player_added(pid)
+signal player_removed(pid)
 
 var server_info = {
 	name = "Main",
@@ -12,17 +10,7 @@ var server_info = {
 }
 
 var players = {}
-# Players will look like this
-# pid: {
-# 	'name': "Player",
-# 	'room': null,
-# 	'ship': instance of ship
-# }
-
 var games = {}
-# Games will simply hold game instances.
-# We can reach into the instance for any
-# info we need.
 
 var gameTemplate = preload("res://Game.tscn")
 
@@ -37,9 +25,11 @@ func _ready():
 
 func _on_player_connected(id):
 	players[id] = id
+	emit_signal("player_added", id)
 
 func _on_player_disconnected(id):	
 	players.erase(id)
+	emit_signal("player_removed", id)
 
 func create_server():
 	# Initialize network
@@ -59,18 +49,6 @@ func create_game(name):
 	games[name] = newGame
 	add_child(newGame)
 
-func update_lobby(pid):
-	pass
-	# We're going to have to create a flag to check if the games
-	# have been modified since the last update for the player.
-	# If they have, recompile the list and send it.
-	# Don't worry about efficiency yet.
-	# If they haven't, just skip.
-
-remote func request_update_lobby():
-	var player = get_tree().get_rpc_sender_id()
-	update_lobby(player)
-
 remote func player_join_room(room_name):
 	var player = get_tree().get_rpc_sender_id()
 	if games.has(room_name):
@@ -79,31 +57,6 @@ remote func player_join_room(room_name):
 		# In the game room here, and add them to the
 		# Player list.
 		rpc_id(player, "join_game_success")
-
-remote func player_select_ship(ship):
-	var player = get_tree().get_rpc_sender_id()
-	# Validation check for selected ship.
-	# If true
-	players[player].ship = ship
-	# If false
-	emit_signal("invalid_ship")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #func _on_player_disconnected(id):
 #	print("Player ", players[id].name, " disconnected from server")

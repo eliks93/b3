@@ -23,14 +23,3 @@ func join_game_success():
 
 func join_game_fail():
 	pass
-
-func request_update_lobby():
-	rpc_id(1, "request_update_lobby")
-
-remote func update_lobby(lobby_info):
-	pass
-	# This will only be sent by the server if
-	# there is an actual update to handle.
-	# Naive solution at first, just clear
-	# the current lobby list and repopulate with
-	# new info.
