@@ -47,16 +47,17 @@ func create_game(name):
 	var newGame = gameTemplate.instance()
 	newGame.name = name
 	games[name] = newGame
-	add_child(newGame)
+	self.add_child(newGame)
 
 remote func player_join_room(room_name):
 	var player = get_tree().get_rpc_sender_id()
 	if games.has(room_name):
-		games[name].addChild() # Need to create player object to append here.
+		# games[name].addChild() # Need to create player object to append here.
 		# We need to create an instance of the player
 		# In the game room here, and add them to the
 		# Player list.
-		rpc_id(player, "join_game_success")
+		# rpc_id(player, "join_game_success")
+		pass
 
 #func _on_player_disconnected(id):
 #	print("Player ", players[id].name, " disconnected from server")
