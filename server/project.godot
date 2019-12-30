@@ -19,10 +19,6 @@ config/name="B3 Server"
 run/main_scene="res://Root.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Core="*res://Control.gd"
-
 [rendering]
 
 environment/default_environment="res://default_env.tres"
