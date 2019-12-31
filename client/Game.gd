@@ -23,6 +23,8 @@ remote func spawn_player(p_info):
 	else:
 		var ship = npc_ship.instance()
 		ship.name = str(p_info.id)
+		ship.get_node("NPCBoat").collision_layer = 1
+		ship.get_node("NPCBoat").collision_mask = 1
 		ship.player_init = p_info
 		ship.initialize()
 		self.add_child(ship)

@@ -8,6 +8,7 @@ var velocity = Vector2()
 var acceleration = Vector2()
 
 var direction
+var p_owner
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,6 +29,8 @@ func explode():
 	queue_free()
 
 func _on_Projectile_body_entered(body):
-	explode()
-	if body.has_method("take_damage"):
-		body.take_damage(damage)
+	print(body.get_node("..").name , p_owner)
+	if (body.get_node("..").name != p_owner):
+		explode()
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
