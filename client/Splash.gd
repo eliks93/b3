@@ -16,4 +16,4 @@ func _ready():
 
 
 func _on_buttonStart_pressed():
-	Core.swap_scene(get_node("."), MainMenu.instance())
+	get_node("..").swap_scene(get_node("."), MainMenu.instance())

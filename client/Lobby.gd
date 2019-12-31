@@ -16,11 +16,12 @@ func _ready():
 
 
 func _on_Button_pressed():
-	Core.join_game(GameState.room_info.name)
-	Core.swap_scene(get_node(".") , game.instance())
+	get_node("..").join_game(GameState.room_info.name)	
 	# Give a joining popup here if necceary, swap scene once the server says it's okay to.
 	
 # This will be called if Core.join_game succeeded.
-remote func room_join_success():
-	Core.swap_scene(get_node("."), game.instance())
+func room_join_success(room_info):
+	var room = game.instance()
+	room.name = room_info.name
+	get_node("..").swap_scene(get_node("."), room)
 # This will be called if Core.join_game failed.

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Lobby.gd" type="Script" id=1]
+
+[node name="Lobby" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 874.022
+margin_top = 72.8116
+margin_right = 970.022
+margin_bottom = 106.812
+text = "Join Game"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

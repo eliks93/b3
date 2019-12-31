@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
-signal update_position()
-signal fire_turret(group)
+signal update_position
 
 export var hp = 100
 
@@ -9,17 +8,13 @@ export var hp = 100
 func _ready():
 	pass
 
-func _process(delta):
-	if (Input.is_action_pressed("fire_1")):
-		emit_signal("fire_turret", 1)
-
 export var engine_power = 800
 export var wheel_base = 160
 export var steering_angle = 30
 
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
-var steer_angle
+var steer_angle = 0
 
 export var braking = -450
 export var max_speed_reverse = 250
@@ -41,20 +36,7 @@ func _physics_process(delta):
 	emit_signal("update_position")
 
 func get_input():
-	var turn = 0
-	
-	if Input.is_action_pressed("steer_right"):
-		turn += 1
-	if Input.is_action_pressed("steer_left"):
-		turn -= 1
-	
-	steer_angle = turn * deg2rad(steering_angle)
-	
-	if Input.is_action_pressed("accelerate"):
-		acceleration = transform.x * engine_power
-	
-	if Input.is_action_pressed("brake"):
-		acceleration = transform.x * braking
+	pass
 
 func apply_friction():
 	if velocity.length() < 8:

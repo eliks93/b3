@@ -3,10 +3,13 @@ extends Node
 signal player_added(pid)
 signal player_removed(pid)
 
+signal player_joined_room(pinfo)
+signal player_left_room(pinfo)
+
 var server_info = {
 	name = "Main",
-	max_players = 80,
-	used_port = 4587
+		max_players = 80,
+		used_port = 4587
 }
 
 var players = {}
@@ -46,13 +49,18 @@ func create_server():
 func create_game(name):
 	var newGame = gameTemplate.instance()
 	newGame.name = name
-	games[name] = newGame
+	games[name] = {
+		'name': name,
+		'players': {}
+	}
 	self.add_child(newGame)
 
 remote func player_join_room(room_name):
 	var player = get_tree().get_rpc_sender_id()
 	if games.has(room_name):
 		games[room_name].players[player] = players[player]
+		rpc_id(player, "join_game_success", games[room_name])
+		emit_signal("player_joined_room", player)
 		# games[name].addChild() # Need to create player object to append here.
 		# We need to create an instance of the player
 		# In the game room here, and add them to the

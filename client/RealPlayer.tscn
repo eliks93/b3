@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Boat.tscn" type="PackedScene" id=1]
+[ext_resource path="res://RealPlayer.gd" type="Script" id=2]
+[ext_resource path="res://Turret.tscn" type="PackedScene" id=3]
+
+[node name="PlayerBoat" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
+current = true
+
+[node name="Turret1" parent="." index="3" instance=ExtResource( 3 )]
+position = Vector2( 24.1505, 1.52588e-05 )
+
+[node name="Turret2" parent="." index="4" instance=ExtResource( 3 )]
+position = Vector2( 24.1505, -32.4523 )
+
+[node name="Turret3" parent="." index="5" instance=ExtResource( 3 )]
+position = Vector2( 24.9052, 31.3202 )

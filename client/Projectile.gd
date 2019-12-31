@@ -1,6 +1,6 @@
 extends Area2D
 
-export var speed = 100
+export var speed = 1000
 export var damage = 10
 export var life = 10.0
 

@@ -6,7 +6,7 @@ var player_info = {
 }
 
 var ship_info = {
-	'ship_type': 0,
+	'ship_type': "res://RealPlayer.tscn",
 	'turrets': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 }
 
