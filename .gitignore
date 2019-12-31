@@ -1,1 +1,4 @@
-build/.
+build
+nohup
+Godot_Headless.64
+*.pem
