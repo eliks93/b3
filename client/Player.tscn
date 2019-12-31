@@ -18,5 +18,5 @@ position = Vector2( 24.3837, -33.6496 )
 [node name="Turret3" parent="Boat" instance=ExtResource( 3 )]
 position = Vector2( 24.8714, 29.7482 )
 
-[node name="Boat2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 682.364, 418.398 )
+[node name="Camera2D" type="Camera2D" parent="Boat"]
+current = true
