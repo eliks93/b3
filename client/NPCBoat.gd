@@ -10,16 +10,12 @@ var player_init = {}
 func _ready():
 	pass # Replace with function body.
 
-remote func update_position(packet):
-	mouse_position = packet.mouse_pos
-	position.x = packet.position.x
-	position.y = packet.position.y
-	rotation = packet.rotation
-	acceleration = packet.acceleration
-	velocity = packet.velocity
+slave func setPosition(packet):
+	# Apply movement to other boats.
+	pass
 
-func _process(delta):
-	emit_signal("turn_turret", mouse_position)
+#func _process(delta):
+#	emit_signal("turn_turret", mouse_position)
 
 #var packet = {
 #	'mouse_pos': get_global_mouse_position(),

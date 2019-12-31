@@ -12,19 +12,6 @@ func _ready():
 func _process(delta):
 	emit_signal("turn_turret", get_global_mouse_position())
 
-func _physics_process(delta):
-	var packet = {
-		'mouse_pos': get_global_mouse_position(),
-		'position': {
-			'x': position.x,
-			'y': position.y
-		},
-		'rotation': rotation,
-		'acceleration': self.acceleration,
-		'velocity': self.velocity
-	}
-	rpc_unreliable_id(1, "update_position", packet)
-
 func get_input():
 	var turn = 0
 	

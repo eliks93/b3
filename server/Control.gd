@@ -55,7 +55,7 @@ func create_game(name):
 	}
 	self.add_child(newGame)
 
-remote func player_join_room(room_name):
+remote func player_joined_room(room_name):
 	var player = get_tree().get_rpc_sender_id()
 	if games.has(room_name):
 		games[room_name].players[player] = players[player]

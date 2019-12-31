@@ -5,6 +5,8 @@ var npc_ship = preload("res://NPC.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Announce ready to spawn here.
+	rpc_id(1, "spawn_for")
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,7 +22,7 @@ remote func spawn_player(p_info):
 		self.add_child(ship)
 	else:
 		var ship = npc_ship.instance()
-		ship.name = str(get_tree().get_network_unique_id())
+		ship.name = str(p_info.id)
 		ship.player_init = p_info
 		ship.initialize()
 		self.add_child(ship)

@@ -11,5 +11,10 @@ func _spawn_projectile(projectile, _position, _direction):
 	add_child(proj)
 	proj.start(_position, _direction)
 
-func update_position(id, packet):
-	rpc_unreliable_id(id, "update_position", packet)
+remote func update_position(packet):
+	print(packet.position.x)
+	var player_id = get_tree().get_rpc_sender_id()
+	for player in get_node("..").players:
+		if (player_id != player):
+			print(get_node("..").players)
+			rpc_unreliable_id(player, "set_position", packet)

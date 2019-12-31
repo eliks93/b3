@@ -1,7 +1,6 @@
 extends Node2D
 
 var players = {}
-var ships = {}
 
 var base_ship = preload("res://Player.tscn")
 
@@ -15,29 +14,34 @@ func _server_created():
 	pass
 
 func _player_added(id):
-	var player_ship = base_ship.instance()
-	
-	players[id] = {
-		'id': id,
-		'name': "Player",
-		'mouse_pos': [0, 0],
-		'position': {
-			'x': 0,
-			'y': 0
-		},
-		'rotation': 0,
-		'acceleration': 0,
-		'velocity': 0,
-		'collision_mask': 0,
-		'collision_layer': 0
-	}
-	spawn_players(id)
-	spawn_player(id)
-	_render_player_list()
-	player_ship.name = str(id)
-	ships[id] = player_ship
-	
-	self.add_child(player_ship)
+	print("ADDING PLAYER", id)
+	# var player_ship = base_ship.instance()
+	if (!players.has(id)):
+		players[id] = {
+			'id': id,
+			'name': "Player",
+			'mouse_pos': [0, 0],
+			'position': {
+				'x': 0,
+				'y': 0
+			},
+			'rotation': 0,
+			'acceleration': 0,
+			'velocity': 0,
+			'collision_mask': 0,
+			'collision_layer': 0
+		}
+		_render_player_list()
+		var player_ship = base_ship.instance()
+		player_ship.name = str(id)
+		self.add_child(player_ship)
+#	spawn_players(id)
+#	spawn_player(id)
+#	_render_player_list()
+#	player_ship.name = str(id)
+#	ships[id] = player_ship
+#
+#	self.add_child(player_ship)
 
 func _player_removed(id):
 	players.erase(id)
@@ -51,18 +55,18 @@ func _render_player_list():
 # Spawns all existing players for a single player
 func spawn_players(id):
 	for player in players:
-		rpc_id(id, "spawn_player", players[player])
+		if (player != id):
+			rpc_id(id, "spawn_player", players[player])
 
 # Spawns a single player for all existing players.
 func spawn_player(id):
 	for player in players:
 		rpc_id(player, "spawn_player", players[id])
-
-remote func update_position(pos_info):
-	var player = get_tree().get_rpc_sender_id()
-	ships[player].update_position(player, pos_info)
 	
-
+remote func spawn_for():
+	var player_id = get_tree().get_rpc_sender_id()
+	spawn_players(player_id)
+	spawn_player(player_id)
 
 
 
