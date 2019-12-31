@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Top-Left"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 1824.83
+margin_top = 1028.41
+margin_right = 1908.83
+margin_bottom = 1133.41
+text = "Bottom Right"
