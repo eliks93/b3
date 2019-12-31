@@ -11,3 +11,6 @@ position = Vector2( 0, 30 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+
+[node name="FireDelay" type="Timer" parent="."]
+[connection signal="timeout" from="FireDelay" to="." method="_on_FireDelay_timeout"]

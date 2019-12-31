@@ -1,12 +1,17 @@
 extends KinematicBody2D
 
 signal update_position()
+signal fire_turret(group)
 
 export var hp = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
+
+func _process(delta):
+	if (Input.is_action_pressed("fire_1")):
+		emit_signal("fire_turret", 1)
 
 export var engine_power = 800
 export var wheel_base = 160
@@ -81,3 +86,8 @@ func calculate_steering(delta):
 		velocity = -new_heading * min(velocity.length(), max_speed_reverse)
 
 	rotation = new_heading.angle()
+
+func take_damage(dmg):
+	hp -= dmg
+	if (hp <= 0):
+		queue_free()
