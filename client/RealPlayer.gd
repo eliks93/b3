@@ -24,9 +24,8 @@ func get_input():
 	
 	if Input.is_action_pressed("accelerate"):
 		acceleration = transform.x * engine_power
-	
 	if Input.is_action_pressed("brake"):
-		acceleration = transform.x * braking
+		acceleration = transform.x * reverse
 	
 	if (Input.is_action_pressed("fire_1")):
 		emit_signal("fire_turret", 1)
