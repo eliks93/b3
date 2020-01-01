@@ -39,7 +39,6 @@ func _on_PlayerBoat_health_changed(player_health):
 	update_health(player_health)
 
 func update_health(new_value):
-	print("update?")
 	bar.value = new_value
 
 	

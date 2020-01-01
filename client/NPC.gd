@@ -10,7 +10,6 @@ func _ready():
 	$NPCBoat/Turret2.connect("spawn_projectile", self, "_spawn_projectile")
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
-	print("Spawn please")
 	var proj = projectile.instance()
 	proj.collision_layer = 0
 	proj.collision_mask = 0
