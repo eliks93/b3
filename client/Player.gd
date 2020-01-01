@@ -19,7 +19,6 @@ func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
-	print("Spawn please")
 	var proj = projectile.instance()
 	proj.p_owner = str(mask)
 	add_child(proj)
@@ -37,3 +36,48 @@ func _physics_process(delta):
 		'velocity': $PlayerBoat.velocity
 	}
 	rpc_unreliable_id(1, "update_position", packet)
+
+func _on_PlayerBoat_health_changed(hp):
+	rpc_id(1, "update_health", hp)
+
+remote func update_health(hp):
+	$PlayerBoat.hp = hp
+
+remote func destroy():
+	$PlayerBoat.queue_free()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,7 +9,6 @@ var _ready_to_fire
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	print(get_node("..").name)
 	get_node("..").connect("fire_turret", self, "_fire")
 	get_node("..").connect("turn_turret", self, "_turn")
 	_ready_to_fire = true

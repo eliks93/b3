@@ -8,8 +8,8 @@ margin_bottom = 14.0
 text = "Top-Left"
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 1824.83
-margin_top = 1028.41
-margin_right = 1908.83
-margin_bottom = 1133.41
+margin_left = 936.83
+margin_top = 579.41
+margin_right = 1020.83
+margin_bottom = 684.41
 text = "Bottom Right"
