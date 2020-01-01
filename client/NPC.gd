@@ -23,11 +23,12 @@ func initialize():
 	$NPCBoat.position.y = player_init.position.y
 
 remote func set_position(packet):
-	$NPCBoat.position.x = packet.position.x
-	$NPCBoat.position.y = packet.position.y
-	$NPCBoat.rotation = packet.rotation
-	$NPCBoat.acceleration = packet.acceleration
-	$NPCBoat.velocity = packet.velocity
+	if ($NPCBoat):
+		$NPCBoat.position.x = packet.position.x
+		$NPCBoat.position.y = packet.position.y
+		$NPCBoat.rotation = packet.rotation
+		$NPCBoat.acceleration = packet.acceleration
+		$NPCBoat.velocity = packet.velocity
 
 remote func update_health(hp):
 	$NPCBoat.update_health(hp)
