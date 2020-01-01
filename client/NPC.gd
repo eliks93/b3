@@ -11,8 +11,6 @@ func _ready():
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = projectile.instance()
-	proj.collision_layer = 0
-	proj.collision_mask = 0
 	add_child(proj)
 	proj.start(_position, _direction)
 

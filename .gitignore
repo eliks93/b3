@@ -1,4 +1,4 @@
 build
-nohup.out
+*nohup.out*
 Godot_Headless.64
 *.pem
