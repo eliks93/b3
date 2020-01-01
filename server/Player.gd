@@ -20,9 +20,7 @@ remote func update_position(packet):
 remote func update_health(hp):
 	var player_id = get_tree().get_rpc_sender_id()
 	if (hp > 0):
-		for player in get_node("..").players:
-			if (player_id != player):
-				rpc_unreliable_id(player, "update_health", hp)
+		rpc_unreliable("update_health", hp)
 	else:
 		for player in get_node("..").players:
 			rpc_unreliable("destroy")

@@ -13,8 +13,8 @@ position = Vector2( 24.8565, -34.0425 )
 
 [node name="Turret2" parent="." index="3" instance=ExtResource( 3 )]
 position = Vector2( 23.7757, 29.7197 )
-[connection signal="health_changed" from="." to="." method="_on_NPCBoat_health_changed"]
 
 [node name="Tween" type="Tween" parent="." index="4"]
 
 [node name="Bar" parent="." index="5" instance=ExtResource( 4 )]
+[connection signal="health_changed" from="." to="." method="_on_NPCBoat_health_changed"]

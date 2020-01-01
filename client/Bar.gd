@@ -5,7 +5,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(get_parent().global_position[0])
 	var global_position = get_parent().global_position
 	global_position[1] -= 230
 	global_position[0] -= 200

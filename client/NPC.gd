@@ -28,3 +28,39 @@ remote func set_position(packet):
 	$NPCBoat.rotation = packet.rotation
 	$NPCBoat.acceleration = packet.acceleration
 	$NPCBoat.velocity = packet.velocity
+
+remote func update_health(hp):
+	$NPCBoat.update_health(hp)
+
+remote func destroy():
+	$NPCBoat.queue_free()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

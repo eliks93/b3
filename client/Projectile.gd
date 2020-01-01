@@ -29,7 +29,6 @@ func explode():
 	queue_free()
 
 func _on_Projectile_body_entered(body):
-	print(body.get_node("..").name, ':', p_owner)
 	if (body.get_node("..").name != p_owner):
 		explode()
 		if body.has_method("take_damage"):
