@@ -39,3 +39,41 @@ func _physics_process(delta):
 
 func _on_PlayerBoat_health_changed(hp):
 	rpc_id(1, "report_damage", hp)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,7 +12,10 @@ script = ExtResource( 2 )
 [node name="Tween" type="Tween" parent="." index="0"]
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
+anchor_mode = 0
 current = true
+zoom = Vector2( 3, 3 )
+smoothing_enabled = true
 
 [node name="Turret1" parent="." index="4" instance=ExtResource( 3 )]
 position = Vector2( 24.1505, 1.52588e-05 )

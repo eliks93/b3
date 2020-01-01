@@ -72,6 +72,4 @@ func calculate_steering(delta):
 
 func take_damage(dmg):
 	hp -= dmg
-	if (hp <= 0):
-		queue_free()
 	emit_signal("health_changed", hp)
