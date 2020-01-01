@@ -38,13 +38,9 @@ func _physics_process(delta):
 	rpc_unreliable_id(1, "update_position", packet)
 
 func _on_PlayerBoat_health_changed(hp):
-	rpc_id(1, "update_health", hp)
+	rpc_id(1, "report_damage", hp)
 
-remote func update_health(hp):
-	$PlayerBoat.hp = hp
 
-remote func destroy():
-	$PlayerBoat.queue_free()
 
 
 
