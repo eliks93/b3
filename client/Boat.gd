@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal update_position
+signal health_changed
 
 export var hp = 100
 
@@ -73,3 +74,4 @@ func take_damage(dmg):
 	hp -= dmg
 	if (hp <= 0):
 		queue_free()
+	emit_signal("health_changed", hp)
