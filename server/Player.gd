@@ -26,4 +26,4 @@ remote func update_health(hp):
 				rpc_unreliable_id(player, "update_health", hp)
 	else:
 		for player in get_node("..").players:
-			rpc_unreliable("update_health", hp)
+			rpc_unreliable("destroy")
