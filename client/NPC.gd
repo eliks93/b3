@@ -4,6 +4,8 @@ var player_init = {}
 var p_name = "Not-Player"
 var projectile = preload("res://Projectile.tscn")
 
+var p_owner
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$NPCBoat/Turret1.connect("spawn_projectile", self, "_spawn_projectile")
