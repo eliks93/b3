@@ -11,6 +11,7 @@ func _ready():
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = projectile.instance()
+	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
 
