@@ -3,7 +3,7 @@ extends Node2D
 var players = {}
 var leaderboard = {}
 var base_ship = preload("res://Player.tscn")
-
+var map = preload("res://maps/Map01.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -59,6 +59,11 @@ func spawn_players(id):
 
 # Spawns a single player for all existing players.
 func spawn_player(id):
+	for point in $Map01/Spawns.get_children():
+		if point.available:
+			players[id].position.x = point.get_pos().x
+			players[id].position.y = point.get_pos().y
+			break
 	for player in players:
 		rpc_id(player, "spawn_player", id)
 	
