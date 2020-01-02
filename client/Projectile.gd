@@ -26,10 +26,16 @@ func _process(delta):
 	rotation = direction
 
 func explode():
-	queue_free()
+	velocity = Vector2()
+	$Sprite.hide()
+	$Explosion.show()
+	$Explosion.play("smoke")
 
 func _on_Projectile_body_entered(body):
 	if (body.get_node("..").name != p_owner):
 		explode()
 		if body.has_method("take_damage"):
 			body.take_damage(damage)
+
+func _on_Explosion_animation_finished():
+	queue_free()
