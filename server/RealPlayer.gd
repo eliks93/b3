@@ -3,7 +3,7 @@ extends "res://Boat.gd"
 signal fire_turret(group)
 signal turn_turret(mouse_pos)
 
-var mouse_position
+var mouse_pos
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,19 +12,7 @@ func _ready():
 	$Turret3.connect("spawn_projectile", self, "_spawn_projectile")
 
 func _process(delta):
-	emit_signal("turn_turret", get_global_mouse_position())
-
-func _physics_process(delta):
-	var packet = {
-		'mouse_pos': get_global_mouse_position(),
-		'position': {
-			'x': position.x,
-			'y': position.y
-		},
-		'rotation': rotation,
-		'acceleration': self.acceleration,
-		'velocity': self.velocity
-	}
+	pass
 
 func get_input():
 	var turn = 0
@@ -46,7 +34,7 @@ func get_input():
 		emit_signal("fire_turret", 1)
 
 remote func update_position(packet):
-	mouse_position = packet.mouse_pos
+	mouse_pos = packet.mouse_pos
 	position.x = packet.position.x
 	position.y = packet.position.y
 	rotation = packet.rotation

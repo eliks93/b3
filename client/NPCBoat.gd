@@ -6,7 +6,7 @@ onready var bar = $Bar/TextureProgress
 onready var tween = $Tween
 
 var animated_health = 0
-var mouse_position
+var mouse_pos = Vector2()
 
 var player_init = {}
 
@@ -18,7 +18,7 @@ func _ready():
 
 func _process(delta):
 	bar.value = animated_health
-	print(animated_health)
+	emit_signal("turn_turret", mouse_pos)
 
 func update_health(new_value):
 	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)

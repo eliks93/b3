@@ -18,6 +18,7 @@ remote func update_position(packet):
 		$PlayerBoat.rotation = packet.rotation
 		$PlayerBoat.acceleration = packet.acceleration
 		$PlayerBoat.velocity = packet.velocity
+		$PlayerBoat.mouse_pos = packet.mouse_pos
 
 	var player_id = get_tree().get_rpc_sender_id()
 	for player in get_node("..").players:

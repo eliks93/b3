@@ -28,14 +28,14 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 func _physics_process(delta):
 	if ($PlayerBoat):
 		var packet = {
-			'mouse_pos': get_global_mouse_position(),
 			'position': {
 				'x': $PlayerBoat.position.x,
 				'y': $PlayerBoat.position.y
 			},
 			'rotation': $PlayerBoat.rotation,
 			'acceleration': $PlayerBoat.acceleration,
-			'velocity': $PlayerBoat.velocity
+			'velocity': $PlayerBoat.velocity,
+			'mouse_pos': $PlayerBoat.mouse_pos
 		}
 		rpc_unreliable_id(1, "update_position", packet)
 

@@ -5,6 +5,8 @@ signal turn_turret(mouse_pos)
 onready var bar = $Bar/TextureProgress
 onready var tween = $Tween
 
+var mouse_pos = Vector2()
+
 var animated_health = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,6 +19,7 @@ func _ready():
 
 func _process(delta):
 	emit_signal("turn_turret", get_global_mouse_position())
+	mouse_pos = get_global_mouse_position()
 	set_camera_position()
 	bar.value = animated_health
 

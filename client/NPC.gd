@@ -28,6 +28,7 @@ remote func set_position(packet):
 		$NPCBoat.rotation = packet.rotation
 		$NPCBoat.acceleration = packet.acceleration
 		$NPCBoat.velocity = packet.velocity
+		$NPCBoat.mouse_pos = packet.mouse_pos
 
 remote func update_health(hp):
 	$NPCBoat.update_health(hp)
