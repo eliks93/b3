@@ -8,7 +8,6 @@ var respawn_npc_ship = preload("res://NPCBoat.tscn")
 var leader_board
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
 	# Announce ready to spawn here.
 	rpc_id(1, "spawn_for")
 
