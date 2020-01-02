@@ -34,7 +34,7 @@ remote func update_health(hp):
 	$NPCBoat.update_health(hp)
 
 remote func destroy():
-	$NPCBoat.queue_free()
+	$NPCBoat.explode()
 
 
 

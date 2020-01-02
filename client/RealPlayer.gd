@@ -1,5 +1,6 @@
 extends "res://Boat.gd"
 
+var death_screen = preload("res://DeathScreen.tscn")
 signal fire_turret(group)
 signal turn_turret(mouse_pos)
 onready var bar = $Bar/TextureProgress
@@ -58,3 +59,17 @@ func set_camera_position():
 	# THEN perform normal operations
 	$Camera2D.global_position[0] = self.global_position[0] - (get_viewport_rect().size.x * 3) / 2 + x_offset
 	$Camera2D.global_position[1] = self.global_position[1] - (get_viewport_rect().size.y * 3) / 2 + y_offset
+
+func explode():
+	velocity = Vector2()
+	$Sprite.hide()
+	$Turret1/Sprite.hide()
+	$Turret2/Sprite.hide()
+	$Turret3/Sprite.hide()
+	$CollisionShape2D.disabled = true
+	$Explosion.show()
+	$Explosion.play("fire")
+
+func _on_Explosion_animation_finished():
+	get_node("../..").add_child(death_screen.instance())
+	queue_free()
