@@ -1,7 +1,6 @@
 extends "res://Boat.gd"
 
 signal fire_turret(group)
-signal turn_turret(mouse_pos)
 
 var mouse_pos
 
