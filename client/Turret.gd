@@ -3,7 +3,7 @@ extends Node2D
 signal spawn_projectile(projectile_type)
 
 export var baseBullet = preload("res://Projectile.tscn")
-export var fire_delay = 2.0
+export var fire_delay = 1.0
 
 var _ready_to_fire
 # Called when the node enters the scene tree for the first time.
