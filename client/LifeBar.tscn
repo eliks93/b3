@@ -11,3 +11,6 @@ margin_left = -198.0
 margin_top = -19.0
 margin_right = 198.0
 margin_bottom = 26.5
+
+[node name="TextureProgress" parent="." index="0"]
+tint_progress = Color( 0.105469, 0.75, 0.130646, 1 )
