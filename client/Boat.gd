@@ -74,4 +74,3 @@ func take_damage(dmg, p_owner):
 	hp -= dmg
 	emit_signal("health_changed", hp, p_owner)
 
-		

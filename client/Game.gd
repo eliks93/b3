@@ -2,6 +2,9 @@ extends Node2D
 
 var player_ship = preload("res://Player.tscn")
 var npc_ship = preload("res://NPC.tscn")
+var respawn_player_ship = preload("res://RealPlayer.tscn")
+var respawn_npc_ship = preload("res://NPCBoat.tscn")
+
 var leader_board
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,7 +21,7 @@ remote func update_leaderboard(leaderboard_info):
 		print(leaderboard_info[leader])
 		leader_board = str(leader) + " " + str(leaderboard_info[leader])
 		var player_id = get_tree().get_network_unique_id()
-		get_node(str(player_id)).get_child(1).get_node('./ItemList').add_item(leader_board)
+		get_node(str(player_id)).get_node("UI").get_node('./ItemList').add_item(leader_board)
 #	print(leaderboard_info)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -44,7 +47,6 @@ remote func spawn_player(p_id):
 remote func despawn_player(p_id):
 	if (get_node(str(p_id))):
 		remove_child(get_node(str(p_id)))
-
 
 
 

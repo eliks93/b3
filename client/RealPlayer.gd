@@ -44,9 +44,6 @@ func get_input():
 	if (Input.is_action_pressed("fire_1")):
 		emit_signal("fire_turret", 1)
 
-func _on_PlayerBoat_health_changed(player_health):
-	update_health(player_health)
-
 func update_health(new_value):
 	print(new_value, "hello?")
 	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -85,5 +82,5 @@ func explode():
 	$Explosion.play("fire")
 
 func _on_Explosion_animation_finished():
-	get_node("../..").add_child(death_screen.instance())
+	get_parent().add_child(death_screen.instance())
 	queue_free()
