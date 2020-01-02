@@ -17,7 +17,7 @@ var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 var steer_angle = 0
 
-export var braking = -450
+export var braking = -800
 export var max_speed_reverse = 250
 
 export var friction = -0.01

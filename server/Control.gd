@@ -27,12 +27,11 @@ func _ready():
 	create_game("Test 2")
 
 func _on_player_connected(id):
-	players[id] = id
-	emit_signal("player_added", id)
+	players[id] = "NA"
 
-func _on_player_disconnected(id):	
+func _on_player_disconnected(id):
+	games[players[id]]._player_removed(id)
 	players.erase(id)
-	emit_signal("player_removed", id)
 
 func create_server():
 	# Initialize network
@@ -49,64 +48,17 @@ func create_server():
 func create_game(name):
 	var newGame = gameTemplate.instance()
 	newGame.name = name
-	games[name] = {
-		'name': name,
-		'players': {}
-	}
+	games[name] = newGame
 	self.add_child(newGame)
 
 remote func player_joined_room(room_name):
 	var player = get_tree().get_rpc_sender_id()
+	players[player] = room_name
 	if games.has(room_name):
-		games[room_name].players[player] = players[player]
-		rpc_id(player, "join_game_success", games[room_name])
-		emit_signal("player_joined_room", player)
-		# games[name].addChild() # Need to create player object to append here.
-		# We need to create an instance of the player
-		# In the game room here, and add them to the
-		# Player list.
-		# rpc_id(player, "join_game_success")
+		print(room_name)
+		rpc_id(player, "join_game_success", room_name)
+		games[room_name]._player_added(player)
 
-#func _on_player_disconnected(id):
-#	print("Player ", players[id].name, " disconnected from server")
-#
-#	# Is always net server
-#	unregister_player(id)
-#	rpc("unregister_player", id)
-#
-#remote func register_player(pinfo):
-#	for id in players:
-#		# Sends new player info to current existing player
-#		rpc_id(pinfo.net_id, "register_player", players[id])
-#		# Do not need to confirm if current player is not server, as dedicated server is not in player list.
-#		# Sends current existing player info to new player
-#		rpc_id(id, "register_player", pinfo)
-#
-#	print("Registering player ", pinfo.name, " (", pinfo.net_id, ") to internal player table")
-#
-#	players[pinfo.net_id] = pinfo
-#	spawn_players(pinfo)
-#
-#remote func unregister_player(id):
-#	print("Removing player ", players[id].name, " from internal table")
-#	# Cache player info for actor deletion
-#	var pinfo = players[id]
-#	# Remove player from list
-#	players.erase(id)
-#	# Notify game of list changing
-#	emit_signal("player_removed", pinfo)
-#
-#
-#
-#
-#remote func spawn_players(pinfo):
-#
-#	for id in players:
-#
-#		if (id != pinfo.net_id):
-#			rpc_id(pinfo.net_id, "spawn_players", players[id])
-#
-#		rpc_id(id, "spawn_players", pinfo)
 
 
 

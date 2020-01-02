@@ -6,15 +6,14 @@ var base_ship = preload("res://Player.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("..").connect("player_joined_room", self, "_player_added")
-	get_node("..").connect("player_left_room", self, "_player_removed")
+	pass
 
 func _server_created():
 	# Need a function to generate map here.
 	pass
 
 func _player_added(id):
-	print("ADDING PLAYER", id)
+	print("ADDING PLAYER ", id, " to ", self.name)
 	# var player_ship = base_ship.instance()
 	if (!players.has(id)):
 		players[id] = {
@@ -38,6 +37,8 @@ func _player_added(id):
 		self.add_child(player_ship)
 
 func _player_removed(id):
+	print("REMOVING ", id)
+	self.remove_child(get_node(str(id)))
 	players.erase(id)
 	_render_player_list()
 
@@ -50,12 +51,12 @@ func _render_player_list():
 func spawn_players(id):
 	for player in players:
 		if (player != id):
-			rpc_id(id, "spawn_player", players[player])
+			rpc_id(id, "spawn_player", player)
 
 # Spawns a single player for all existing players.
 func spawn_player(id):
 	for player in players:
-		rpc_id(player, "spawn_player", players[id])
+		rpc_id(player, "spawn_player", id)
 	
 remote func spawn_for():
 	var player_id = get_tree().get_rpc_sender_id()
