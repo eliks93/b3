@@ -19,7 +19,7 @@ func _turn(mouse_pos):
 
 func _fire(group):
 	if (_ready_to_fire):
-		var direction = Vector2(1, 0).rotated(self.global_rotation + deg2rad(90))
+		var direction = Vector2(0, 1).rotated(self.global_rotation)
 		emit_signal("spawn_projectile", 1, $Muzzle.global_position, direction)
 		$FireDelay.start(fire_delay)
 		_ready_to_fire = false
