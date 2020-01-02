@@ -5,7 +5,9 @@ signal turn_turret(mouse_position)
 onready var bar = $Bar/TextureProgress
 onready var tween = $Tween
 
-var animated_health = 0
+var animated_health = 100
+var ripple_opacity = 0
+
 var mouse_pos = Vector2()
 
 var player_init = {}
@@ -18,6 +20,7 @@ func _ready():
 
 func _process(delta):
 	bar.value = animated_health
+	ripple_visibility()
 	emit_signal("turn_turret", mouse_pos)
 
 func update_health(new_value):
@@ -40,3 +43,15 @@ func explode():
 
 func _on_Explosion_animation_finished():
 	queue_free()
+
+func ripple_visibility():
+	var new_opacity = velocity.length() / 100
+	
+	if new_opacity > 1:
+		new_opacity = 1
+	
+	$Tween.interpolate_property($BoatRipple, "modulate",
+		Color(1, 1, 1, ripple_opacity), Color(1, 1, 1, new_opacity), 0.05,
+		Tween.TRANS_LINEAR, Tween.EASE_IN)
+	
+	ripple_opacity = new_opacity
