@@ -2,6 +2,9 @@ extends Node2D
 
 var player_ship = preload("res://Player.tscn")
 var npc_ship = preload("res://NPC.tscn")
+var respawn_player_ship = preload("res://RealPlayer.tscn")
+var respawn_npc_ship = preload("res://NPCBoat.tscn")
+
 var leader_board
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -52,7 +55,6 @@ remote func spawn_player(p_id):
 remote func despawn_player(p_id):
 	if (get_node(str(p_id))):
 		remove_child(get_node(str(p_id)))
-
 
 
 

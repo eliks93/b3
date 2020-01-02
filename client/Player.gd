@@ -4,7 +4,7 @@ var player_init = {}
 var p_name = "Player"
 var projectile = preload("res://Projectile.tscn")
 
-
+var boat = preload("res://RealPlayer.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,10 +59,21 @@ func set_camera_limits(map_limits,map_cellsize):
 	$PlayerBoat/Camera2D.limit_top = map_limits.position.y * map_cellsize.y
 	$PlayerBoat/Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
 
+func request_respawn():
+	rpc_unreliable_id(1, "respawn")
 
-
-
-
+remote func respawn_player(x, y, rotation):
+	var new_boat = boat.instance()
+	new_boat.position.x = x
+	new_boat.position.y = y
+	new_boat.rotation = rotation
+	add_child(new_boat)
+	
+	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
+	
+	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
+	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
+	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
 
 
 

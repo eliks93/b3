@@ -4,12 +4,13 @@ var player_init = {}
 var p_name = "Not-Player"
 var projectile = preload("res://Projectile.tscn")
 
+var boat = preload("res://NPCBoat.tscn")
+
 var p_owner
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$NPCBoat/Turret1.connect("spawn_projectile", self, "_spawn_projectile")
-	$NPCBoat/Turret2.connect("spawn_projectile", self, "_spawn_projectile")
+	pass
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = projectile.instance()
@@ -36,7 +37,12 @@ remote func update_health(hp):
 remote func destroy():
 	$NPCBoat.explode()
 
-
+remote func respawn_player(x, y, rotation):
+	var new_boat = boat.instance()
+	new_boat.position.x = x
+	new_boat.position.y = y
+	new_boat.rotation = rotation
+	add_child(new_boat)
 
 
 

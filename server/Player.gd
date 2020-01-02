@@ -2,6 +2,8 @@ extends Node2D
 
 var proj = preload("res://Projectile.tscn")
 
+var boat = preload("res://RealPlayer.tscn")
+
 export var score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +32,7 @@ remote func update_position(packet):
 
 remote func update_health(hp, p_owner):
 	var player_id = get_tree().get_rpc_sender_id()
+	print(hp)
 	if hp == null:
 		hp = 0
 	if $PlayerBoat:
@@ -45,3 +48,47 @@ remote func update_health(hp, p_owner):
 
 func send_leaderboard_info(p_owner):
 	rpc_unreliable_id(int(get_node(".").name), "update_leaderboard", p_owner)
+
+remote func respawn():
+	var x = 0
+	var y = 0
+	var rotation = 0
+	var new_boat = boat.instance()
+	new_boat.position.x = x
+	new_boat.position.y = y
+	new_boat.rotation = rotation
+	
+	add_child(new_boat)
+	rpc_unreliable("respawn_player", x, y, rotation)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
