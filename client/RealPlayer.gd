@@ -46,6 +46,7 @@ func _on_PlayerBoat_health_changed(player_health):
 	update_health(player_health)
 
 func update_health(new_value):
+	print(new_value, "hello?")
 	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	if not tween.is_active():
 		tween.start()

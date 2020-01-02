@@ -46,6 +46,7 @@ func _on_PlayerBoat_health_changed(hp, p_owner):
 	rpc_id(1, "update_health", hp, p_owner)
 
 remote func update_health(hp):
+	$PlayerBoat.update_health(hp)
 	$PlayerBoat.hp = hp
 
 remote func destroy():
