@@ -35,7 +35,7 @@ func _on_Projectile_body_entered(body):
 	if (body.get_node("..").name != p_owner):
 		explode()
 		if body.has_method("take_damage"):
-			body.take_damage(damage)
+			body.take_damage(damage, p_owner)
 
 func _on_Explosion_animation_finished():
 	queue_free()

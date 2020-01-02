@@ -1,0 +1,16 @@
+[gd_scene format=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Player" type="Label" parent="."]
+margin_left = -0.232735
+margin_right = 39.7673
+margin_bottom = 14.0
+text = "Player"
+
+[node name="Score" type="Label" parent="."]
+margin_left = 62.1653
+margin_top = 0.0569344
+margin_right = 102.165
+margin_bottom = 14.0569
+text = "Score"

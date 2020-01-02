@@ -12,12 +12,15 @@ func _ready():
 	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
 	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
 
+
 func initialize():
 	$PlayerBoat.position.x = 0
 	$PlayerBoat.position.y = 0
 
 func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
+	
+	
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = projectile.instance()
@@ -39,8 +42,8 @@ func _physics_process(delta):
 		}
 		rpc_unreliable_id(1, "update_position", packet)
 
-func _on_PlayerBoat_health_changed(hp):
-	rpc_id(1, "update_health", hp)
+func _on_PlayerBoat_health_changed(hp, p_owner):
+	rpc_id(1, "update_health", hp, p_owner)
 
 remote func update_health(hp):
 	$PlayerBoat.hp = hp
