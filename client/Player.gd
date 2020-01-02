@@ -49,14 +49,16 @@ remote func update_health(hp):
 	$PlayerBoat.hp = hp
 
 remote func destroy():
-	$PlayerBoat.queue_free()
-	add_child(death_screen.instance())
+	if $PlayerBoat:
+		$PlayerBoat.queue_free()
+		add_child(death_screen.instance())
 
 func set_camera_limits(map_limits,map_cellsize):
 	$PlayerBoat/Camera2D.limit_left = map_limits.position.x * map_cellsize.x
 	$PlayerBoat/Camera2D.limit_right = map_limits.end.x * map_cellsize.x
 	$PlayerBoat/Camera2D.limit_top = map_limits.position.y * map_cellsize.y
 	$PlayerBoat/Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
+
 
 
 

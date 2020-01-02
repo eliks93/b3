@@ -1,7 +1,7 @@
 extends Node2D
 
 var players = {}
-
+var leaderboard = {}
 var base_ship = preload("res://Player.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +35,8 @@ func _player_added(id):
 		var player_ship = base_ship.instance()
 		player_ship.name = str(id)
 		self.add_child(player_ship)
+		
+		leaderboard[id] = 0
 
 func _player_removed(id):
 	print("REMOVING ", id)
@@ -46,6 +48,7 @@ func _render_player_list():
 	$ItemList.clear()
 	for player in players:
 		$ItemList.add_item(str(player))
+
 
 # Spawns all existing players for a single player
 func spawn_players(id):
@@ -64,9 +67,13 @@ remote func spawn_for():
 	spawn_player(player_id)
 
 remote func set_score(p_owner):
-	get_node(p_owner).score += 1
-	print(get_node(p_owner).score, " ", p_owner)
+#	get_node(p_owner).score += 1
+	print("Set score called")
+	update_leaderboard(p_owner)
 
+func update_leaderboard(p_owner):
+	leaderboard[int(p_owner)] += 1
+	rpc_unreliable("update_leaderboard", leaderboard)
 
 
 

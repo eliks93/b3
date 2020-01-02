@@ -31,11 +31,17 @@ remote func update_health(hp, p_owner):
 	var player_id = get_tree().get_rpc_sender_id()
 	if hp == null:
 		hp = 0
-	$PlayerBoat.hp = hp
+	if $PlayerBoat:
+		$PlayerBoat.hp = hp
 	if (hp > 0):
 		rpc_unreliable("update_health", hp)
 	else:
 		for player in get_node("..").players:
 			rpc_unreliable("destroy")
-		get_node("..").set_score(p_owner)
-		$PlayerBoat.queue_free()
+		if $PlayerBoat:
+			get_node("..").set_score(p_owner)
+			$PlayerBoat.queue_free()
+
+func send_leaderboard_info(p_owner):
+	rpc_unreliable_id(int(get_node(".").name), "update_leaderboard", p_owner)
+	
