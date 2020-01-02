@@ -5,7 +5,7 @@ signal turn_turret(mouse_position)
 onready var bar = $Bar/TextureProgress
 onready var tween = $Tween
 
-var animated_health = 0
+var animated_health = 100
 var mouse_pos = Vector2()
 
 var player_init = {}

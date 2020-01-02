@@ -8,7 +8,8 @@ onready var tween = $Tween
 
 var mouse_pos = Vector2()
 
-var animated_health = 0
+var animated_health = 100
+var ripple_opacity = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Turret1.connect("spawn_projectile", self, "_spawn_projectile")
@@ -23,6 +24,7 @@ func _process(delta):
 	mouse_pos = get_global_mouse_position()
 	set_camera_position()
 	bar.value = animated_health
+	ripple_visibility()
 
 func get_input():
 	var turn = 0
@@ -50,6 +52,17 @@ func update_health(new_value):
 	if not tween.is_active():
 		tween.start()
 
+func ripple_visibility():
+	var new_opacity = velocity.length() / 100
+	
+	if new_opacity > 1:
+		new_opacity = 1
+	
+	$Tween.interpolate_property($BoatRipple, "modulate",
+		Color(1, 1, 1, ripple_opacity), Color(1, 1, 1, new_opacity), 0.05,
+		Tween.TRANS_LINEAR, Tween.EASE_IN)
+	
+	ripple_opacity = new_opacity
 
 func set_camera_position():
 	var offset = get_viewport().get_mouse_position() - self.global_position
