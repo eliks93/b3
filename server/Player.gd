@@ -21,6 +21,7 @@ remote func update_position(packet):
 		$PlayerBoat.rotation = packet.rotation
 		$PlayerBoat.acceleration = packet.acceleration
 		$PlayerBoat.velocity = packet.velocity
+		$PlayerBoat.mouse_pos = packet.mouse_pos
 
 	var player_id = get_tree().get_rpc_sender_id()
 	for player in get_node("..").players:
@@ -44,4 +45,3 @@ remote func update_health(hp, p_owner):
 
 func send_leaderboard_info(p_owner):
 	rpc_unreliable_id(int(get_node(".").name), "update_leaderboard", p_owner)
-	

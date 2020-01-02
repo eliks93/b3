@@ -40,4 +40,37 @@ remote func spawn_player(p_id):
 		ship.get_node("NPCBoat").collision_mask = 1
 		ship.initialize()
 		self.add_child(ship)
-	
+
+remote func despawn_player(p_id):
+	if (get_node(str(p_id))):
+		remove_child(get_node(str(p_id)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

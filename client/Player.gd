@@ -4,7 +4,7 @@ var player_init = {}
 var p_name = "Player"
 var projectile = preload("res://Projectile.tscn")
 
-var death_screen = preload("res://DeathScreen.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -31,14 +31,14 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 func _physics_process(delta):
 	if ($PlayerBoat):
 		var packet = {
-			'mouse_pos': get_global_mouse_position(),
 			'position': {
 				'x': $PlayerBoat.position.x,
 				'y': $PlayerBoat.position.y
 			},
 			'rotation': $PlayerBoat.rotation,
 			'acceleration': $PlayerBoat.acceleration,
-			'velocity': $PlayerBoat.velocity
+			'velocity': $PlayerBoat.velocity,
+			'mouse_pos': $PlayerBoat.mouse_pos
 		}
 		rpc_unreliable_id(1, "update_position", packet)
 
@@ -49,9 +49,8 @@ remote func update_health(hp):
 	$PlayerBoat.hp = hp
 
 remote func destroy():
-	if $PlayerBoat:
-		$PlayerBoat.queue_free()
-		add_child(death_screen.instance())
+	$PlayerBoat.explode()
+	
 
 func set_camera_limits(map_limits,map_cellsize):
 	$PlayerBoat/Camera2D.limit_left = map_limits.position.x * map_cellsize.x
@@ -94,3 +93,6 @@ func set_camera_limits(map_limits,map_cellsize):
 
 
 
+
+func _on_Explosion_animation_finished():
+	pass # Replace with function body.

@@ -3,7 +3,7 @@ extends Node2D
 signal spawn_projectile(projectile_type)
 
 export var baseBullet = preload("res://Projectile.tscn")
-export var fire_delay = 2.0
+export var fire_delay = 1.0
 
 var _ready_to_fire
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +19,7 @@ func _turn(mouse_pos):
 
 func _fire(group):
 	if (_ready_to_fire):
-		var direction = Vector2(1, 0).rotated(self.global_rotation + deg2rad(90))
+		var direction = Vector2(0, 1).rotated(self.global_rotation)
 		emit_signal("spawn_projectile", 1, $Muzzle.global_position, direction)
 		$FireDelay.start(fire_delay)
 		_ready_to_fire = false

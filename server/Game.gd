@@ -43,6 +43,7 @@ func _player_removed(id):
 	self.remove_child(get_node(str(id)))
 	players.erase(id)
 	_render_player_list()
+	rpc_unreliable("despawn_player", id)
 
 func _render_player_list():
 	$ItemList.clear()
