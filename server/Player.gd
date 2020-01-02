@@ -26,6 +26,8 @@ remote func update_position(packet):
 
 remote func update_health(hp):
 	var player_id = get_tree().get_rpc_sender_id()
+	if hp == null:
+		hp = 0
 	$PlayerBoat.hp = hp
 	if (hp > 0):
 		rpc_unreliable("update_health", hp)
