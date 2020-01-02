@@ -18,16 +18,16 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	proj.start(_position, _direction)
 
 func initialize():
-	p_name = player_init.name
-	$NPCBoat.position.x = player_init.position.x
-	$NPCBoat.position.y = player_init.position.y
+	$NPCBoat.position.x = 0
+	$NPCBoat.position.y = 0
 
 remote func set_position(packet):
-	$NPCBoat.position.x = packet.position.x
-	$NPCBoat.position.y = packet.position.y
-	$NPCBoat.rotation = packet.rotation
-	$NPCBoat.acceleration = packet.acceleration
-	$NPCBoat.velocity = packet.velocity
+	if ($NPCBoat):
+		$NPCBoat.position.x = packet.position.x
+		$NPCBoat.position.y = packet.position.y
+		$NPCBoat.rotation = packet.rotation
+		$NPCBoat.acceleration = packet.acceleration
+		$NPCBoat.velocity = packet.velocity
 
 remote func update_health(hp):
 	$NPCBoat.update_health(hp)
