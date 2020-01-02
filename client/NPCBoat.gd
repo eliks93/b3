@@ -27,3 +27,4 @@ func update_health(new_value):
 
 func _on_NPCBoat_health_changed(new_value):
 	update_health(new_value)
+

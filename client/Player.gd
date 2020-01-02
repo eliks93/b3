@@ -6,6 +6,7 @@ var projectile = preload("res://Projectile.tscn")
 
 var death_screen = preload("res://DeathScreen.tscn")
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
@@ -47,7 +48,10 @@ remote func update_health(hp):
 
 remote func destroy():
 	$PlayerBoat.queue_free()
-	add_child(death_screen.instance())
+	$Explosion.show()
+	$Explosion.play("fire")
+	
+	
 
 func set_camera_limits(map_limits,map_cellsize):
 	$PlayerBoat/Camera2D.limit_left = map_limits.position.x * map_cellsize.x
@@ -55,37 +59,6 @@ func set_camera_limits(map_limits,map_cellsize):
 	$PlayerBoat/Camera2D.limit_top = map_limits.position.y * map_cellsize.y
 	$PlayerBoat/Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+func _on_Explosion_animation_finished():
+	add_child(death_screen.instance())
+	$Explosion.hide()
