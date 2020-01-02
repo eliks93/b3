@@ -14,11 +14,19 @@ func update_score(p_owner):
 	rpc_unreliable_id(1, "set_score", p_owner)
 
 remote func update_leaderboard(leaderboard_info):
+	var player_id = get_tree().get_network_unique_id()
+	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
+	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
 	for leader in leaderboard_info:
 		print(leaderboard_info[leader])
-		leader_board = str(leader) + " " + str(leaderboard_info[leader])
-		var player_id = get_tree().get_network_unique_id()
-		get_node(str(player_id)).get_child(1).get_node('./ItemList').add_item(leader_board)
+		var player_name
+		if len(str(leader)) > 7:
+			player_name = str(leader).left(7) + "..."
+		else:
+			player_name = str(leader) 
+		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
+		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leaderboard_info[leader]))
+		
 #	print(leaderboard_info)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

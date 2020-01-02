@@ -16,8 +16,8 @@ margin_right = 1020.83
 margin_bottom = 684.41
 text = "Bottom Right"
 
-[node name="ItemList" parent="." instance=ExtResource( 1 )]
-margin_left = 799.0
-margin_top = 17.0
-margin_right = 967.0
-margin_bottom = 232.0
+[node name="HBoxContainer" parent="." instance=ExtResource( 1 )]
+margin_left = 876.0
+margin_top = 2.0
+margin_right = 1023.0
+margin_bottom = 197.0

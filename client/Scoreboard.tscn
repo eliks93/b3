@@ -1,5 +1,24 @@
-[gd_scene format=2]
+[gd_scene load_steps=3 format=2]
 
-[node name="ItemList" type="ItemList"]
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[node name="HBoxContainer" type="HBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
+
+[node name="PlayerList" type="ItemList" parent="."]
+margin_right = 18.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/bg = SubResource( 1 )
+
+[node name="ScoreList" type="ItemList" parent="."]
+margin_left = 22.0
+margin_right = 40.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/bg = SubResource( 2 )
