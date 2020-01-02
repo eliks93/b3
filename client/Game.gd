@@ -20,6 +20,9 @@ remote func spawn_player(p_info):
 		ship.player_init = p_info
 		ship.initialize()
 		self.add_child(ship)
+		var map_limits = $Map01/Boundary.get_used_rect()
+		var map_cellsize = $Map01/Boundary.cell_size
+		ship.set_camera_limits(map_limits,map_cellsize)
 	else:
 		var ship = npc_ship.instance()
 		ship.name = str(p_info.id)
