@@ -70,6 +70,8 @@ func calculate_steering(delta):
 
 	rotation = new_heading.angle()
 
-func take_damage(dmg):
+func take_damage(dmg, p_owner):
 	hp -= dmg
 	emit_signal("health_changed", hp)
+
+		

@@ -29,19 +29,13 @@ func _player_added(id):
 			'acceleration': 0,
 			'velocity': 0,
 			'collision_mask': 0,
-			'collision_layer': 0
+			'collision_layer': 0,
+			
 		}
 		_render_player_list()
 		var player_ship = base_ship.instance()
 		player_ship.name = str(id)
 		self.add_child(player_ship)
-#	spawn_players(id)
-#	spawn_player(id)
-#	_render_player_list()
-#	player_ship.name = str(id)
-#	ships[id] = player_ship
-#
-#	self.add_child(player_ship)
 
 func _player_removed(id):
 	players.erase(id)
@@ -68,8 +62,9 @@ remote func spawn_for():
 	spawn_players(player_id)
 	spawn_player(player_id)
 
-
-
+remote func set_score(p_owner):
+	get_node(p_owner).score += 1
+	print(get_node(p_owner).score, " ", p_owner)
 
 
 

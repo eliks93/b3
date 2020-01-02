@@ -7,8 +7,11 @@ var npc_ship = preload("res://NPC.tscn")
 func _ready():
 	# Announce ready to spawn here.
 	rpc_id(1, "spawn_for")
-	pass
 
+func update_score(p_owner):
+	print("score")
+	rpc_unreliable_id(1, "set_score", p_owner)
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

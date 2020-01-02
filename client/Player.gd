@@ -10,6 +10,7 @@ func _ready():
 	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
 	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
 
+
 func initialize():
 	p_name = player_init.name
 	$PlayerBoat.position.x = player_init.position.x
@@ -17,6 +18,8 @@ func initialize():
 
 func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
+	
+	
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = projectile.instance()

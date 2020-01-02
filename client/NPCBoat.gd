@@ -18,7 +18,7 @@ func _ready():
 
 func _process(delta):
 	bar.value = animated_health
-	print(animated_health)
+
 
 func update_health(new_value):
 	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
