@@ -72,6 +72,6 @@ func calculate_steering(delta):
 
 func take_damage(dmg, p_owner):
 	hp -= dmg
-	emit_signal("health_changed", hp)
+	emit_signal("health_changed", hp, p_owner)
 
 		

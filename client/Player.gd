@@ -42,8 +42,8 @@ func _physics_process(delta):
 		}
 		rpc_unreliable_id(1, "update_position", packet)
 
-func _on_PlayerBoat_health_changed(hp):
-	rpc_id(1, "update_health", hp)
+func _on_PlayerBoat_health_changed(hp, p_owner):
+	rpc_id(1, "update_health", hp, p_owner)
 
 remote func update_health(hp):
 	$PlayerBoat.hp = hp

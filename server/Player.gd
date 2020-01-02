@@ -27,7 +27,7 @@ remote func update_position(packet):
 		if (player_id != player):
 			rpc_unreliable_id(player, "set_position", packet)
 
-remote func update_health(hp):
+remote func update_health(hp, p_owner):
 	var player_id = get_tree().get_rpc_sender_id()
 	if hp == null:
 		hp = 0
@@ -37,4 +37,5 @@ remote func update_health(hp):
 	else:
 		for player in get_node("..").players:
 			rpc_unreliable("destroy")
+		get_node("..").set_score(p_owner)
 		$PlayerBoat.queue_free()
