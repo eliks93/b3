@@ -30,6 +30,6 @@ position = Vector2( 24.9052, 31.3202 )
 
 [node name="Explosion" parent="." index="8" instance=ExtResource( 5 )]
 visible = false
-scale = Vector2( 4, 4 )
+rotation = 1.5708
 [connection signal="health_changed" from="." to="." method="_on_PlayerBoat_health_changed"]
 [connection signal="animation_finished" from="Explosion" to="." method="_on_Explosion_animation_finished"]

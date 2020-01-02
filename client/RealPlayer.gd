@@ -1,5 +1,6 @@
 extends "res://Boat.gd"
 
+var death_screen = preload("res://DeathScreen.tscn")
 signal fire_turret(group)
 signal turn_turret(mouse_pos)
 onready var bar = $Bar/TextureProgress
@@ -62,9 +63,10 @@ func explode():
 	$Turret1/Sprite.hide()
 	$Turret2/Sprite.hide()
 	$Turret3/Sprite.hide()
+	$CollisionShape2D.disabled = true
 	$Explosion.show()
 	$Explosion.play("fire")
 
 func _on_Explosion_animation_finished():
-	
+	get_node("../..").add_child(death_screen.instance())
 	queue_free()

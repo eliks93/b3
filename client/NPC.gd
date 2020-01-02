@@ -33,9 +33,34 @@ remote func update_health(hp):
 	$NPCBoat.update_health(hp)
 
 remote func destroy():
-	$NPCBoat.queue_free()
-	$Explosion.show()
-	$Explosion.play("fire")
-	
-func _on_Explosion_animation_finished():
-	$Explosion.hide()
+	$NPCBoat.explode()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
