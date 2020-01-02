@@ -22,6 +22,6 @@ func _on_Button_pressed():
 # This will be called if Core.join_game succeeded.
 func room_join_success(room_info):
 	var room = game.instance()
-	room.name = room_info.name
+	room.name = room_info
 	get_node("..").swap_scene(get_node("."), room)
 # This will be called if Core.join_game failed.

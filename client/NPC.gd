@@ -18,9 +18,8 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	proj.start(_position, _direction)
 
 func initialize():
-	p_name = player_init.name
-	$NPCBoat.position.x = player_init.position.x
-	$NPCBoat.position.y = player_init.position.y
+	$NPCBoat.position.x = 0
+	$NPCBoat.position.y = 0
 
 remote func set_position(packet):
 	if ($NPCBoat):

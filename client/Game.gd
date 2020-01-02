@@ -13,18 +13,16 @@ func _ready():
 #func _process(delta):
 #	pass
 
-remote func spawn_player(p_info):
-	if (p_info.id == get_tree().get_network_unique_id()):
+remote func spawn_player(p_id):
+	if (p_id == get_tree().get_network_unique_id()):
 		var ship = player_ship.instance()
 		ship.name = str(get_tree().get_network_unique_id())
-		ship.player_init = p_info
 		ship.initialize()
 		self.add_child(ship)
 	else:
 		var ship = npc_ship.instance()
-		ship.name = str(p_info.id)
+		ship.name = str(p_id)
 		ship.get_node("NPCBoat").collision_layer = 1
 		ship.get_node("NPCBoat").collision_mask = 1
-		ship.player_init = p_info
 		ship.initialize()
 		self.add_child(ship)
