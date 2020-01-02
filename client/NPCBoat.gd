@@ -28,14 +28,3 @@ func update_health(new_value):
 func _on_NPCBoat_health_changed(new_value):
 	update_health(new_value)
 
-func explode():
-	velocity = Vector2()
-	$Sprite.hide()
-	$Turret1/Sprite.hide()
-	$Turret2/Sprite.hide()
-	$Explosion.show()
-	$Explosion.play("fire")
-
-
-func _on_Explosion_animation_finished():
-	queue_free()
