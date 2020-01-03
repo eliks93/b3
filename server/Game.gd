@@ -81,6 +81,7 @@ remote func set_score(p_owner):
 func update_leaderboard(p_owner):
 	leaderboard[int(p_owner)] += 1
 	rpc_unreliable("update_leaderboard", leaderboard)
+	
 
 func render_leaderboard():
 	rpc_unreliable("update_leaderboard", leaderboard)
