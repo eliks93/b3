@@ -8,12 +8,13 @@ signal player_left_room(pinfo)
 
 var server_info = {
 	name = "Main",
-		max_players = 80,
+		max_players = 256,
 		used_port = 4587
 }
 
 var players = {}
 var games = {}
+var room_list = {}
 
 var gameTemplate = preload("res://Game.tscn")
 
@@ -28,9 +29,11 @@ func _ready():
 
 func _on_player_connected(id):
 	players[id] = "NA"
+	rpc_id(id, "update_lobby", room_list)
 
 func _on_player_disconnected(id):
-	games[players[id]]._player_removed(id)
+	if (players[id] != "NA"):
+		games[players[id]]._player_removed(id)
 	players.erase(id)
 
 func create_server():
@@ -49,6 +52,10 @@ func create_game(name):
 	var newGame = gameTemplate.instance()
 	newGame.name = name
 	games[name] = newGame
+	room_list[name] = {
+		'players': 0,
+		'max_players': 64
+	}
 	self.add_child(newGame)
 
 remote func player_joined_room(room_name):
@@ -59,7 +66,10 @@ remote func player_joined_room(room_name):
 		rpc_id(player, "join_game_success", room_name)
 		games[room_name]._player_added(player)
 
-
+remote func request_lobby_update():
+	var player_id = get_tree().get_rpc_sender_id()
+	
+	rpc_id(player_id, "update_lobby", room_list)
 
 
 

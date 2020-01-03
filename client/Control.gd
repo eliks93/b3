@@ -21,3 +21,9 @@ remote func join_game_success(game_info):
 
 func join_game_fail():
 	pass
+
+func request_lobby_update():
+	rpc_id(1, "request_lobby_update")
+
+remote func update_lobby(room_list):
+	$Lobby.update(room_list)
