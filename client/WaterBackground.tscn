@@ -1,0 +1,38 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://assets/WaterAnimations/ocean01.png" type="Texture" id=1]
+[ext_resource path="res://assets/WaterAnimations/ocean02.png" type="Texture" id=2]
+[ext_resource path="res://assets/WaterAnimations/ocean03.png" type="Texture" id=3]
+[ext_resource path="res://assets/WaterAnimations/ocean04.png" type="Texture" id=4]
+[ext_resource path="res://assets/WaterAnimations/ocean05.png" type="Texture" id=5]
+[ext_resource path="res://assets/WaterAnimations/ocean06.png" type="Texture" id=6]
+[ext_resource path="res://assets/WaterAnimations/ocean07.png" type="Texture" id=7]
+[ext_resource path="res://assets/WaterAnimations/ocean08.png" type="Texture" id=8]
+[ext_resource path="res://assets/WaterAnimations/ocean09.png" type="Texture" id=9]
+[ext_resource path="res://assets/WaterAnimations/ocean10.png" type="Texture" id=10]
+[ext_resource path="res://assets/WaterAnimations/ocean11.png" type="Texture" id=11]
+[ext_resource path="res://assets/WaterAnimations/ocean12.png" type="Texture" id=12]
+[ext_resource path="res://assets/WaterAnimations/ocean13.png" type="Texture" id=13]
+[ext_resource path="res://assets/WaterAnimations/ocean14.png" type="Texture" id=14]
+[ext_resource path="res://assets/WaterAnimations/ocean15.png" type="Texture" id=15]
+[ext_resource path="res://assets/WaterAnimations/ocean16.png" type="Texture" id=16]
+[ext_resource path="res://assets/WaterAnimations/ocean17.png" type="Texture" id=17]
+[ext_resource path="res://assets/WaterAnimations/ocean18.png" type="Texture" id=18]
+[ext_resource path="res://assets/WaterAnimations/ocean19.png" type="Texture" id=19]
+[ext_resource path="res://assets/WaterAnimations/ocean20.png" type="Texture" id=20]
+[ext_resource path="res://assets/WaterAnimations/ocean21.png" type="Texture" id=21]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "water",
+"speed": 20.0
+} ]
+
+[node name="WaterBackground" type="AnimatedSprite"]
+frames = SubResource( 1 )
+animation = "water"
+frame = 10
+speed_scale = 0.75
+playing = true

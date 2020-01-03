@@ -12,7 +12,6 @@ func _ready():
 	rpc_id(1, "spawn_for")
 
 func update_score(p_owner):
-	print("score")
 	rpc_unreliable_id(1, "set_score", p_owner)
 
 	
@@ -21,14 +20,9 @@ remote func update_leaderboard(leaderboard_info):
 	var sort
 	for leader in leaderboard_info:
 		sorted_leaderboard.append({leaderboard_info[leader]: leader})
-	print(sorted_leaderboard, "NOT SORTED")
+
 	sorted_leaderboard.sort_custom(self, "custom_sort")
-	
-	
-	print(sorted_leaderboard, "SORTED PLS")
-#	for leader in sorted_leaderboard:
-#		print (leader)
-#
+
 	var player_id = get_tree().get_network_unique_id()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
@@ -41,7 +35,6 @@ remote func update_leaderboard(leaderboard_info):
 			player_name = str(leader.values()[0]) 
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
-#
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
