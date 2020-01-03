@@ -27,8 +27,8 @@ func room_join_success(room_info):
 # This will be called if Core.join_game failed.
 
 func update(room_list):
-#	$RoomList/listNames.clear()
-#	$RoomList/listPlayers.clear()
+	$RoomList/listNames.clear()
+	$RoomList/listPlayers.clear()
 	for room in room_list:
 		$RoomList/listNames.add_item(room)
 		$RoomList/listPlayers.add_item(str(room_list[room].players) + "/" + str(room_list[room].max_players))

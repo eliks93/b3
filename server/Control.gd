@@ -34,6 +34,9 @@ func _on_player_connected(id):
 func _on_player_disconnected(id):
 	if (players[id] != "NA"):
 		games[players[id]]._player_removed(id)
+		room_list[players[id]].players = games[players[id]].players.size()
+		print(room_list)
+		rpc("update_lobby", room_list)
 	players.erase(id)
 
 func create_server():
@@ -65,6 +68,8 @@ remote func player_joined_room(room_name):
 		print(room_name)
 		rpc_id(player, "join_game_success", room_name)
 		games[room_name]._player_added(player)
+		room_list[room_name].players = games[room_name].players.size()
+	rpc("update_lobby", room_list)
 
 remote func request_lobby_update():
 	var player_id = get_tree().get_rpc_sender_id()

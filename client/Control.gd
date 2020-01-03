@@ -26,4 +26,5 @@ func request_lobby_update():
 	rpc_id(1, "request_lobby_update")
 
 remote func update_lobby(room_list):
-	$Lobby.update(room_list)
+	if $Lobby:
+		$Lobby.update(room_list)
