@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://maps/SpawnPoint.tscn" type="PackedScene" id=1]
+
+[node name="Map01" type="Node"]
+
+[node name="Spawns" type="Node" parent="."]
+
+[node name="SpawnPoint1" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( 7.52429, -706.405 )
+
+[node name="SpawnPoint2" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( 1613, 1033.29 )
+
+[node name="SpawnPoint3" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( 1705.92, 1957.34 )
+
+[node name="SpawnPoint4" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( 1633.65, -835.463 )
+
+[node name="SpawnPoint5" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( -2.80042, 548.031 )
+
+[node name="SpawnPoint6" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( 3270.09, 496.409 )
+
+[node name="SpawnPoint7" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( 1633.65, -14.6581 )
+
+[node name="SpawnPoint8" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( 7.52417, 1766.33 )
+
+[node name="SpawnPoint9" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( 3337.2, 1595.98 )
+
+[node name="SpawnPoint10" parent="Spawns" instance=ExtResource( 1 )]
+position = Vector2( 3397.85, -743.909 )

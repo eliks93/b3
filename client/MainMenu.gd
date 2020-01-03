@@ -7,6 +7,7 @@ func _ready():
 	pass # Replace with function body.
 
 func _on_buttonLobby_pressed():
+#	get_node("..").connect_to("ec2-18-191-0-94.us-east-2.compute.amazonaws.com", 4587)
 	get_node("..").connect_to("127.0.0.1", 4587)
 	get_node("..").swap_scene(get_node("."), lobby.instance())
 
