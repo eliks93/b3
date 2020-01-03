@@ -58,7 +58,7 @@ func _render_player_list():
 func spawn_players(id, p_name):
 	for player in players:
 		if (player != id):
-			rpc_id(id, "spawn_player", player, p_name)
+			rpc_id(id, "spawn_player", player, players[player].name)
 
 # Spawns a single player for all existing players.
 func spawn_player(id, p_name):

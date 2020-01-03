@@ -19,6 +19,7 @@ func _ready():
 func initialize():
 	$PlayerBoat.position.x = 0
 	$PlayerBoat.position.y = 0
+	$PlayerBoat/PlayerName.set_name(player_name)
 
 func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)

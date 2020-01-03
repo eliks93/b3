@@ -22,6 +22,7 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 func initialize():
 	$NPCBoat.position.x = 0
 	$NPCBoat.position.y = 0
+	$NPCBoat/PlayerName.set_name(player_name)
 
 func _physics_process(delta):
 	print(player_name)
