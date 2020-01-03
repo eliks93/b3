@@ -22,7 +22,7 @@ remote func update_leaderboard(leaderboard_info):
 	var sorted_leaderboard = []
 
 	for leader in leaderboard_info:
-		sorted_leaderboard.append({leaderboard_info[leader]['score']: { leader: leaderboard_info[leader]['user'] } })
+		sorted_leaderboard.append({leaderboard_info[leader]['score']: { leader: leaderboard_info[leader]['name'] } })
 
 	#[{score: {id: name}}, {score2: {id2: name2}}]
 	#[{score: id}, {score2: id2}]
@@ -32,12 +32,16 @@ remote func update_leaderboard(leaderboard_info):
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
 	for leader in sorted_leaderboard:
+#		print(leader.values()[0].keys()[0], "leader")
+		var id = leader.values()[0].keys()[0]
+		var name = leader.values()[0][id]
 		var player_name
-		
-		if len(str(leader.values()[0])) > 7:
-			player_name = str(leader.values()[0]).left(7) + "..."
+#
+		if len(name) > 7:
+			player_name = name.left(7) + "..."
 		else:
-			player_name = str(leader.values()[0]) 
+			player_name = name
+		print (player_name, " player name!")
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
 

@@ -36,7 +36,7 @@ func _player_added(id, name):
 		player_ship.name = str(id)
 		player_ship.player_name = name
 		self.add_child(player_ship)
-		leaderboard[id] = { 'name': $Player.player_name, 'score': 0 }
+		leaderboard[id] = { 'name': name, 'score': 0 }
 		
 
 func _player_removed(id):
