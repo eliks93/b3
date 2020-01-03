@@ -61,12 +61,12 @@ func create_game(name):
 	}
 	self.add_child(newGame)
 
-remote func join_room(room_name):
-	var player = get_tree().get_rpc_sender_id()
-	players[player] = room_name
+remote func join_room(room_name, player_name):
+	var player_id = get_tree().get_rpc_sender_id()
+	players[player_id] = room_name
 	if (games.has(room_name) && room_list[room_name].players <= room_list[room_name].max_players):
-		rpc_id(player, "join_game_success", room_name)
-		games[room_name]._player_added(player)
+		rpc_id(player_id, "join_game_success", room_name)
+		games[room_name]._player_added(player_id, player_name)
 		room_list[room_name].players = games[room_name].players.size()
 	rpc("update_lobby", room_list)
 

@@ -1,8 +1,9 @@
 extends Node2D
 
 var proj = preload("res://Projectile.tscn")
-
 var boat = preload("res://RealPlayer.tscn")
+
+var player_name = "Player"
 
 export var score = 0
 # Called when the node enters the scene tree for the first time.

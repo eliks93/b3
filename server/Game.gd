@@ -12,13 +12,13 @@ func _server_created():
 	# Need a function to generate map here.
 	pass
 
-func _player_added(id):
+func _player_added(id, name):
 	print("ADDING PLAYER ", id, " to ", self.name)
 	# var player_ship = base_ship.instance()
 	if (!players.has(id)):
 		players[id] = {
 			'id': id,
-			'name': "Player",
+			'name': name,
 			'mouse_pos': [0, 0],
 			'position': {
 				'x': 0,
@@ -34,6 +34,7 @@ func _player_added(id):
 		_render_player_list()
 		var player_ship = base_ship.instance()
 		player_ship.name = str(id)
+		player_ship.player_name = name
 		self.add_child(player_ship)
 		leaderboard[id] = 0
 		
