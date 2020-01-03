@@ -9,7 +9,7 @@ var leader_board
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Announce ready to spawn here.
-	rpc_id(1, "spawn_for")
+	rpc_id(1, "spawn_for", GameState.player_info.name)
 
 func update_score(p_owner):
 	rpc_unreliable_id(1, "set_score", p_owner)
@@ -50,13 +50,12 @@ func custom_sort(a, b):
 		return true
 	return false
 
-	
-
-remote func spawn_player(p_id):
+remote func spawn_player(p_id, p_name):
 	if (p_id == get_tree().get_network_unique_id()):
 		var ship = player_ship.instance()
 		ship.name = str(get_tree().get_network_unique_id())
 		ship.initialize()
+		ship.player_name = p_name
 		self.add_child(ship)
 		ship.map_limits = $Map01/Boundary.get_used_rect()
 		ship.map_cellsize = $Map01/Boundary.cell_size
@@ -68,6 +67,7 @@ remote func spawn_player(p_id):
 		ship.get_node("NPCBoat").collision_layer = 1
 		ship.get_node("NPCBoat").collision_mask = 1
 		ship.initialize()
+		ship.player_name = p_name
 		self.add_child(ship)
 
 remote func despawn_player(p_id):

@@ -4,6 +4,8 @@ var player_init = {}
 var p_name = "Player"
 var projectile = preload("res://Projectile.tscn")
 
+var player_name = "Player"
+
 var boat = preload("res://RealPlayer.tscn")
 var map_limits
 var map_cellsize
