@@ -8,12 +8,13 @@ signal player_left_room(pinfo)
 
 var server_info = {
 	name = "Main",
-		max_players = 80,
+		max_players = 256,
 		used_port = 4587
 }
 
 var players = {}
 var games = {}
+var room_list = {}
 
 var gameTemplate = preload("res://Game.tscn")
 
@@ -28,9 +29,14 @@ func _ready():
 
 func _on_player_connected(id):
 	players[id] = "NA"
+	rpc_id(id, "update_lobby", room_list)
 
 func _on_player_disconnected(id):
-	games[players[id]]._player_removed(id)
+	if (players[id] != "NA"):
+		games[players[id]]._player_removed(id)
+		room_list[players[id]].players = games[players[id]].players.size()
+		print(room_list)
+		rpc("update_lobby", room_list)
 	players.erase(id)
 
 func create_server():
@@ -49,17 +55,25 @@ func create_game(name):
 	var newGame = gameTemplate.instance()
 	newGame.name = name
 	games[name] = newGame
+	room_list[name] = {
+		'players': 0,
+		'max_players': 64
+	}
 	self.add_child(newGame)
 
-remote func player_joined_room(room_name):
+remote func join_room(room_name):
 	var player = get_tree().get_rpc_sender_id()
 	players[player] = room_name
-	if games.has(room_name):
-		print(room_name)
+	if (games.has(room_name) && room_list[room_name].players <= room_list[room_name].max_players):
 		rpc_id(player, "join_game_success", room_name)
 		games[room_name]._player_added(player)
+		room_list[room_name].players = games[room_name].players.size()
+	rpc("update_lobby", room_list)
 
-
+remote func request_lobby_update():
+	var player_id = get_tree().get_rpc_sender_id()
+	
+	rpc_id(player_id, "update_lobby", room_list)
 
 
 
