@@ -15,16 +15,6 @@ remote func _spawn_projectile(projectile_type, _position, _direction):
 
 	rpc_unreliable("_spawn_projectile", projectile_type, _position, _direction, player_id)
 
-remote func intial_spawn():
-	var x = 0
-	var y = 0
-	var available_spawns = []
-	for point in get_parent().get_node("Map01").get_node("Spawns").get_children():
-		if point.available:
-			available_spawns.append(point.position)
-	var spawn = available_spawns[int(rand_range(0,(available_spawns.size())-1))]
-	rpc_unreliable("set_initial_spawn", spawn.x, spawn.y)
-
 remote func update_position(packet):
 
 	if ($PlayerBoat):
