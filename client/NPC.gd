@@ -7,6 +7,7 @@ var projectile = preload("res://Projectile.tscn")
 var boat = preload("res://NPCBoat.tscn")
 
 var p_owner
+var player_name = "Player"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +22,9 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 func initialize():
 	$NPCBoat.position.x = 0
 	$NPCBoat.position.y = 0
+
+func _physics_process(delta):
+	print(player_name)
 
 remote func set_position(packet):
 	if ($NPCBoat):
