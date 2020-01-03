@@ -2,3 +2,4 @@ build
 *nohup.out*
 Godot_Headless.64
 *.pem
+client/build/*
