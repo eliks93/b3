@@ -16,8 +16,16 @@ margin_right = 1020.83
 margin_bottom = 684.41
 text = "Bottom Right"
 
-[node name="ItemList" parent="." instance=ExtResource( 1 )]
-margin_left = 799.0
-margin_top = 17.0
-margin_right = 967.0
-margin_bottom = 232.0
+[node name="HBoxContainer" parent="." instance=ExtResource( 1 )]
+margin_left = 876.622
+margin_top = 25.9543
+margin_right = 1023.62
+margin_bottom = 220.954
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 909.02
+margin_top = 8.39957
+margin_right = 993.02
+margin_bottom = 22.3996
+custom_colors/font_color = Color( 0.0431373, 0.0431373, 0.0431373, 1 )
+text = "Leaderboard"

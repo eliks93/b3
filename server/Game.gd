@@ -35,13 +35,15 @@ func _player_added(id):
 		var player_ship = base_ship.instance()
 		player_ship.name = str(id)
 		self.add_child(player_ship)
-		
 		leaderboard[id] = 0
+		
 
 func _player_removed(id):
 	print("REMOVING ", id)
 	self.remove_child(get_node(str(id)))
 	players.erase(id)
+	leaderboard.erase(id)
+	render_leaderboard()
 	_render_player_list()
 	rpc_unreliable("despawn_player", id)
 
@@ -66,6 +68,7 @@ remote func spawn_for():
 	var player_id = get_tree().get_rpc_sender_id()
 	spawn_players(player_id)
 	spawn_player(player_id)
+	render_leaderboard()
 
 remote func set_score(p_owner):
 #	get_node(p_owner).score += 1
@@ -76,6 +79,8 @@ func update_leaderboard(p_owner):
 	leaderboard[int(p_owner)] += 1
 	rpc_unreliable("update_leaderboard", leaderboard)
 
+func render_leaderboard():
+	rpc_unreliable("update_leaderboard", leaderboard)
 
 
 
