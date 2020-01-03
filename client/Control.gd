@@ -14,7 +14,7 @@ func connect_to(ip, port):
 	get_tree().set_network_peer(peer)
 
 func join_game(room_name):
-	self.rpc_id(1, "player_joined_room", room_name)
+	self.rpc_id(1, "join_room", room_name)
 
 remote func join_game_success(game_info):
 	$Lobby.room_join_success(game_info)
