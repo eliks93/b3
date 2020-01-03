@@ -55,20 +55,20 @@ func _render_player_list():
 
 
 # Spawns all existing players for a single player
-func spawn_players(id):
+func spawn_players(id, p_name):
 	for player in players:
 		if (player != id):
-			rpc_id(id, "spawn_player", player)
+			rpc_id(id, "spawn_player", player, p_name)
 
 # Spawns a single player for all existing players.
-func spawn_player(id):
+func spawn_player(id, p_name):
 	for player in players:
-		rpc_id(player, "spawn_player", id)
+		rpc_id(player, "spawn_player", id, p_name)
 	
-remote func spawn_for():
+remote func spawn_for(p_name):
 	var player_id = get_tree().get_rpc_sender_id()
-	spawn_players(player_id)
-	spawn_player(player_id)
+	spawn_players(player_id, p_name)
+	spawn_player(player_id, p_name)
 	render_leaderboard()
 
 remote func set_score(p_owner):

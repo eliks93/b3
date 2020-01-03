@@ -12,4 +12,3 @@ func _on_buttonLobby_pressed():
 
 func _on_editName_text_changed(new_text):
 	GameState.player_info.name = $editName.text
-	print(GameState.player_info.name)
