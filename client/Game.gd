@@ -15,24 +15,44 @@ func update_score(p_owner):
 	print("score")
 	rpc_unreliable_id(1, "set_score", p_owner)
 
+	
 remote func update_leaderboard(leaderboard_info):
+	var sorted_leaderboard = []
+	var sort
+	for leader in leaderboard_info:
+		sorted_leaderboard.append({leaderboard_info[leader]: leader})
+	print(sorted_leaderboard, "NOT SORTED")
+	sorted_leaderboard.sort_custom(self, "custom_sort")
+	
+	
+	print(sorted_leaderboard, "SORTED PLS")
+#	for leader in sorted_leaderboard:
+#		print (leader)
+#
 	var player_id = get_tree().get_network_unique_id()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
-	for leader in leaderboard_info:
-		print(leaderboard_info[leader])
+	for leader in sorted_leaderboard:
 		var player_name
-		if len(str(leader)) > 7:
-			player_name = str(leader).left(7) + "..."
-		else:
-			player_name = str(leader) 
-		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
-		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leaderboard_info[leader]))
 		
-#	print(leaderboard_info)
+		if len(str(leader.values()[0])) > 7:
+			player_name = str(leader.values()[0]).left(7) + "..."
+		else:
+			player_name = str(leader.values()[0]) 
+		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
+		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
+#
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+func custom_sort(a, b):
+	if a.keys() < b.keys():
+		return true
+	return false
+
+	
 
 remote func spawn_player(p_id):
 	if (p_id == get_tree().get_network_unique_id()):
