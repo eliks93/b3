@@ -32,7 +32,8 @@ remote func set_position(packet):
 		$NPCBoat.mouse_pos = packet.mouse_pos
 
 remote func update_health(hp):
-	$NPCBoat.update_health(hp)
+	if $NPCBoat:
+		$NPCBoat.update_health(hp)
 
 remote func destroy():
 	$NPCBoat.explode()

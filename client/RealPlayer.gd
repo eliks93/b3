@@ -45,7 +45,6 @@ func get_input():
 		emit_signal("fire_turret", 1)
 
 func update_health(new_value):
-	print(new_value, "hello?")
 	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	if not tween.is_active():
 		tween.start()
