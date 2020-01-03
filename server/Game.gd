@@ -3,7 +3,7 @@ extends Node2D
 var players = {}
 var leaderboard = {}
 var base_ship = preload("res://Player.tscn")
-
+var map = preload("res://maps/Map01.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -69,6 +69,9 @@ remote func spawn_for():
 	spawn_players(player_id)
 	spawn_player(player_id)
 	render_leaderboard()
+
+remote func get_spawn_point():
+	var player_id = get_tree().get_rpc_sender_id()
 
 remote func set_score(p_owner):
 #	get_node(p_owner).score += 1
