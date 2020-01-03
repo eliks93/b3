@@ -35,7 +35,7 @@ func _player_added(id):
 		var player_ship = base_ship.instance()
 		player_ship.name = str(id)
 		self.add_child(player_ship)
-		leaderboard[id] = 0
+		leaderboard[id] = { 'name': $Player.player_name, 'score': 0 }
 		
 
 func _player_removed(id):
@@ -79,7 +79,7 @@ remote func set_score(p_owner):
 	update_leaderboard(p_owner)
 
 func update_leaderboard(p_owner):
-	leaderboard[int(p_owner)] += 1
+	leaderboard[int(p_owner)].score += 1
 	rpc_unreliable("update_leaderboard", leaderboard)
 	
 

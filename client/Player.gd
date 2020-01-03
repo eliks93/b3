@@ -7,7 +7,7 @@ var projectile = preload("res://Projectile.tscn")
 var boat = preload("res://RealPlayer.tscn")
 var map_limits
 var map_cellsize
-
+var death_score
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
@@ -49,6 +49,7 @@ remote func update_health(hp):
 	$PlayerBoat.hp = hp
 
 remote func destroy():
+	
 	$PlayerBoat.explode()
 	
 

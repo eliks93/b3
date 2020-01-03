@@ -16,13 +16,18 @@ func update_score(p_owner):
 
 	
 remote func update_leaderboard(leaderboard_info):
+#	leaderboard[id] = { name: name, score: 0 }
+#	new leaderboard_info (each leader) = { 12345679: { User: Eli, score: 0 } }
+#	old leaderboard_info (each leader) = { 12345678: 0 }
 	var sorted_leaderboard = []
-	var sort
+
 	for leader in leaderboard_info:
-		sorted_leaderboard.append({leaderboard_info[leader]: leader})
+		sorted_leaderboard.append({leaderboard_info[leader]['score']: { leader: leaderboard_info[leader]['user'] } })
 
+	#[{score: {id: name}}, {score2: {id2: name2}}]
+	#[{score: id}, {score2: id2}]
 	sorted_leaderboard.sort_custom(self, "custom_sort")
-
+	print (sorted_leaderboard)
 	var player_id = get_tree().get_network_unique_id()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
