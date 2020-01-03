@@ -35,7 +35,6 @@ func _player_added(id):
 		var player_ship = base_ship.instance()
 		player_ship.name = str(id)
 		self.add_child(player_ship)
-		
 		leaderboard[id] = 0
 
 func _player_removed(id):
@@ -59,11 +58,6 @@ func spawn_players(id):
 
 # Spawns a single player for all existing players.
 func spawn_player(id):
-	for point in $Map01/Spawns.get_children():
-		if point.available:
-			players[id].position.x = point.get_pos().x
-			players[id].position.y = point.get_pos().y
-			break
 	for player in players:
 		rpc_id(player, "spawn_player", id)
 	
@@ -71,6 +65,9 @@ remote func spawn_for():
 	var player_id = get_tree().get_rpc_sender_id()
 	spawn_players(player_id)
 	spawn_player(player_id)
+
+remote func get_spawn_point():
+	var player_id = get_tree().get_rpc_sender_id()
 
 remote func set_score(p_owner):
 #	get_node(p_owner).score += 1

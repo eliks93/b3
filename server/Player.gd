@@ -7,13 +7,23 @@ var boat = preload("res://RealPlayer.tscn")
 export var score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	randomize()
 
 remote func _spawn_projectile(projectile_type, _position, _direction):
 	var player_id = get_tree().get_rpc_sender_id()
 	print("spawning projectile ", player_id)
 
 	rpc_unreliable("_spawn_projectile", projectile_type, _position, _direction, player_id)
+
+remote func intial_spawn():
+	var x = 0
+	var y = 0
+	var available_spawns = []
+	for point in get_parent().get_node("Map01").get_node("Spawns").get_children():
+		if point.available:
+			available_spawns.append(point.position)
+	var spawn = available_spawns[int(rand_range(0,(available_spawns.size())-1))]
+	rpc_unreliable("set_initial_spawn", spawn.x, spawn.y)
 
 remote func update_position(packet):
 
@@ -52,6 +62,11 @@ func send_leaderboard_info(p_owner):
 remote func respawn():
 	var x = 0
 	var y = 0
+	var available_spawns = []
+	for point in get_parent().get_node("Map01").get_node("Spawns").get_children():
+		if point.available:
+			available_spawns.append(point.position)
+	var spawn = available_spawns[int(rand_range(0,(available_spawns.size())-1))]
 	var rotation = 0
 	var new_boat = boat.instance()
 	new_boat.position.x = x
@@ -59,20 +74,7 @@ remote func respawn():
 	new_boat.rotation = rotation
 	
 	add_child(new_boat)
-	rpc_unreliable("respawn_player", x, y, rotation)
-
-
-
-
-
-
-
-
-
-
-
-
-
+	rpc_unreliable("respawn_player", spawn.x, spawn.y, rotation)
 
 
 
