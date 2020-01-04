@@ -55,12 +55,15 @@ remote func update_health(hp, p_owner):
 		rpc_unreliable("update_health", hp)
 	else:
 		for player in get_node("..").players:
+			
 			rpc_unreliable("destroy")
 		if $PlayerBoat:
 			if current_health > 0:
 				print(current_health, "current health")
 				get_node("..").set_score(p_owner)
 			$PlayerBoat.queue_free()
+		get_parent().leaderboard[player_id]['score'] = 0
+		get_parent().render_leaderboard()
 
 func send_leaderboard_info(p_owner):
 	rpc_unreliable_id(int(get_node(".").name), "update_leaderboard", p_owner)

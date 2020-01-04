@@ -17,28 +17,27 @@ func update_score(p_owner):
 	
 remote func update_leaderboard(leaderboard_info):
 	var sorted_leaderboard = []
-	var sort
+	leader_board = leaderboard_info
 	for leader in leaderboard_info:
-		sorted_leaderboard.append({leaderboard_info[leader]: leader})
-
+		sorted_leaderboard.append({leaderboard_info[leader]['score']: { leader: leaderboard_info[leader]['name'] } })
 	sorted_leaderboard.sort_custom(self, "custom_sort")
 
 	var player_id = get_tree().get_network_unique_id()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
 	for leader in sorted_leaderboard:
+
+		var id = leader.values()[0].keys()[0]
+		var name = leader.values()[0][id]
 		var player_name
-		
-		if len(str(leader.values()[0])) > 7:
-			player_name = str(leader.values()[0]).left(7) + "..."
+#
+		if len(name) > 7:
+			player_name = name.left(7) + "..."
 		else:
-			player_name = str(leader.values()[0]) 
+			player_name = name
+
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func custom_sort(a, b):
 	if a.keys() < b.keys():

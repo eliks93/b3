@@ -25,7 +25,7 @@ func initialize():
 	$NPCBoat/PlayerName.set_name(player_name)
 
 func _physics_process(delta):
-	print(player_name)
+	pass
 
 remote func set_position(packet):
 	if ($NPCBoat):
