@@ -11,21 +11,13 @@ var player_name = "Player"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var new_boat = boat.instance()
-	add_child(new_boat)
-	$NPCBoat.collision_layer = 1
-	$NPCBoat.collision_mask = 1
+	pass
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = projectile.instance()
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
-
-func initialize():
-	$NPCBoat.position.x = 0
-	$NPCBoat.position.y = 0
-	$NPCBoat/PlayerName.set_name(player_name)
 
 func _physics_process(delta):
 	pass
@@ -38,6 +30,10 @@ remote func set_position(packet):
 		$NPCBoat.acceleration = packet.acceleration
 		$NPCBoat.velocity = packet.velocity
 		$NPCBoat.mouse_pos = packet.mouse_pos
+	else:
+		var new_boat = boat.instance()
+		add_child(new_boat)
+		$NPCBoat/PlayerName.set_name(player_name)
 
 remote func update_health(hp):
 	if $NPCBoat:
@@ -48,10 +44,14 @@ remote func destroy():
 
 remote func respawn_player(x, y, rotation):
 	var new_boat = boat.instance()
+	for child in get_children():
+		child.queue_free()
 	new_boat.position.x = x
 	new_boat.position.y = y
 	new_boat.rotation = rotation
 	add_child(new_boat)
+	$NPCBoat.collision_layer = 1
+	$NPCBoat.collision_mask = 1
 	$NPCBoat/PlayerName.set_name(player_name)
 
 
