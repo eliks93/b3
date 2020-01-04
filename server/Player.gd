@@ -16,16 +16,6 @@ remote func _spawn_projectile(projectile_type, _position, _direction):
 
 	rpc_unreliable("_spawn_projectile", projectile_type, _position, _direction, player_id)
 
-remote func intial_spawn():
-	var x = 0
-	var y = 0
-	var available_spawns = []
-	for point in get_parent().get_node("Map01").get_node("Spawns").get_children():
-		if point.available:
-			available_spawns.append(point.position)
-	var spawn = available_spawns[int(rand_range(0,(available_spawns.size())-1))]
-	rpc_unreliable("set_initial_spawn", spawn.x, spawn.y)
-
 remote func update_position(packet):
 
 	if ($PlayerBoat):
@@ -47,15 +37,14 @@ remote func update_health(hp, p_owner):
 		current_health = $PlayerBoat.hp
 	var player_id = get_tree().get_rpc_sender_id()
 	print(hp)
-	if hp == null:
-		hp = 0
+#	if hp == null:
+#		hp = 0
 	if $PlayerBoat:
 		$PlayerBoat.hp = hp
 	if (hp > 0):
 		rpc_unreliable("update_health", hp)
 	else:
 		for player in get_node("..").players:
-			
 			rpc_unreliable("destroy")
 		if $PlayerBoat:
 			if current_health > 0:
@@ -69,6 +58,7 @@ func send_leaderboard_info(p_owner):
 	rpc_unreliable_id(int(get_node(".").name), "update_leaderboard", p_owner)
 
 remote func respawn():
+#	if get_children().size() == 0:
 	var x = 0
 	var y = 0
 	var available_spawns = []
@@ -81,7 +71,6 @@ remote func respawn():
 	new_boat.position.x = x
 	new_boat.position.y = y
 	new_boat.rotation = rotation
-	
 	add_child(new_boat)
 	rpc_unreliable("respawn_player", spawn.x, spawn.y, rotation)
 
