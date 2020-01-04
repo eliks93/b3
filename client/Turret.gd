@@ -9,8 +9,8 @@ var _ready_to_fire
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	get_node("..").connect("fire_turret", self, "_fire")
-	get_node("..").connect("turn_turret", self, "_turn")
+	get_node("../..").connect("fire_turret", self, "_fire")
+	get_node("../..").connect("turn_turret", self, "_turn")
 	_ready_to_fire = true
 
 func _turn(mouse_pos):

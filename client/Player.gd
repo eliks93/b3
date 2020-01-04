@@ -6,7 +6,7 @@ var projectile = preload("res://Projectile.tscn")
 
 var player_name = "Player"
 
-var boat = preload("res://RealPlayer.tscn")
+var boat = preload("res://Playerboats/BigBoat.tscn")
 var map_limits
 var map_cellsize
 var death_score
@@ -14,15 +14,9 @@ var leaderboard_info
 var death_screen = preload("res://DeathScreen.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$PlayerBoat.connect("death_screen", self, "death_screen")
-	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
-	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
-	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
+	request_respawn()
 
-func initialize():
-	$PlayerBoat.position.x = 0
-	$PlayerBoat.position.y = 0
-	$PlayerBoat/PlayerName.set_name(player_name)
+#func initialize():
 
 
 func req_spawn_projectile(projectile_type, _position, _direction):
@@ -71,30 +65,23 @@ func set_camera_limits():
 	$PlayerBoat/Camera2D.limit_top = map_limits.position.y * map_cellsize.y
 	$PlayerBoat/Camera2D.limit_bottom = map_limits.end.y * map_cellsize.y
 
-remote func set_initial_spawn(x,y):
-	$PlayerBoat.position.x = x
-	$PlayerBoat.position.y = y
-
 func request_respawn():
 	rpc_unreliable_id(1, "respawn")
 
-func request_spawn():
-	rpc_unreliable_id(1, "intial_spawn")
 
 remote func respawn_player(x, y, rotation):
 	var new_boat = boat.instance()
 	new_boat.position.x = x
 	new_boat.position.y = y
 	new_boat.rotation = rotation
+	new_boat.get_node("PlayerName").set_name(player_name)
 	add_child(new_boat)
 	set_camera_limits()
 	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
+	for Turret in $PlayerBoat.get_node("Turrets").get_children():
+		Turret.connect("spawn_projectile", self, "req_spawn_projectile")
 	
-	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
-	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
-	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
-	
-	$PlayerBoat/PlayerName.set_name(player_name)
+	$PlayerBoat.connect("death_screen", self, "death_screen")
 
 func death_screen():
 	leaderboard_info = get_parent().leader_board
