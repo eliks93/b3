@@ -5,20 +5,10 @@
 
 [node name="PlayerBoat" instance=ExtResource( 1 )]
 
-[node name="BoatRipple" parent="." index="0"]
-animation = "MediumRipples"
-
-[node name="Sprite" parent="." index="2"]
+[node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
 
-[node name="Turret1" parent="." index="5"]
-position = Vector2( -1.36003, 0.614746 )
-
-[node name="Turret2" parent="." index="6"]
-position = Vector2( -50.8444, 0.127441 )
-
-[node name="Turret3" parent="." index="7"]
-position = Vector2( 47.6496, -0.337454 )
-
-[node name="Bar" parent="." index="8"]
+[node name="Bar" parent="." index="4"]
 visible = false
+
+[node name="Turrets" type="Node" parent="." index="6"]

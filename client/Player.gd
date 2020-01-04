@@ -63,7 +63,9 @@ remote func respawn_player(x, y, rotation):
 	add_child(new_boat)
 	set_camera_limits()
 	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
-	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
-	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
-	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
+#	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
+#	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
+#	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
+	for Turret in $PlayerBoat.get_node("Turrets").get_children():
+		Turret.connect("spawn_projectile", self, "req_spawn_projectile")
 

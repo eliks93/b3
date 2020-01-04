@@ -12,9 +12,8 @@ var animated_health = 100
 var ripple_opacity = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Turret1.connect("spawn_projectile", self, "_spawn_projectile")
-	$Turret2.connect("spawn_projectile", self, "_spawn_projectile")
-	$Turret3.connect("spawn_projectile", self, "_spawn_projectile")
+	for Turret in $Turrets.get_children():
+		Turret.connect("spawn_projectile", self, "_spawn_projectile")
 	var player_max_health = hp
 	bar.max_value = player_max_health
 	update_health(player_max_health)
@@ -73,9 +72,7 @@ func set_camera_position():
 func explode():
 	velocity = Vector2()
 	$Sprite.hide()
-	$Turret1/Sprite.hide()
-	$Turret2/Sprite.hide()
-	$Turret3/Sprite.hide()
+	$Turrets.queue_free()
 	$CollisionShape2D.disabled = true
 	$Explosion.show()
 	$Explosion.play("fire")
