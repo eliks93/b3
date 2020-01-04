@@ -17,6 +17,13 @@ font_data = ExtResource( 2 )
 [node name="DeathScreen" type="CanvasLayer"]
 script = ExtResource( 1 )
 
+[node name="Label3" type="Label" parent="."]
+margin_left = 441.645
+margin_top = 202.0
+margin_right = 531.645
+margin_bottom = 216.0
+text = "Current Score:"
+
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -30,10 +37,10 @@ custom_fonts/font = SubResource( 1 )
 text = "You have died"
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 434.737
-margin_top = 202.158
-margin_right = 539.737
-margin_bottom = 222.158
+margin_left = 435.475
+margin_top = 178.284
+margin_right = 540.475
+margin_bottom = 198.284
 custom_fonts/font = SubResource( 2 )
 text = "Respawn in: "
 
@@ -50,4 +57,10 @@ custom_fonts/font = SubResource( 3 )
 text = "Respawn"
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Score" type="Label" parent="."]
+margin_left = 541.624
+margin_top = 201.887
+margin_right = 605.624
+margin_bottom = 215.887
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

@@ -69,6 +69,7 @@ remote func spawn_for(p_name):
 	var player_id = get_tree().get_rpc_sender_id()
 	spawn_players(player_id, p_name)
 	spawn_player(player_id, p_name)
+	
 	render_leaderboard()
 
 remote func get_spawn_point():

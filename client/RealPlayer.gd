@@ -1,6 +1,5 @@
 extends "res://Boat.gd"
 
-var death_screen = preload("res://DeathScreen.tscn")
 signal fire_turret(group)
 signal turn_turret(mouse_pos)
 onready var bar = $Bar/TextureProgress
@@ -10,6 +9,7 @@ var mouse_pos = Vector2()
 
 var animated_health = 100
 var ripple_opacity = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Turret1.connect("spawn_projectile", self, "_spawn_projectile")
@@ -79,7 +79,9 @@ func explode():
 	$CollisionShape2D.disabled = true
 	$Explosion.show()
 	$Explosion.play("fire")
+	
 
 func _on_Explosion_animation_finished():
-	get_parent().add_child(death_screen.instance())
+#	get_parent().add_child(death_screen.instance())
 	queue_free()
+	emit_signal("death_screen")
