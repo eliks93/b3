@@ -4,13 +4,16 @@ var player_init = {}
 var p_name = "Not-Player"
 var projectile = preload("res://Projectile.tscn")
 
-var boat = preload("res://NPCBoat.tscn")
+var boat = preload("res://NPCboats/BigBoatNPC.tscn")
 
 var p_owner
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	var new_boat = boat.instance()
+	add_child(new_boat)
+	$NPCBoat.collision_layer = 1
+	$NPCBoat.collision_mask = 1
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = projectile.instance()
