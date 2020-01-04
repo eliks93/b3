@@ -5,7 +5,7 @@
 [ext_resource path="res://src/animate/BoatRipple.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Turret.tscn" type="PackedScene" id=4]
 
-[node name="NPCBoat" instance=ExtResource( 1 )]
+[node name="NPCBoat" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]

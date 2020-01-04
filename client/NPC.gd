@@ -13,6 +13,17 @@ var player_name = "Player"
 func _ready():
 	pass
 
+func initialize():
+	var new_boat = boat.instance()
+	new_boat.position.x = 0
+	new_boat.position.y = 0
+	new_boat.rotation = 0
+	add_child(new_boat)
+	get_child(0).set_name("NPCBoat")
+	$NPCBoat.collision_layer = 1
+	$NPCBoat.collision_mask = 1
+	$NPCBoat/PlayerName.set_name(player_name)
+
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = projectile.instance()
 	proj.p_owner = str(mask)
@@ -30,10 +41,10 @@ remote func set_position(packet):
 		$NPCBoat.acceleration = packet.acceleration
 		$NPCBoat.velocity = packet.velocity
 		$NPCBoat.mouse_pos = packet.mouse_pos
-	else:
-		var new_boat = boat.instance()
-		add_child(new_boat)
+	elif get_children().size():
+		get_child(0).set_name("NPCBoat")
 		$NPCBoat/PlayerName.set_name(player_name)
+		
 
 remote func update_health(hp):
 	if $NPCBoat:
@@ -50,8 +61,6 @@ remote func respawn_player(x, y, rotation):
 	new_boat.position.y = y
 	new_boat.rotation = rotation
 	add_child(new_boat)
-	$NPCBoat.collision_layer = 1
-	$NPCBoat.collision_mask = 1
 	$NPCBoat/PlayerName.set_name(player_name)
 
 
