@@ -83,4 +83,5 @@ remote func respawn_player(x, y, rotation):
 	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
 	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
 	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
-
+	
+	$PlayerBoat/PlayerName.set_name(player_name)
