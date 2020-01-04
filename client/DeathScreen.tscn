@@ -22,7 +22,8 @@ margin_left = 441.645
 margin_top = 202.0
 margin_right = 531.645
 margin_bottom = 216.0
-text = "Current Score:"
+text = "You had a kill score of 
+when you died"
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
@@ -59,8 +60,9 @@ text = "Respawn"
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Score" type="Label" parent="."]
-margin_left = 541.624
-margin_top = 201.887
-margin_right = 605.624
-margin_bottom = 215.887
+margin_left = 585.345
+margin_top = 202.326
+margin_right = 665.345
+margin_bottom = 216.326
+text = "34"
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
