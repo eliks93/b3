@@ -39,10 +39,6 @@ remote func update_leaderboard(leaderboard_info):
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
 func custom_sort(a, b):
 	if a.keys() < b.keys():
 		return true
