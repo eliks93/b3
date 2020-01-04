@@ -72,7 +72,7 @@ func set_camera_position():
 func explode():
 	velocity = Vector2()
 	$Sprite.hide()
-	if $Turrets:
+	if has_node('Turrets'):
 		$Turrets.queue_free()
 	$CollisionShape2D.disabled = true
 	$Explosion.show()

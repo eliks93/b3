@@ -29,7 +29,7 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	proj.start(_position, _direction)
 
 func _physics_process(delta):
-	if ($PlayerBoat):
+	if has_node('PlayerBoat'):
 		var packet = {
 			'position': {
 				'x': $PlayerBoat.position.x,
@@ -53,7 +53,7 @@ remote func destroy():
 	print("destroy called")
 	
 	$PlayerBoat.explode()
-	if !$DeathScreen:
+	if !has_node('DeathScreen'):
 		death_screen()
 #	$DeathScreen.current_score = current_score
 #	print($DeathScreen.current_score)
