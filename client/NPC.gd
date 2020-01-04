@@ -49,6 +49,7 @@ remote func respawn_player(x, y, rotation):
 	new_boat.position.y = y
 	new_boat.rotation = rotation
 	add_child(new_boat)
+	$NPCBoat/PlayerName.set_name(player_name)
 
 
 
