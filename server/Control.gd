@@ -15,6 +15,7 @@ var server_info = {
 var players = {}
 var games = {}
 var room_list = {}
+var net
 
 var gameTemplate = preload("res://Game.tscn")
 
@@ -26,6 +27,10 @@ func _ready():
 	create_game("Main Room")
 	create_game("Test 1")
 	create_game("Test 2")
+
+func _process(delta):
+	if net.is_listening():
+		net.poll()
 
 func _on_player_connected(id):
 	players[id] = "NA"
@@ -41,12 +46,13 @@ func _on_player_disconnected(id):
 
 func create_server():
 	# Initialize network
-	var net = NetworkedMultiplayerENet.new()
+	net = WebSocketServer.new()
 
+	net.listen(server_info.used_port, PoolStringArray(), true)
 	# Attempt to launch server
-	if (net.create_server(server_info.used_port, server_info.max_players) != OK):
-		print("Failed to create server")
-		return
+#	if (net.create_server(server_info.used_port, server_info.max_players) != OK):
+#		print("Failed to create server")
+#		return
 
 	get_tree().set_network_peer(net)
 

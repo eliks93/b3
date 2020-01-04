@@ -1,7 +1,14 @@
 extends Node
 
+var peer = WebSocketClient.new()
+
 func _ready():
 	pass # Replace with function body.
+
+func _process(delta):
+	if (peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_CONNECTED ||
+		peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_CONNECTING):
+			peer.poll()
 
 func swap_scene(node, newNode):
 	var parent = node.get_parent()
@@ -9,8 +16,8 @@ func swap_scene(node, newNode):
 	parent.add_child(newNode)
 
 func connect_to(ip, port):
-	var peer = NetworkedMultiplayerENet.new()
-	peer.create_client(ip, port)
+	peer = WebSocketClient.new()
+	peer.connect_to_url('ws://' + ip + ':' + str(port), PoolStringArray(), true)
 	get_tree().set_network_peer(peer)
 
 func join_game(room_name):
