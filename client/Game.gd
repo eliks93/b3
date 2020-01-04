@@ -9,7 +9,7 @@ var leader_board
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Announce ready to spawn here.
-	rpc_id(1, "spawn_for")
+	rpc_id(1, "spawn_for", GameState.player_info.name)
 
 func update_score(p_owner):
 	rpc_unreliable_id(1, "set_score", p_owner)
@@ -17,47 +17,47 @@ func update_score(p_owner):
 	
 remote func update_leaderboard(leaderboard_info):
 	var sorted_leaderboard = []
-	var sort
+	leader_board = leaderboard_info
 	for leader in leaderboard_info:
-		sorted_leaderboard.append({leaderboard_info[leader]: leader})
-
+		sorted_leaderboard.append({leaderboard_info[leader]['score']: { leader: leaderboard_info[leader]['name'] } })
 	sorted_leaderboard.sort_custom(self, "custom_sort")
 
 	var player_id = get_tree().get_network_unique_id()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
 	for leader in sorted_leaderboard:
+
+		var id = leader.values()[0].keys()[0]
+		var name = leader.values()[0][id]
 		var player_name
-		
-		if len(str(leader.values()[0])) > 7:
-			player_name = str(leader.values()[0]).left(7) + "..."
+#
+		if len(name) > 7:
+			player_name = name.left(7) + "..."
 		else:
-			player_name = str(leader.values()[0]) 
+			player_name = name
+
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func custom_sort(a, b):
 	if a.keys() < b.keys():
 		return true
 	return false
 
-	
-
-remote func spawn_player(p_id):
+remote func spawn_player(p_id, p_name):
 	if (p_id == get_tree().get_network_unique_id()):
 		var ship = player_ship.instance()
 		ship.name = str(get_tree().get_network_unique_id())
+		ship.player_name = p_name
+		ship.initialize()
 		self.add_child(ship)
 		ship.map_limits = $Map01/Boundary.get_used_rect()
 		ship.map_cellsize = $Map01/Boundary.cell_size
 	else:
 		var ship = npc_ship.instance()
 		ship.name = str(p_id)
-#		ship.initialize()
+		ship.player_name = p_name
+		ship.initialize()
 		self.add_child(ship)
 
 remote func despawn_player(p_id):

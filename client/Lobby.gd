@@ -10,11 +10,6 @@ var game = preload("res://Game.tscn")
 func _ready():
 	get_parent().request_lobby_update()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_Button_pressed():
 	get_parent().join_game(GameState.room_info.name)	
 	# Give a joining popup here if necessary, swap scene once the server says it's okay to.

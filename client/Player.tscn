@@ -10,5 +10,9 @@ __meta__ = {
 "_edit_horizontal_guides_": [ -629.144 ]
 }
 
-[node name="UI" parent="." instance=ExtResource( 2 )]
-script = ExtResource( 3 )
+[node name="PlayerBoat" parent="." instance=ExtResource( 2 )]
+
+[node name="UI" parent="." instance=ExtResource( 3 )]
+script = ExtResource( 4 )
+[connection signal="health_changed" from="PlayerBoat" to="UI" method="_on_PlayerBoat_health_changed"]
+[connection signal="health_changed" from="PlayerBoat" to="." method="_on_PlayerBoat_health_changed"]

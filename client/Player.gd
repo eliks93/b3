@@ -4,12 +4,27 @@ var player_init = {}
 var p_name = "Player"
 var projectile = preload("res://Projectile.tscn")
 
-var boat = preload("res://Playerboats/BigBoat.tscn")
+var player_name = "Player"
+
+var boat = preload("res://RealPlayer.tscn")
 var map_limits
 var map_cellsize
-
+var death_score
+var leaderboard_info
+var death_screen = preload("res://DeathScreen.tscn")
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	request_respawn()
+	$PlayerBoat.connect("death_screen", self, "death_screen")
+	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
+	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
+	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
+
+func initialize():
+	$PlayerBoat.position.x = 0
+	$PlayerBoat.position.y = 0
+	$PlayerBoat/PlayerName.set_name(player_name)
+
 
 func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
@@ -42,7 +57,13 @@ remote func update_health(hp):
 	$PlayerBoat.hp = hp
 
 remote func destroy():
+	print("destroy called")
+	
 	$PlayerBoat.explode()
+	if !$DeathScreen:
+		death_screen()
+#	$DeathScreen.current_score = current_score
+#	print($DeathScreen.current_score)
 	
 
 func set_camera_limits():
@@ -63,9 +84,14 @@ remote func respawn_player(x, y, rotation):
 	add_child(new_boat)
 	set_camera_limits()
 	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
-#	$PlayerBoat/Turret1.connect("spawn_projectile", self, "req_spawn_projectile")
-#	$PlayerBoat/Turret2.connect("spawn_projectile", self, "req_spawn_projectile")
-#	$PlayerBoat/Turret3.connect("spawn_projectile", self, "req_spawn_projectile")
 	for Turret in $PlayerBoat.get_node("Turrets").get_children():
 		Turret.connect("spawn_projectile", self, "req_spawn_projectile")
+	$PlayerBoat/PlayerName.set_name(player_name)
 
+func death_screen():
+	leaderboard_info = get_parent().leader_board
+	var current_score = leaderboard_info[get_tree().get_network_unique_id()]['score']
+	leaderboard_info = current_score
+	var screen = death_screen.instance()
+	screen.current_score = leaderboard_info
+	add_child(screen)
