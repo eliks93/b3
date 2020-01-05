@@ -32,7 +32,8 @@ remote func update_position(packet):
 			rpc_unreliable_id(player, "set_position", packet)
 
 remote func update_health(hp, p_owner):
-	var current_health
+	var current_health = 0
+	var temp_score = 0
 	if $PlayerBoat:
 		current_health = $PlayerBoat.hp
 	var player_id = get_tree().get_rpc_sender_id()
@@ -43,15 +44,21 @@ remote func update_health(hp, p_owner):
 		$PlayerBoat.hp = hp
 	if (hp > 0):
 		rpc_unreliable("update_health", hp)
-	else:
+	elif has_node('PlayerBoat'):
 		for player in get_node("..").players:
 			rpc_unreliable("destroy")
-		if $PlayerBoat:
-			if current_health > 0:
-				print(current_health, "current health")
-				get_node("..").set_score(p_owner)
-			$PlayerBoat.queue_free()
-		get_parent().leaderboard[player_id]['score'] = 0
+		if current_health > 0:
+			print(current_health, "current health")
+			get_node("..").set_score(p_owner)
+		$PlayerBoat.queue_free()
+			
+		temp_score += get_parent().leaderboard[player_id]['score']
+		if current_health > 0:
+			print("score was prior to update", temp_score)
+			print (get_parent().leaderboard[player_id]['score'])
+			if temp_score > 0:
+				get_parent().leaderboard[player_id]['score'] = round(temp_score / 2)
+				print (get_parent().leaderboard[player_id]['score'], " after score minus 1!!!")
 		get_parent().render_leaderboard()
 
 func send_leaderboard_info(p_owner):

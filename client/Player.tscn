@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://UI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI.gd" type="Script" id=3]
-[ext_resource path="res://BasicBoatDetonation.tscn" type="PackedScene" id=4]
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,5 +12,3 @@ __meta__ = {
 
 [node name="UI" parent="." instance=ExtResource( 2 )]
 script = ExtResource( 3 )
-
-[node name="DeathSound" parent="." instance=ExtResource( 4 )]

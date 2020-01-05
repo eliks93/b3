@@ -4,7 +4,7 @@ signal turn_turret(mouse_position)
 
 onready var bar = $Bar/TextureProgress
 onready var tween = $Tween
-
+onready var death_sound = $DeathSound
 var animated_health = 100
 var ripple_opacity = 0
 
@@ -39,10 +39,7 @@ func explode():
 	$CollisionShape2D.disabled = true
 	$Explosion.show()
 	$Explosion.play("fire")
-
-
-func _on_Explosion_animation_finished():
-	queue_free()
+	
 
 func ripple_visibility():
 	var new_opacity = velocity.length() / 100
@@ -55,3 +52,6 @@ func ripple_visibility():
 		Tween.TRANS_LINEAR, Tween.EASE_IN)
 	
 	ripple_opacity = new_opacity
+
+func _on_Explosion_animation_finished():
+	queue_free()

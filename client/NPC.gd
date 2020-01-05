@@ -5,7 +5,6 @@ var p_name = "Not-Player"
 var projectile = preload("res://Projectile.tscn")
 
 var boat = preload("res://NPCboats/BigBoatNPC.tscn")
-
 var p_owner
 var player_name = "Player"
 
@@ -52,8 +51,7 @@ remote func update_health(hp):
 		$NPCBoat.update_health(hp)
 
 remote func destroy():
-	if has_node('DeathSound'):
-		$DeathSound.play()
+	get_parent().get_node('AudioController').create_sound('death', $NPCBoat.position.x, $NPCBoat.position.y)
 	$NPCBoat.explode()
 
 remote func respawn_player(x, y, rotation):
