@@ -1,14 +1,25 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://NPCBoat.tscn" type="PackedScene" id=1]
 [ext_resource path="res://NPCboats/BigBoatNPC.gd" type="Script" id=2]
 [ext_resource path="res://src/animate/BoatRipple.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Turret.tscn" type="PackedScene" id=4]
 
-[node name="NPCBoat" index="0" instance=ExtResource( 1 )]
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 36.3932
+height = 268.069
+
+[node name="NPCBoat" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
+position = Vector2( -12.8335, 2.05334 )
+animation = "Big"
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( -2.50937, 0 )
+rotation = 1.5708
+shape = SubResource( 1 )
 
 [node name="Turrets" type="Node2D" parent="." index="6"]
 

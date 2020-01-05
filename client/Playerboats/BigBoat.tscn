@@ -13,14 +13,7 @@ height = 257.797
 script = ExtResource( 2 )
 
 [node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
-
-[node name="CollisionShape2D" parent="." index="3"]
-position = Vector2( -3.70343, -0.418121 )
-rotation = 1.5708
-shape = SubResource( 1 )
-
-[node name="Bar" parent="." index="6"]
-visible = false
+animation = "Big"
 
 [node name="Turrets" type="Node2D" parent="." index="7"]
 
@@ -41,3 +34,8 @@ position = Vector2( -43.3068, -0.444763 )
 
 [node name="Turret1" parent="Turrets" index="5" instance=ExtResource( 4 )]
 position = Vector2( 23.66, 32.9806 )
+
+[node name="CollisionShape2D" parent="." index="8"]
+position = Vector2( -3.70343, -0.418121 )
+rotation = 1.5708
+shape = SubResource( 1 )
