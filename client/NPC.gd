@@ -34,7 +34,7 @@ func _physics_process(delta):
 	pass
 
 remote func set_position(packet):
-	if ($NPCBoat):
+	if has_node('NPCBoat'):
 		$NPCBoat.position.x = packet.position.x
 		$NPCBoat.position.y = packet.position.y
 		$NPCBoat.rotation = packet.rotation
