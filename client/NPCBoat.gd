@@ -34,7 +34,7 @@ func _on_NPCBoat_health_changed(new_value, dud_owner):
 func explode():
 	velocity = Vector2()
 	$Sprite.hide()
-	if $Turrets:
+	if has_node('Turrets'):
 		$Turrets.queue_free()
 	$CollisionShape2D.disabled = true
 	$Explosion.show()
