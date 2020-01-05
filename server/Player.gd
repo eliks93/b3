@@ -58,7 +58,6 @@ func send_leaderboard_info(p_owner):
 	rpc_unreliable_id(int(get_node(".").name), "update_leaderboard", p_owner)
 
 remote func respawn():
-#	if get_children().size() == 0:
 	var x = 0
 	var y = 0
 	var available_spawns = []

@@ -38,7 +38,7 @@ func _physics_process(delta):
 	pass
 
 remote func set_position(packet):
-	if ($NPCBoat):
+	if has_node('NPCBoat'):
 		$NPCBoat.position.x = packet.position.x
 		$NPCBoat.position.y = packet.position.y
 		$NPCBoat.rotation = packet.rotation
@@ -47,8 +47,6 @@ remote func set_position(packet):
 		$NPCBoat.mouse_pos = packet.mouse_pos
 	elif get_children().size():
 		get_child(0).set_name("NPCBoat")
-		$NPCBoat.collision_layer = 1
-		$NPCBoat.collision_mask = 1
 		$NPCBoat/PlayerName.set_name(player_name)
 		
 
@@ -67,8 +65,6 @@ remote func respawn_player(x, y, rotation):
 	new_boat.position.y = y
 	new_boat.rotation = rotation
 	add_child(new_boat)
-	$NPCBoat.collision_layer = 1
-	$NPCBoat.collision_mask = 1
 	$NPCBoat/PlayerName.set_name(player_name)
 
 

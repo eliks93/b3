@@ -1,8 +1,10 @@
 extends Node
 
+var boat = preload("res://RealPlayer.tscn")
+
 var player_info = {
 	'name': "Player",
-	'actor': "NA"
+	'actor': boat.instance()
 }
 
 var ship_info = {

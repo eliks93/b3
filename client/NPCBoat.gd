@@ -28,13 +28,13 @@ func update_health(new_value):
 	if not tween.is_active():
 		tween.start()
 
-func _on_NPCBoat_health_changed(new_value):
+func _on_NPCBoat_health_changed(new_value, dud_owner):
 	update_health(new_value)
 
 func explode():
 	velocity = Vector2()
 	$Sprite.hide()
-	if $Turrets:
+	if has_node('Turrets'):
 		$Turrets.queue_free()
 	$CollisionShape2D.disabled = true
 	$Explosion.show()

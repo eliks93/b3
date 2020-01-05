@@ -1,7 +1,7 @@
 extends Node2D
 
 signal spawn_projectile(projectile_type)
-
+signal fire_turret
 export var baseBullet = preload("res://Projectile.tscn")
 export var fire_delay = 1.0
 
