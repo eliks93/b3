@@ -60,9 +60,9 @@ func get_input():
 		steer_angle = turn * deg2rad(steering_angle)
 		
 		if (mob_y > 0):
-			acceleration = transform.x * engine_power
+			acceleration = transform.x * (engine_power * mob_y)
 		if (mob_y < 0):
-			acceleration = transform.x * braking
+			acceleration = -transform.x * (braking * mob_y)
 
 func update_health(new_value):
 	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
