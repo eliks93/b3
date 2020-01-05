@@ -5,7 +5,7 @@ var p_name = "Player"
 var projectile = preload("res://Projectile.tscn")
 
 var player_name = "Player"
-var boat_selected = 0
+var boat_selected = "0"
 
 var boat_big = preload("res://Playerboats/BigBoat.tscn")
 var boat_medium = preload("res://Playerboats/MediumBoat.tscn")
@@ -75,7 +75,7 @@ func request_respawn():
 
 
 remote func respawn_player(x, y, rotation):
-	var new_boat = boats[boat_selected].instance()
+	var new_boat = boats[int(boat_selected)].instance()
 	new_boat.position.x = x
 	new_boat.position.y = y
 	new_boat.rotation = rotation

@@ -3,7 +3,7 @@ extends Node2D
 var player_init = {}
 var p_name = "Not-Player"
 var projectile = preload("res://Projectile.tscn")
-var boat_selected = 1
+var boat_selected = "1"
 
 var boat_big = preload("res://NPCboats/BigBoatNPC.tscn")
 var boat_medium = preload("res://NPCboats/MediumBoatNPC.tscn")
@@ -18,7 +18,7 @@ func _ready():
 	pass
 
 func initialize():
-	var new_boat = boats[boat_selected].instance()
+	var new_boat = boats[int(boat_selected)].instance()
 	new_boat.position.x = 0
 	new_boat.position.y = 0
 	new_boat.rotation = 0
@@ -60,7 +60,7 @@ remote func destroy():
 	$NPCBoat.explode()
 
 remote func respawn_player(x, y, rotation):
-	var new_boat = boats[boat_selected].instance()
+	var new_boat = boats[int(boat_selected)].instance()
 	for child in get_children():
 		child.queue_free()
 	new_boat.position.x = x

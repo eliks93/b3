@@ -21,12 +21,12 @@ animation = "Small"
 position = Vector2( 0, 0.950012 )
 texture = ExtResource( 4 )
 
-[node name="Turrets" type="Node2D" parent="." index="6"]
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2( -0.832169, 0.27739 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Turrets" type="Node2D" parent="." index="7"]
 
 [node name="Turret" parent="Turrets" index="0" instance=ExtResource( 5 )]
 position = Vector2( 3.32866, 1.10956 )
-
-[node name="CollisionShape2D" parent="." index="8"]
-position = Vector2( -0.832168, 0.27739 )
-rotation = 1.5708
-shape = SubResource( 1 )
