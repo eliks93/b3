@@ -15,6 +15,7 @@ func _ready():
 	pass # Replace with function body.
 
 func start(_position, _direction):
+	$FireSound.play()
 	position = _position
 	direction = _direction.angle()
 	rotation = direction

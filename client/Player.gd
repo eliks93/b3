@@ -51,7 +51,7 @@ remote func update_health(hp):
 
 remote func destroy():
 	print("destroy called")
-	
+	$DeathSound.play()
 	$PlayerBoat.explode()
 	if has_node('DeathScreen'):
 		death_screen()

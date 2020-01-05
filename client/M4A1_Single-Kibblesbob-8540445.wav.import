@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/M4A1_Single-Kibblesbob-8540445.wav-dc67161a0be971a923b202808d0dd26b.sample"
+
+[deps]
+
+source_file="res://M4A1_Single-Kibblesbob-8540445.wav"
+dest_files=[ "res://.import/M4A1_Single-Kibblesbob-8540445.wav-dc67161a0be971a923b202808d0dd26b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
