@@ -2,6 +2,7 @@ extends "res://Boat.gd"
 
 signal fire_turret(group)
 signal turn_turret(mouse_pos)
+signal death_screen
 onready var bar = $Bar/TextureProgress
 onready var tween = $Tween
 

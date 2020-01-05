@@ -53,7 +53,7 @@ remote func destroy():
 	print("destroy called")
 	
 	$PlayerBoat.explode()
-	if !has_node('DeathScreen'):
+	if has_node('DeathScreen'):
 		death_screen()
 #	$DeathScreen.current_score = current_score
 #	print($DeathScreen.current_score)
