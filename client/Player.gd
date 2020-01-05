@@ -76,6 +76,7 @@ remote func respawn_player(x, y, rotation):
 	new_boat.rotation = rotation
 	new_boat.get_node("PlayerName").set_name(player_name)
 	add_child(new_boat)
+	GameState.player_info.actor = new_boat
 	set_camera_limits()
 	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
 	for Turret in $PlayerBoat.get_node("Turrets").get_children():
