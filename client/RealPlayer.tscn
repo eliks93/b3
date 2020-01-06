@@ -6,7 +6,7 @@
 [ext_resource path="res://LifeBar.tscn" type="PackedScene" id=4]
 [ext_resource path="res://explosions/Explosions.tscn" type="PackedScene" id=5]
 
-[node name="PlayerBoat" index="0" instance=ExtResource( 1 )]
+[node name="PlayerBoat" instance=ExtResource( 1 )]
 position = Vector2( 4.07254, 1.62901 )
 script = ExtResource( 2 )
 

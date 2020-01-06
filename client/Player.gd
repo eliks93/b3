@@ -2,8 +2,7 @@ extends Node2D
 
 var player_init = {}
 var p_name = "Player"
-var projectile = preload("res://Projectile.tscn")
-
+var projectile = preload('res://Projectile.tscn')
 var player_name = "Player"
 var boat_selected = "0"
 
@@ -11,7 +10,6 @@ var boat_big = preload("res://Playerboats/BigBoat.tscn")
 var boat_medium = preload("res://Playerboats/MediumBoat.tscn")
 var boat_small = preload("res://Playerboats/SmallBoat.tscn")
 var boats = [boat_big, boat_medium, boat_small]
-
 var map_limits
 var map_cellsize
 var death_score
@@ -21,14 +19,14 @@ var death_screen = preload("res://DeathScreen.tscn")
 func _ready():
 	request_respawn()
 
-#func initialize():
-
-
 func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
-	var proj = projectile.instance()
+	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+
+	var proj = $PlayerBoat.projectile.instance()
+	
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
@@ -56,7 +54,8 @@ remote func update_health(hp):
 
 remote func destroy():
 	print("destroy called")
-	
+	GameState.player_info.actor = null
+	get_parent().get_node('AudioController').create_sound('death', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	$PlayerBoat.explode()
 	if has_node('DeathScreen'):
 		death_screen()

@@ -30,7 +30,7 @@ remote func update_leaderboard(leaderboard_info):
 		var id = leader.values()[0].keys()[0]
 		var name = leader.values()[0][id]
 		var player_name
-#
+
 		if len(name) > 7:
 			player_name = name.left(7) + "..."
 		else:

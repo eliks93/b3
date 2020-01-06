@@ -12,6 +12,9 @@ height = 128.549
 
 [node name="PlayerBoat" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+hp = 75
+engine_power = 1000
+friction = -0.009
 
 [node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
 
@@ -27,6 +30,8 @@ shape = SubResource( 1 )
 
 [node name="Turret" parent="Turrets" index="0" instance=ExtResource( 5 )]
 position = Vector2( -49.8446, -1.50206 )
+fire_delay = 0.03
 
 [node name="Turret2" parent="Turrets" index="1" instance=ExtResource( 5 )]
 position = Vector2( 27.2611, -1.00137 )
+fire_delay = 0.03
