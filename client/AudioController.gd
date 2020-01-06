@@ -12,10 +12,8 @@ func create_sound(sound, x, y):
 	var node
 	if sound == 'death':
 		node = death_sound.instance()
-		print(node.position)
 		node.position.x = x
 		node.position.y = y
-		print(node.position)
 		add_child(node)
 		node.play()
 	if sound == 'fire':

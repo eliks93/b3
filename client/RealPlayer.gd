@@ -52,7 +52,6 @@ func get_input():
 		emit_signal("fire_turret", 1)
 	
 	if (OS.has_touchscreen_ui_hint()):
-		print(mob_x, ", ", mob_y)
 		if (mob_x > 0):
 			turn += mob_x
 		if (mob_x < 0):

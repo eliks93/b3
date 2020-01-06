@@ -2,8 +2,7 @@ extends Node2D
 
 var player_init = {}
 var p_name = "Player"
-var projectile = preload("res://Projectile.tscn")
-
+var projectile = preload('res://Projectile.tscn')
 var player_name = "Player"
 var boat_selected = "0"
 
@@ -11,7 +10,6 @@ var boat_big = preload("res://Playerboats/BigBoat.tscn")
 var boat_medium = preload("res://Playerboats/MediumBoat.tscn")
 var boat_small = preload("res://Playerboats/SmallBoat.tscn")
 var boats = [boat_big, boat_medium, boat_small]
-
 var map_limits
 var map_cellsize
 var death_score
@@ -20,7 +18,6 @@ var death_screen = preload("res://DeathScreen.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	request_respawn()
-
 #func initialize():
 
 
@@ -29,7 +26,8 @@ func req_spawn_projectile(projectile_type, _position, _direction):
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
-	var proj = projectile.instance()
+
+	var proj = $PlayerBoat.projectile.instance()
 	
 	proj.p_owner = str(mask)
 	add_child(proj)

@@ -4,7 +4,7 @@
 [ext_resource path="res://NPCboats/SmallBoatNPC.gd" type="Script" id=2]
 [ext_resource path="res://src/animate/BoatRipple.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/ship_small_body.png" type="Texture" id=4]
-[ext_resource path="res://Turret.tscn" type="PackedScene" id=5]
+[ext_resource path="res://MachineGunTurret.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 23.4394
@@ -29,4 +29,3 @@ shape = SubResource( 1 )
 rotation = 1.5708
 
 [node name="Turret" parent="Turrets" index="0" instance=ExtResource( 5 )]
-position = Vector2( -0.524475, 1.89859e-06 )

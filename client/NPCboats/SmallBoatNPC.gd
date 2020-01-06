@@ -1,5 +1,5 @@
 extends "res://NPCBoat.gd"
-
+var projectile = preload('res://MachineGunProjectile.tscn')
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

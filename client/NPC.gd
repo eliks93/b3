@@ -29,7 +29,7 @@ func initialize():
 	$NPCBoat/PlayerName.set_name(player_name)
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
-	var proj = projectile.instance()
+	var proj = $NPCBoat.projectile.instance()
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)

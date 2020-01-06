@@ -39,8 +39,6 @@ func get_value():
 func _control_ship(analog_pos):
 	var x = 0.0
 	var y = 0.0
-	print(analog_pos)
-	print(GameState.player_info.actor)
 	if (analog_pos.x < -cardinal_dz || analog_pos.x > cardinal_dz):
 		if (analog_pos.x < 0):
 			x = analog_pos.x / 11.0
@@ -51,7 +49,6 @@ func _control_ship(analog_pos):
 			y = -analog_pos.y / 11
 		else:
 			y = -analog_pos.y / 11
-	print(x, ":", y)
 	GameState.player_info.actor.mobile_joystick(x, y)
 
 
