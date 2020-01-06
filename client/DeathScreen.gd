@@ -6,6 +6,18 @@ extends CanvasLayer
 var current_score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if get_parent().boat_selected == 2:
+		$Big.pressed = false
+		$Medium.pressed = false
+		$Small.pressed = true
+	elif get_parent().boat_selected == 1:
+		$Big.pressed = false
+		$Medium.pressed = true
+		$Small.pressed = false
+	else:
+		$Big.pressed = true
+		$Medium.pressed = false
+		$Small.pressed = false
 	$Score.text = str(current_score)
 
 func _on_Button_pressed():
