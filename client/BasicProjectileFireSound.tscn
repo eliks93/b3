@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/Sounds/Loud_Bang-Osama_Bin_Laden-925764326.wav" type="AudioStream" id=1]
+[ext_resource path="res://BasicProjectileFireSound.gd" type="Script" id=2]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
 attenuation = 3.24901
+script = ExtResource( 2 )
+[connection signal="finished" from="." to="." method="_on_AudioStreamPlayer2D_finished"]
