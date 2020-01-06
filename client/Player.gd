@@ -55,6 +55,7 @@ remote func update_health(hp):
 
 remote func destroy():
 	print("destroy called")
+	GameState.player_info.actor = null
 	get_parent().get_node('AudioController').create_sound('death', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	$PlayerBoat.explode()
 	if has_node('DeathScreen'):

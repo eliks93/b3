@@ -10,10 +10,11 @@ export var cardinal_dz = 1.0
 
 func _process(delta):
 	# Gradually move stick back to center outside of drag events.
-	if ongoing_drag == -1:
-		var pos_difference = (Vector2() - radius) - position
-		position += pos_difference * return_accel * delta
-	_control_ship(get_button_pos())
+	if GameState.player_info.actor:
+		if ongoing_drag == -1:
+			var pos_difference = (Vector2() - radius) - position
+			position += pos_difference * return_accel * delta
+		_control_ship(get_button_pos())
 
 func get_button_pos():
 	return position + radius
