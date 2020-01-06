@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Projectile.gd" type="Script" id=1]
 [ext_resource path="res://assets/Projectiles/pure/Pure_09.png" type="Texture" id=2]
 [ext_resource path="res://explosions/Explosions.tscn" type="PackedScene" id=3]
-[ext_resource path="res://BasicProjectileSound.tscn" type="PackedScene" id=4]
-[ext_resource path="res://BasicProjectileFireSound.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -36,9 +34,5 @@ shape = SubResource( 2 )
 [node name="Explosion" parent="." instance=ExtResource( 3 )]
 visible = false
 scale = Vector2( 0.7, 0.7 )
-
-[node name="ExplosionSound" parent="." instance=ExtResource( 4 )]
-
-[node name="FireSound" parent="." instance=ExtResource( 5 )]
 [connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
 [connection signal="animation_finished" from="Explosion" to="." method="_on_Explosion_animation_finished"]

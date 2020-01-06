@@ -9,13 +9,12 @@ var acceleration = Vector2()
 
 var direction
 var p_owner
-
+signal explode_projectile
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func start(_position, _direction):
-	$FireSound.play()
 	position = _position
 	direction = _direction.angle()
 	rotation = direction
@@ -34,7 +33,7 @@ func explode():
 
 func _on_Projectile_body_entered(body):
 	if (body.get_node("..").name != p_owner):
-		$ExplosionSound.play()
+		get_parent().get_parent().get_node('AudioController').create_sound('hit', position.x, position.y)
 		explode()
 		if body.has_method("take_damage"):
 			body.take_damage(damage, p_owner)

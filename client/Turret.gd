@@ -19,6 +19,8 @@ func _turn(mouse_pos):
 
 func _fire(group):
 	if (_ready_to_fire):
+#		ideal spot for fire sound in terms of timing of sound vs shot. Moving to audio controller
+#		$PlayFireSound.play(0.1)
 		var direction = Vector2(0, 1).rotated(self.global_rotation)
 		emit_signal("spawn_projectile", 1, $Muzzle.global_position, direction)
 		$FireDelay.start(fire_delay)
