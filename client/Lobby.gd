@@ -11,7 +11,7 @@ func _ready():
 	get_parent().request_lobby_update()
 
 func _on_Button_pressed():
-	get_parent().join_game(GameState.room_info.name)	
+	get_parent().join_game(GameState.room_info.name)
 	# Give a joining popup here if necessary, swap scene once the server says it's okay to.
 	
 # This will be called if Core.join_game succeeded.

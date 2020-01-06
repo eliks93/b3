@@ -44,18 +44,19 @@ func custom_sort(a, b):
 		return true
 	return false
 
-remote func spawn_player(p_id, p_name):
+remote func spawn_player(p_id, p_name, boat_type):
 	if (p_id == get_tree().get_network_unique_id()):
 		var ship = player_ship.instance()
 		ship.name = str(get_tree().get_network_unique_id())
 		ship.player_name = p_name
-#		ship.initialize()
+		ship.boat_selected = boat_type
 		self.add_child(ship)
 		ship.map_limits = $Map01/Boundary.get_used_rect()
 		ship.map_cellsize = $Map01/Boundary.cell_size
 	else:
 		var ship = npc_ship.instance()
 		ship.name = str(p_id)
+		ship.boat_selected = boat_type
 		ship.player_name = p_name
 		self.add_child(ship)
 		ship.initialize()

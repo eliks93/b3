@@ -12,13 +12,14 @@ func _server_created():
 	# Need a function to generate map here.
 	pass
 
-func _player_added(id, name):
+func _player_added(id, name, ship):
 	print("ADDING PLAYER ", id, " to ", self.name)
 	# var player_ship = base_ship.instance()
 	if (!players.has(id)):
 		players[id] = {
 			'id': id,
 			'name': name,
+			'ship_type': ship,
 			'mouse_pos': [0, 0],
 			'position': {
 				'x': 0,
@@ -35,6 +36,7 @@ func _player_added(id, name):
 		var player_ship = base_ship.instance()
 		player_ship.name = str(id)
 		player_ship.player_name = name
+		player_ship.boat_selected = ship
 		self.add_child(player_ship)
 		leaderboard[id] = { 'name': name, 'score': 0 }
 		
@@ -58,12 +60,12 @@ func _render_player_list():
 func spawn_players(id, p_name):
 	for player in players:
 		if (player != id):
-			rpc_id(id, "spawn_player", player, players[player].name)
+			rpc_id(id, "spawn_player", player, players[player].name, players[player].ship_type)
 
 # Spawns a single player for all existing players.
 func spawn_player(id, p_name):
 	for player in players:
-		rpc_id(player, "spawn_player", id, p_name)
+		rpc_id(player, "spawn_player", id, p_name, players[id].ship_type)
 	
 remote func spawn_for(p_name):
 	var player_id = get_tree().get_rpc_sender_id()

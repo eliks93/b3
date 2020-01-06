@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/ship_large_body.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/ship_medium_body.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/ship_small_body.png" type="Texture" id=4]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -25,5 +28,33 @@ margin_top = -155.5
 margin_right = 116.0
 margin_bottom = -72.5
 text = "Open Lobby"
+
+[node name="Big" type="Button" parent="."]
+margin_left = 236.193
+margin_top = 181.24
+margin_right = 370.193
+margin_bottom = 555.24
+toggle_mode = true
+pressed = true
+icon = ExtResource( 2 )
+
+[node name="Medium" type="Button" parent="."]
+margin_left = 457.955
+margin_top = 294.706
+margin_right = 531.955
+margin_bottom = 479.706
+toggle_mode = true
+icon = ExtResource( 3 )
+
+[node name="Small" type="Button" parent="."]
+margin_left = 590.218
+margin_top = 332.678
+margin_right = 656.218
+margin_bottom = 443.678
+toggle_mode = true
+icon = ExtResource( 4 )
 [connection signal="text_changed" from="editName" to="." method="_on_editName_text_changed"]
 [connection signal="pressed" from="buttonLobby" to="." method="_on_buttonLobby_pressed"]
+[connection signal="pressed" from="Big" to="." method="_on_Big_pressed"]
+[connection signal="pressed" from="Medium" to="." method="_on_Medium_pressed"]
+[connection signal="pressed" from="Small" to="." method="_on_Small_pressed"]

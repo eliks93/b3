@@ -11,6 +11,9 @@ var mouse_pos = Vector2()
 var animated_health = 100
 var ripple_opacity = 0
 
+var mob_x = 0
+var mob_y = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for Turret in $Turrets.get_children():
@@ -25,6 +28,10 @@ func _process(delta):
 	set_camera_position()
 	bar.value = animated_health
 	ripple_visibility()
+
+func mobile_joystick(x, y):
+	mob_x = x
+	mob_y = y
 
 func get_input():
 	var turn = 0
@@ -43,6 +50,20 @@ func get_input():
 	
 	if (Input.is_action_pressed("fire_1")):
 		emit_signal("fire_turret", 1)
+	
+	if (OS.has_touchscreen_ui_hint()):
+		print(mob_x, ", ", mob_y)
+		if (mob_x > 0):
+			turn += mob_x
+		if (mob_x < 0):
+			turn += mob_x
+		
+		steer_angle = turn * deg2rad(steering_angle)
+		
+		if (mob_y > 0):
+			acceleration = transform.x * (engine_power * mob_y)
+		if (mob_y < 0):
+			acceleration = -transform.x * (braking * mob_y)
 
 func update_health(new_value):
 	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)
