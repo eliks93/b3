@@ -21,9 +21,6 @@ var death_screen = preload("res://DeathScreen.tscn")
 func _ready():
 	request_respawn()
 
-#func initialize():
-
-
 func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://mobileControls/VirtualJoystick.tscn" type="PackedScene" id=1]
+[ext_resource path="res://AimControls.tscn" type="PackedScene" id=2]
 
 [node name="TouchControls" type="Control"]
 margin_right = 40.0
@@ -11,3 +12,5 @@ margin_left = 114.596
 margin_top = 512.134
 margin_right = 165.596
 margin_bottom = 562.134
+
+[node name="AimControls" parent="." instance=ExtResource( 2 )]
