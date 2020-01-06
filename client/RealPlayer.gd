@@ -11,8 +11,13 @@ var mouse_pos = Vector2()
 var animated_health = 100
 var ripple_opacity = 0
 
+var touch_enabled = OS.has_touchscreen_ui_hint()
+
 var mob_x = 0
 var mob_y = 0
+var mob_firing = false
+
+var touch_position = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,8 +28,15 @@ func _ready():
 	update_health(player_max_health)
 
 func _process(delta):
-	emit_signal("turn_turret", get_global_mouse_position())
-	mouse_pos = get_global_mouse_position()
+	# Override mouse position with touch here
+	
+	if !touch_enabled:
+		mouse_pos = get_global_mouse_position()
+	else:
+		mouse_pos = touch_position # Mobile pos
+	print("MOUSE:", get_global_mouse_position())
+	print("TOUCH:", touch_position)
+	emit_signal("turn_turret", mouse_pos)
 	set_camera_position()
 	bar.value = animated_health
 	ripple_visibility()
@@ -32,6 +44,16 @@ func _process(delta):
 func mobile_joystick(x, y):
 	mob_x = x
 	mob_y = y
+
+func touch_aim(position):
+	touch_position = position
+	# This fire relative to the center of the screen, not the boats position.
+	# It also does not continue to fire directly at the event unless the event is moving.
+	touch_position.x += self.position.x - get_viewport_rect().size.x / 2
+	touch_position.y += self.position.y - get_viewport_rect().size.y / 2
+
+func touch_firing(isFiring):
+	mob_firing = isFiring
 
 func get_input():
 	var turn = 0
@@ -51,7 +73,7 @@ func get_input():
 	if (Input.is_action_pressed("fire_1")):
 		emit_signal("fire_turret", 1)
 	
-	if (OS.has_touchscreen_ui_hint()):
+	if (touch_enabled):
 		if (mob_x > 0):
 			turn += mob_x
 		if (mob_x < 0):
@@ -63,6 +85,9 @@ func get_input():
 			acceleration = transform.x * (engine_power * mob_y)
 		if (mob_y < 0):
 			acceleration = -transform.x * (braking * mob_y)
+		
+		if (mob_firing):
+			emit_signal("fire_turret", 1)
 
 func update_health(new_value):
 	tween.interpolate_property(self, "animated_health", animated_health, new_value, 0.6, Tween.TRANS_LINEAR, Tween.EASE_IN)

@@ -18,8 +18,6 @@ var death_screen = preload("res://DeathScreen.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	request_respawn()
-#func initialize():
-
 
 func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
@@ -56,6 +54,7 @@ remote func update_health(hp):
 
 remote func destroy():
 	print("destroy called")
+	GameState.player_info.actor = null
 	get_parent().get_node('AudioController').create_sound('death', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	$PlayerBoat.explode()
 	if has_node('DeathScreen'):
