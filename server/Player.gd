@@ -17,7 +17,6 @@ remote func _spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable("_spawn_projectile", projectile_type, _position, _direction, player_id)
 
 remote func update_position(packet):
-
 	if ($PlayerBoat):
 		$PlayerBoat.position.x = packet.position.x
 		$PlayerBoat.position.y = packet.position.y
@@ -56,6 +55,10 @@ remote func update_health(hp, p_owner):
 
 func send_leaderboard_info(p_owner):
 	rpc_unreliable_id(int(get_node(".").name), "update_leaderboard", p_owner)
+
+remote func update_ship_type(ship_type, p_owner):
+	boat_selected = ship_type
+	get_node("..").players[p_owner].ship_type = ship_type
 
 remote func respawn():
 	var x = 0

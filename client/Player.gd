@@ -73,6 +73,9 @@ func set_camera_limits():
 func request_respawn():
 	rpc_unreliable_id(1, "respawn")
 
+func update_ship_type(ship_type):
+	rpc_unreliable_id(1, "update_ship_type", ship_type, p_name)
+
 
 remote func respawn_player(x, y, rotation):
 	var new_boat = boats[int(boat_selected)].instance()

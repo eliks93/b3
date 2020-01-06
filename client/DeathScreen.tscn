@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://DeathScreen.gd" type="Script" id=1]
 [ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/images/ship_large_body.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/ship_medium_body.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/ship_small_body.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 56
@@ -65,4 +68,28 @@ margin_top = 202.326
 margin_right = 665.345
 margin_bottom = 216.326
 text = "34"
+
+[node name="Big" type="Button" parent="."]
+margin_left = 219.7
+margin_top = 215.823
+margin_right = 353.7
+margin_bottom = 589.823
+icon = ExtResource( 3 )
+
+[node name="Medium" type="Button" parent="."]
+margin_left = 492.385
+margin_top = 390.29
+margin_right = 566.385
+margin_bottom = 575.29
+icon = ExtResource( 4 )
+
+[node name="Small" type="Button" parent="."]
+margin_left = 708.208
+margin_top = 425.183
+margin_right = 774.208
+margin_bottom = 536.183
+icon = ExtResource( 5 )
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Big" to="." method="_on_Big_pressed"]
+[connection signal="pressed" from="Medium" to="." method="_on_Medium_pressed"]
+[connection signal="pressed" from="Small" to="." method="_on_Small_pressed"]
