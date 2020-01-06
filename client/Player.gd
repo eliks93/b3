@@ -25,7 +25,9 @@ func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
+	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	var proj = projectile.instance()
+	
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
@@ -53,7 +55,7 @@ remote func update_health(hp):
 
 remote func destroy():
 	print("destroy called")
-	
+	get_parent().get_node('AudioController').create_sound('death', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	$PlayerBoat.explode()
 	if has_node('DeathScreen'):
 		death_screen()

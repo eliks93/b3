@@ -47,7 +47,8 @@ remote func set_position(packet):
 		$NPCBoat.mouse_pos = packet.mouse_pos
 	elif get_children().size():
 		get_child(0).set_name("NPCBoat")
-		$NPCBoat/PlayerName.set_name(player_name)
+		if has_node('NPCBoat/PlayerName'):
+			$NPCBoat/PlayerName.set_name(player_name)
 		
 
 remote func update_health(hp):
@@ -55,6 +56,7 @@ remote func update_health(hp):
 		$NPCBoat.update_health(hp)
 
 remote func destroy():
+	get_parent().get_node('AudioController').create_sound('death', $NPCBoat.position.x, $NPCBoat.position.y)
 	$NPCBoat.explode()
 
 remote func respawn_player(x, y, rotation):
@@ -65,7 +67,8 @@ remote func respawn_player(x, y, rotation):
 	new_boat.position.y = y
 	new_boat.rotation = rotation
 	add_child(new_boat)
-	$NPCBoat/PlayerName.set_name(player_name)
+	if has_node('NPCBoat/PlayerName'):
+		$NPCBoat/PlayerName.set_name(player_name)
 
 
 
