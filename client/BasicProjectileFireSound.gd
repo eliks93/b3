@@ -6,7 +6,12 @@ extends AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var pan = AudioServer.get_bus_effect(AudioServer.get_bus_index("L/R"), 0)
+	if (pan.pan < 0.25):
+		pan.pan = 0.25
+	if (pan.pan > 0.75):
+		pan.pan = 0.75
+	# Need to create manual panning based on max distance and actual distance.  Ratio for each earpiece.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

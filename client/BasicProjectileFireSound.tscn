@@ -5,6 +5,8 @@
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
-attenuation = 3.24901
+volume_db = -30.0
+autoplay = true
+bus = "L/R"
 script = ExtResource( 2 )
 [connection signal="finished" from="." to="." method="_on_AudioStreamPlayer2D_finished"]
