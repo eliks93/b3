@@ -57,7 +57,8 @@ remote func update_health(hp):
 remote func destroy():
 	$NPCBoat.explode()
 
-remote func respawn_player(x, y, rotation):
+remote func respawn_player(x, y, rotation, ship_type):
+	boat_selected = ship_type
 	var new_boat = boats[int(boat_selected)].instance()
 	for child in get_children():
 		child.queue_free()

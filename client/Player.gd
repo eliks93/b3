@@ -74,10 +74,11 @@ func request_respawn():
 	rpc_unreliable_id(1, "respawn")
 
 func update_ship_type(ship_type):
-	rpc_unreliable_id(1, "update_ship_type", ship_type, p_name)
+	rpc_unreliable_id(1, "update_ship_type", ship_type)
 
 
-remote func respawn_player(x, y, rotation):
+remote func respawn_player(x, y, rotation, ship_type):
+	boat_selected = ship_type
 	var new_boat = boats[int(boat_selected)].instance()
 	new_boat.position.x = x
 	new_boat.position.y = y
