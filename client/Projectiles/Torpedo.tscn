@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Projectiles/Torpedo.gd" type="Script" id=2]
+[ext_resource path="res://src/animate/BoatRipple.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/images/ship_medium_body_b.png" type="Texture" id=4]
+
+[node name="Projectile" instance=ExtResource( 1 )]
+scale = Vector2( 0.6, 0.6 )
+script = ExtResource( 2 )
+
+[node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
+position = Vector2( -5.59439, 0.87413 )
+scale = Vector2( 0.7, 0.8 )
+animation = "Small"
+
+[node name="Sprite" parent="." index="1"]
+visible = false
+
+[node name="RealSprite" type="Sprite" parent="." index="2"]
+self_modulate = Color( 0.172549, 0.129412, 0.129412, 1 )
+position = Vector2( 6.72117, -0.220362 )
+rotation = 1.5708
+scale = Vector2( 0.469675, 0.448108 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" parent="." index="3"]
+position = Vector2( 6.17026, -0.220371 )

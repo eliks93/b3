@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Metal Reflect-SoundBible.com-977435034.wav-d82b554e32112b07783c8532ca9064cd.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/Metal Reflect-SoundBible.com-977435034.wav"
+dest_files=[ "res://.import/Metal Reflect-SoundBible.com-977435034.wav-d82b554e32112b07783c8532ca9064cd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

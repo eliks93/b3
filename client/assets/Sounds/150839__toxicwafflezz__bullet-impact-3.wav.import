@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/150839__toxicwafflezz__bullet-impact-3.wav-3e1fc1e2d6476a434190aa77a1217011.sample"
+
+[deps]
+
+source_file="res://assets/Sounds/150839__toxicwafflezz__bullet-impact-3.wav"
+dest_files=[ "res://.import/150839__toxicwafflezz__bullet-impact-3.wav-3e1fc1e2d6476a434190aa77a1217011.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

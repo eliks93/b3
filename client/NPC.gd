@@ -30,7 +30,13 @@ func initialize():
 	$NPCBoat/PlayerName.set_name(player_name)
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
-	var proj = $NPCBoat.projectile.instance()
+	var proj = get_child(0).projectile.instance()
+	proj.p_owner = str(mask)
+	add_child(proj)
+	proj.start(_position, _direction)
+
+remote func _spawn_projectile_secondary(_position, _direction, mask):
+	var proj = get_child(0).projectile_secondary.instance()
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
@@ -56,19 +62,20 @@ remote func set_position(packet):
 		$NPCBoat.acceleration = packet.acceleration
 		$NPCBoat.velocity = packet.velocity
 		$NPCBoat.mouse_pos = packet.mouse_pos
-	elif get_children().size():
-		get_child(0).set_name("NPCBoat")
-		if has_node('NPCBoat/PlayerName'):
-			$NPCBoat/PlayerName.set_name(player_name)
-		
+	else:
+		for child in get_children():
+			if child.has_method('take_damage'):
+				child.set_name('NPCBoat')
+				$NPCBoat/PlayerName.set_name(player_name)
+
 
 remote func update_health(hp):
 	if $NPCBoat:
 		$NPCBoat.update_health(hp)
 
-remote func destroy():
-	get_parent().get_node('AudioController').create_sound('death', $NPCBoat.position.x, $NPCBoat.position.y)
-	$NPCBoat.explode()
+remote func destroy(placeholder):
+		get_parent().get_node('AudioController').create_sound('death', $NPCBoat.position.x, $NPCBoat.position.y)
+		$NPCBoat.explode()
 
 remote func respawn_player(x, y, rotation, ship_type):
 	boat_selected = ship_type

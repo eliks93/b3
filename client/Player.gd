@@ -3,6 +3,7 @@ extends Node2D
 var player_init = {}
 var p_name = "Player"
 var projectile = preload('res://Projectile.tscn')
+var projectile_secondary = preload('res://Projectiles/Torpedo.tscn')
 var player_name = "Player"
 var boat_selected = "0"
 
@@ -26,8 +27,14 @@ func req_spawn_projectile(projectile_type, _position, _direction):
 	else:
 		rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
 
+func req_spawn_projectile_scondary(_position, _direction):
+	rpc_unreliable_id(1, "_spawn_projectile_secondary", _position, _direction)
+
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
-	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	if boat_selected == 0:
+		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	else:
+		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 
 	var proj = $PlayerBoat.projectile.instance()
 	
@@ -35,13 +42,9 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	add_child(proj)
 	proj.start(_position, _direction)
 
-# Currently only used for Energy Projectiles
-remote func _spawn_controlled_projectile(p_name, projectile_type, _position, _direction, mask):
+remote func _spawn_projectile_secondary(_position, _direction, mask):
 	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
-	
-	var proj = $PlayerBoat.projectile.instance()
-	
-	proj.name = p_name
+	var proj = projectile_secondary.instance()
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
@@ -67,15 +70,13 @@ remote func update_health(hp):
 	$PlayerBoat.update_health(hp)
 	$PlayerBoat.hp = hp
 
-remote func destroy():
-	print("destroy called")
+remote func destroy(leaderboard):
+	print(leaderboard)
 	GameState.player_info.actor = null
 	get_parent().get_node('AudioController').create_sound('death', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	$PlayerBoat.explode()
-	if has_node('DeathScreen'):
-		death_screen()
-#	$DeathScreen.current_score = current_score
-#	print($DeathScreen.current_score)
+	if !has_node('DeathScreen'):
+		death_screen(leaderboard)
 	
 
 func set_camera_limits():
@@ -104,13 +105,15 @@ remote func respawn_player(x, y, rotation, ship_type):
 	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
 	for Turret in $PlayerBoat.get_node("Turrets").get_children():
 		Turret.connect("spawn_projectile", self, "req_spawn_projectile")
-	
+	if $PlayerBoat.has_node("TurretsSecondary"):
+		for Turret in $PlayerBoat.get_node("TurretsSecondary").get_children():
+			Turret.connect("spawn_projectile", self, "req_spawn_projectile_scondary")
 	$PlayerBoat.connect("death_screen", self, "death_screen")
 
-func death_screen():
-	leaderboard_info = get_parent().leader_board
-	var current_score = leaderboard_info[get_tree().get_network_unique_id()]['score']
-	leaderboard_info = current_score
+func death_screen(leaderboard):
+	print(leaderboard)
+	var current_score = leaderboard[get_tree().get_network_unique_id()]['score']
+	print(current_score, 'current score')
 	var screen = death_screen.instance()
-	screen.current_score = leaderboard_info
+	screen.current_score = current_score
 	add_child(screen)
