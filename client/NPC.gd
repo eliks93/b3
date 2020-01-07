@@ -60,7 +60,8 @@ remote func destroy():
 		get_parent().get_node('AudioController').create_sound('death', $NPCBoat.position.x, $NPCBoat.position.y)
 		$NPCBoat.explode()
 
-remote func respawn_player(x, y, rotation):
+remote func respawn_player(x, y, rotation, ship_type):
+	boat_selected = ship_type
 	var new_boat = boats[int(boat_selected)].instance()
 	for child in get_children():
 		child.queue_free()
