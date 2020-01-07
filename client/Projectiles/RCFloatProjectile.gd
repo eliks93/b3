@@ -32,7 +32,7 @@ func start(_position = Vector2(1, 1), _direction = Vector2(160, 160)):
 	velocity = _direction * launch_speed
 
 func _physics_process(delta):
-	if alive:
+	if alive & p_owner == get_tree().get_network_unique_id():
 		var target = get_global_mouse_position()
 		if (bounce_velocity.length() > 0):
 			position += bounce_velocity * 0.2
@@ -54,7 +54,7 @@ func _physics_process(delta):
 remote func update_position(packet):
 	if p_owner != str(get_tree().get_network_unique_id()):
 		position = packet.position
-		var mouse_pos = get_global_mouse_position()
+		var mouse_pos = packet.mouse_pos
 		bounce_velocity = packet.bounce_velocity
 
 func explode():
