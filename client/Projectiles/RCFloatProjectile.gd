@@ -16,6 +16,8 @@ var bounce_velocity = Vector2()
 var direction
 var p_owner
 signal explode_projectile
+
+var packet = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$EExploson.connect("remove", self, "_delete")
@@ -41,8 +43,22 @@ func _physics_process(delta):
 		var movement = target - position
 		position += movement * delta
 		rotation += deg2rad(30) * delta
+		if (p_owner == str(get_tree().get_network_unique_id())):
+			packet = {
+				'mouse_pos': get_global_mouse_position(),
+				'position': position,
+				'bounce_velocity': bounce_velocity
+			}
+			rpc_unreliable_id(1, "update_position", packet)
+
+remote func update_position(packet):
+	if p_owner != str(get_tree().get_network_unique_id()):
+		position = packet.position
+		var mouse_pos = get_global_mouse_position()
+		bounce_velocity = packet.bounce_velocity
 
 func explode():
+	rpc_unreliable_id(1, "explode")
 	alive = false
 	velocity = Vector2()
 	if $CollisionShape2D:
@@ -60,7 +76,7 @@ func _on_RCFloatProjectile_body_entered(body):
 
 
 func _on_RCFloatProjectile_area_entered(area):
-	if ("will_bounce" in area):
+	if ("will_bounce" in area && area.p_owner == p_owner):
 		var difference = position - area.position
 		bounce_velocity = difference * 0.6
 

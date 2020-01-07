@@ -9,6 +9,8 @@ var acceleration = Vector2()
 
 var direction
 
+var p_owner
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -19,6 +21,9 @@ func start(_position, _direction):
 	rotation = direction
 	$Lifetime.wait_time = life
 	velocity = _direction * speed
+
+remote func update_position(packet):
+	rpc_unreliable("update_position", packet)
 
 func _process(delta):
 	position += velocity * delta

@@ -92,7 +92,15 @@ margin_right = 774.208
 margin_bottom = 536.183
 toggle_mode = true
 icon = ExtResource( 5 )
+
+[node name="Orb" type="Button" parent="."]
+margin_left = 854.0
+margin_top = 453.0
+margin_right = 930.0
+margin_bottom = 491.0
+text = "Orb"
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Big" to="." method="_on_Big_pressed"]
 [connection signal="pressed" from="Medium" to="." method="_on_Medium_pressed"]
 [connection signal="pressed" from="Small" to="." method="_on_Small_pressed"]
+[connection signal="pressed" from="Orb" to="." method="_on_Orb_pressed"]

@@ -35,6 +35,16 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	add_child(proj)
 	proj.start(_position, _direction)
 
+# Currently only used for Energy Projectiles
+remote func _spawn_controlled_projectile(p_name, projectile_type, _position, _direction, mask):
+	
+	var proj = $NPCBoat.projectile.instance()
+	
+	proj.name = p_name
+	proj.p_owner = str(mask)
+	add_child(proj)
+	proj.start(_position, _direction)
+
 func _physics_process(delta):
 	pass
 

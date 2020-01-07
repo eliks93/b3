@@ -21,13 +21,27 @@ func _ready():
 	request_respawn()
 
 func req_spawn_projectile(projectile_type, _position, _direction):
-	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
+	if boat_selected == 3:
+		rpc_unreliable_id(1, "_spawn_controlled_projectile", projectile_type, _position, _direction)
+	else:
+		rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 
 	var proj = $PlayerBoat.projectile.instance()
 	
+	proj.p_owner = str(mask)
+	add_child(proj)
+	proj.start(_position, _direction)
+
+# Currently only used for Energy Projectiles
+remote func _spawn_controlled_projectile(p_name, projectile_type, _position, _direction, mask):
+	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	
+	var proj = $PlayerBoat.projectile.instance()
+	
+	proj.name = p_name
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
