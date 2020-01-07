@@ -13,8 +13,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 8.55516
-height = 29.2634
+radius = 8.91448
+height = 57.7894
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource( 1 )

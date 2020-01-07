@@ -22,10 +22,22 @@ func _ready():
 func req_spawn_projectile(projectile_type, _position, _direction):
 	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
 
+func req_spawn_projectile_scondary(_position, _direction):
+	rpc_unreliable_id(1, "_spawn_projectile_secondary", _position, _direction)
+
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 
 	var proj = $PlayerBoat.projectile.instance()
+	
+	proj.p_owner = str(mask)
+	add_child(proj)
+	proj.start(_position, _direction)
+
+remote func _spawn_projectile_secondary(_position, _direction, mask):
+	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+
+	var proj = $PlayerBoat.projectile_secondary.instance()
 	
 	proj.p_owner = str(mask)
 	add_child(proj)
@@ -89,7 +101,9 @@ remote func respawn_player(x, y, rotation, ship_type):
 	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
 	for Turret in $PlayerBoat.get_node("Turrets").get_children():
 		Turret.connect("spawn_projectile", self, "req_spawn_projectile")
-	
+	if $PlayerBoat.has_node("TurretsSecondary"):
+		for Turret in $PlayerBoat.get_node("TurretsSecondary").get_children():
+			Turret.connect("spawn_projectile", self, "req_spawn_projectile_scondary")
 	$PlayerBoat.connect("death_screen", self, "death_screen")
 
 func death_screen():

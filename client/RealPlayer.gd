@@ -1,6 +1,7 @@
 extends "res://Boat.gd"
 
 signal fire_turret(group)
+signal fire_turret_secondary
 signal turn_turret(mouse_pos)
 signal death_screen
 onready var bar = $Bar/TextureProgress
@@ -23,6 +24,9 @@ var touch_position = Vector2()
 func _ready():
 	for Turret in $Turrets.get_children():
 		Turret.connect("spawn_projectile", self, "_spawn_projectile")
+	if has_node("TurretsSecondary"):
+		for Turret in $TurretsSecondary.get_children():
+			Turret.connect("spawn_projectile", self, "_spawn_projectile_secondary")
 	var player_max_health = hp
 	bar.max_value = player_max_health
 	update_health(player_max_health)
@@ -72,6 +76,9 @@ func get_input():
 	
 	if (Input.is_action_pressed("fire_1")):
 		emit_signal("fire_turret", 1)
+	
+	if (Input.is_action_pressed("fire_2")):
+		emit_signal("fire_turret_secondary", 1)
 	
 	if (touch_enabled):
 		if (mob_x > 0):

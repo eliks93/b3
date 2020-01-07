@@ -17,6 +17,12 @@ remote func _spawn_projectile(projectile_type, _position, _direction):
 	print("spawning projectile ", player_id)
 	rpc_unreliable("_spawn_projectile", projectile_type, _position, _direction, player_id)
 
+remote func _spawn_projectile_secondary(_position, _direction):
+	
+	var player_id = get_tree().get_rpc_sender_id()
+	print("spawning projectile_secondary		", player_id)
+	rpc_unreliable("_spawn_projectile_secondary", _position, _direction, player_id)
+
 remote func update_position(packet):
 	if ($PlayerBoat):
 		$PlayerBoat.position.x = packet.position.x
