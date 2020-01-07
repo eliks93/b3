@@ -44,7 +44,7 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 
 remote func _spawn_projectile_secondary(_position, _direction, mask):
 	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
-	var proj = projectile_secondary.instance()
+	var proj = $PlayerBoat.projectile_secondary.instance()
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
