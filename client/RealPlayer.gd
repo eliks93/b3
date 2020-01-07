@@ -38,8 +38,7 @@ func _process(delta):
 		mouse_pos = get_global_mouse_position()
 	else:
 		mouse_pos = touch_position # Mobile pos
-	print("MOUSE:", get_global_mouse_position())
-	print("TOUCH:", touch_position)
+
 	emit_signal("turn_turret", mouse_pos)
 	set_camera_position()
 	bar.value = animated_health
@@ -136,3 +135,7 @@ func _on_Explosion_animation_finished():
 #	get_parent().add_child(death_screen.instance())
 	queue_free()
 	emit_signal("death_screen")
+
+
+func _on_WateryExplosion_animation_finished():
+	pass # Replace with function body.

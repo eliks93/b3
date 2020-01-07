@@ -6,7 +6,7 @@ func _input(event):
 			if !get_parent().get_node("VirtualJoystick/Joystick/TouchScreenButton").is_joystick_input(event):
 				if (event.position.x != 0 || event.position.y != 0):
 					GameState.player_info.actor.touch_aim(event.position)
-				print(event.position)
+
 				GameState.player_info.actor.touch_firing(true)
 				return
 		

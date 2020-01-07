@@ -5,7 +5,7 @@
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
-volume_db = -30.0
+volume_db = -27.436
 autoplay = true
 bus = "L/R"
 script = ExtResource( 2 )
