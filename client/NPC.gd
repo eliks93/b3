@@ -56,7 +56,7 @@ remote func update_health(hp):
 	if $NPCBoat:
 		$NPCBoat.update_health(hp)
 
-remote func destroy():
+remote func destroy(placeholder):
 		get_parent().get_node('AudioController').create_sound('death', $NPCBoat.position.x, $NPCBoat.position.y)
 		$NPCBoat.explode()
 

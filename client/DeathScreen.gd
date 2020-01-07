@@ -6,6 +6,7 @@ extends CanvasLayer
 var current_score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Score.text = str(current_score)
 	if get_parent().boat_selected == 2:
 		$Big.pressed = false
 		$Medium.pressed = false
@@ -18,7 +19,7 @@ func _ready():
 		$Big.pressed = true
 		$Medium.pressed = false
 		$Small.pressed = false
-	$Score.text = str(current_score)
+
 
 func _on_Button_pressed():
 	get_parent().request_respawn() # Request respawn on player object.
