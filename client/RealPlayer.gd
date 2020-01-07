@@ -34,8 +34,7 @@ func _process(delta):
 		mouse_pos = get_global_mouse_position()
 	else:
 		mouse_pos = touch_position # Mobile pos
-	print("MOUSE:", get_global_mouse_position())
-	print("TOUCH:", touch_position)
+
 	emit_signal("turn_turret", mouse_pos)
 	set_camera_position()
 	bar.value = animated_health

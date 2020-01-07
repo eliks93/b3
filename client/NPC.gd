@@ -8,7 +8,8 @@ var boat_selected = "1"
 var boat_big = preload("res://NPCboats/BigBoatNPC.tscn")
 var boat_medium = preload("res://NPCboats/MediumBoatNPC.tscn")
 var boat_small = preload("res://NPCboats/SmallBoatNPC.tscn")
-var boats = [boat_big, boat_medium, boat_small]
+var boat_orb = preload("res://NPCboats/OrbBoatNPC.tscn")
+var boats = [boat_big, boat_medium, boat_small, boat_orb]
 
 var p_owner
 var player_name = "Player"

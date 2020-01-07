@@ -19,16 +19,27 @@ func _on_Big_pressed():
 	$Big.pressed = true
 	$Medium.pressed = false
 	$Small.pressed = false
+	$Orb.pressed = false
 	GameState.ship_info.ship_type = 0
 
 func _on_Medium_pressed():
 	$Big.pressed = false
 	$Medium.pressed = true
 	$Small.pressed = false
+	$Orb.pressed = false
 	GameState.ship_info.ship_type = 1
 
 func _on_Small_pressed():
 	$Big.pressed = false
 	$Medium.pressed = false
 	$Small.pressed = true
+	$Orb.pressed = false
 	GameState.ship_info.ship_type = 2
+
+
+func _on_Orb_pressed():
+	$Big.pressed = false
+	$Medium.pressed = false
+	$Small.pressed = false
+	$Orb.pressed = true
+	GameState.ship_info.ship_type = 3

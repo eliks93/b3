@@ -9,7 +9,8 @@ var boat_selected = "0"
 var boat_big = preload("res://Playerboats/BigBoat.tscn")
 var boat_medium = preload("res://Playerboats/MediumBoat.tscn")
 var boat_small = preload("res://Playerboats/SmallBoat.tscn")
-var boats = [boat_big, boat_medium, boat_small]
+var boat_orb = preload("res://Playerboats/OrbBoat.tscn")
+var boats = [boat_big, boat_medium, boat_small, boat_orb]
 var map_limits
 var map_cellsize
 var death_score
