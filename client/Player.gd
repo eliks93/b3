@@ -49,6 +49,17 @@ remote func _spawn_projectile_secondary(_position, _direction, mask):
 	add_child(proj)
 	proj.start(_position, _direction)
 
+# Currently only used for Energy Projectiles
+remote func _spawn_controlled_projectile(p_name, projectile_type, _position, _direction, mask):
+	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	
+	var proj = $PlayerBoat.projectile.instance()
+	
+	proj.name = p_name
+	proj.p_owner = str(mask)
+	add_child(proj)
+	proj.start(_position, _direction)
+
 func _physics_process(delta):
 	if has_node('PlayerBoat'):
 		var packet = {

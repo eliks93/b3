@@ -32,7 +32,7 @@ func start(_position = Vector2(1, 1), _direction = Vector2(160, 160)):
 	velocity = _direction * launch_speed
 
 func _physics_process(delta):
-	if alive & p_owner == get_tree().get_network_unique_id():
+	if alive && p_owner == str(get_tree().get_network_unique_id()):
 		var target = get_global_mouse_position()
 		if (bounce_velocity.length() > 0):
 			position += bounce_velocity * 0.2
