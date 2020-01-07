@@ -12,6 +12,12 @@ height = 55.0618
 
 [node name="PlayerBoat" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+hp = 50
+engine_power = 2500
+steering_angle = 40
+max_speed_reverse = 400
+friction = -0.005
+drag = -0.001
 
 [node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
 position = Vector2( -12.7599, 2.49649 )
