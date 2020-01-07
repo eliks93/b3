@@ -40,3 +40,7 @@ func _on_Projectile_body_entered(body):
 
 func _on_Explosion_animation_finished():
 	queue_free()
+
+
+func _on_Lifetime_timeout():
+	pass
