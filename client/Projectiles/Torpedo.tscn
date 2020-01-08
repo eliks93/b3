@@ -1,28 +1,41 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Projectile.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Projectiles/Torpedo.gd" type="Script" id=2]
-[ext_resource path="res://src/animate/BoatRipple.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/images/ship_medium_body_b.png" type="Texture" id=4]
+[ext_resource path="res://Projectiles/Torpedo.gd" type="Script" id=1]
+[ext_resource path="res://src/animate/BoatRipple.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/images/ship_medium_body_b.png" type="Texture" id=3]
+[ext_resource path="res://explosions/Explosions.tscn" type="PackedScene" id=4]
 
-[node name="Projectile" instance=ExtResource( 1 )]
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 8.91448
+height = 47.9843
+
+[node name="Projectile" type="Area2D"]
 scale = Vector2( 0.6, 0.6 )
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 
-[node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
+[node name="BoatRipple" parent="." instance=ExtResource( 2 )]
 position = Vector2( -5.59439, 0.87413 )
 scale = Vector2( 0.7, 0.8 )
 animation = "Small"
 
-[node name="Sprite" parent="." index="1"]
-visible = false
-
-[node name="RealSprite" type="Sprite" parent="." index="2"]
-self_modulate = Color( 0.172549, 0.129412, 0.129412, 1 )
+[node name="Sprite" type="Sprite" parent="."]
+self_modulate = Color( 0.658824, 0, 0, 1 )
 position = Vector2( 6.72117, -0.220362 )
 rotation = 1.5708
 scale = Vector2( 0.469675, 0.448108 )
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
-[node name="CollisionShape2D" parent="." index="3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 6.17026, -0.220371 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="Lifetime" type="Timer" parent="."]
+
+[node name="Explosion" parent="." instance=ExtResource( 4 )]
+visible = false
+scale = Vector2( 0.7, 0.7 )
+animation = "default"
+[connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
+[connection signal="animation_finished" from="Explosion" to="." method="_on_Explosion_animation_finished"]
