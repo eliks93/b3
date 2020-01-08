@@ -65,7 +65,6 @@ func explode():
 		$CollisionShape2D.queue_free()
 	$EBall.hide()
 	$EExploson/AnimationPlayer.play("EExplosion")
-	
 
 func _on_RCFloatProjectile_body_entered(body):
 	if (body.get_node("..").name != p_owner):
@@ -73,7 +72,6 @@ func _on_RCFloatProjectile_body_entered(body):
 		explode()
 		if body.has_method("take_damage"):
 			body.take_damage(damage, p_owner)
-
 
 func _on_RCFloatProjectile_area_entered(area):
 	if ("will_bounce" in area && area.p_owner == p_owner):

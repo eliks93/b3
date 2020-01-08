@@ -2,8 +2,12 @@ extends Node
 
 var peer = WebSocketClient.new()
 
+func _input(event):
+	if event.is_action_pressed("ui_toggle_fullscreen"):
+		OS.window_maximized = !OS.window_maximized
+
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func _process(delta):
 	if (peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_CONNECTED ||
