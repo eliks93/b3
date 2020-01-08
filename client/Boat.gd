@@ -36,6 +36,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 	emit_signal("update_position")
 
+# Method override in lower boat classes
 func get_input():
 	pass
 

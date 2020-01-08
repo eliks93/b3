@@ -1,4 +1,4 @@
-extends Area2D
+extends KinematicBody2D
 
 export var launch_speed = 0.5
 export var speed = 0.2
@@ -10,12 +10,13 @@ var alive = true
 var velocity = Vector2()
 var acceleration = Vector2()
 
-var will_bounce = true
-var bounce_velocity = Vector2()
-
 var direction
 var p_owner
 signal explode_projectile
+
+# NETWORK OPTIMIZATION
+var last_packet_time = 0.0
+var current_time = 0.0
 
 var packet = {}
 # Called when the node enters the scene tree for the first time.
@@ -32,30 +33,27 @@ func start(_position = Vector2(1, 1), _direction = Vector2(160, 160)):
 	velocity = _direction * launch_speed
 
 func _physics_process(delta):
+	current_time += delta
 	if alive && p_owner == str(get_tree().get_network_unique_id()):
 		var target = get_global_mouse_position()
-		if (bounce_velocity.length() > 0):
-			position += bounce_velocity * 0.2
-			if bounce_velocity.length() < 1:
-				bounce_velocity = Vector2()
-			else:
-				bounce_velocity *= 0.8
+		if (get_parent().get_node("PlayerBoat").touch_enabled):
+			target = get_parent().get_node("PlayerBoat").touch_position
 		var movement = target - position
-		position += movement * delta
+#		position += movement * delta
+		move_and_slide(movement)
 		rotation += deg2rad(30) * delta
-		if (p_owner == str(get_tree().get_network_unique_id())):
+		if (p_owner == str(get_tree().get_network_unique_id()) && current_time >= last_packet_time + 0.05):
 			packet = {
-				'mouse_pos': get_global_mouse_position(),
+				'mouse_pos': target,
 				'position': position,
-				'bounce_velocity': bounce_velocity
 			}
+			last_packet_time = current_time
 			rpc_unreliable_id(1, "update_position", packet)
 
 remote func update_position(packet):
 	if p_owner != str(get_tree().get_network_unique_id()):
 		position = packet.position
 		var mouse_pos = packet.mouse_pos
-		bounce_velocity = packet.bounce_velocity
 
 func explode():
 	rpc_unreliable_id(1, "explode")
@@ -72,14 +70,6 @@ func _on_RCFloatProjectile_body_entered(body):
 		explode()
 		if body.has_method("take_damage"):
 			body.take_damage(damage, p_owner)
-
-func _on_RCFloatProjectile_area_entered(area):
-	if ("will_bounce" in area && area.p_owner == p_owner):
-		var difference = position - area.position
-		bounce_velocity = difference * 0.6
-
-	if (area.get_node("..").name != p_owner):
-		explode()
 
 func _delete():
 	queue_free()
