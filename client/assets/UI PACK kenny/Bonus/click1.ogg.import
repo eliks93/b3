@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/click1.ogg-a55c74d535a20b0bf7fad75de171d8ca.oggstr"
+
+[deps]
+
+source_file="res://assets/UI PACK kenny/Bonus/click1.ogg"
+dest_files=[ "res://.import/click1.ogg-a55c74d535a20b0bf7fad75de171d8ca.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

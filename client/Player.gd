@@ -35,9 +35,7 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	else:
 		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
-
 	var proj = $PlayerBoat.projectile.instance()
-	
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
@@ -48,6 +46,8 @@ remote func _spawn_projectile_secondary(_position, _direction, mask):
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
+	print($PlayerBoat.get_node("TurretsSecondary").get_child(0).fire_delay)
+	$UI.start_cooldown($PlayerBoat.get_node("TurretsSecondary").get_child(0).fire_delay)
 
 # Currently only used for Energy Projectiles
 remote func _spawn_controlled_projectile(p_name, projectile_type, _position, _direction, mask):
