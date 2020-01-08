@@ -4,7 +4,7 @@ var peer = WebSocketClient.new()
 
 func _input(event):
 	if event.is_action_pressed("ui_toggle_fullscreen"):
-		OS.window_maximized = !OS.window_maximized
+		OS.window_fullscreen = !OS.window_fullscreen
 
 func _ready():
 	pass

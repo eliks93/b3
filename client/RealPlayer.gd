@@ -52,8 +52,9 @@ func touch_aim(position):
 	touch_position = position
 	# This fire relative to the center of the screen, not the boats position.
 	# It also does not continue to fire directly at the event unless the event is moving.
-	touch_position.x += self.position.x - get_viewport_rect().size.x / 2
-	touch_position.y += self.position.y - get_viewport_rect().size.y / 2
+	touch_position = 3 * touch_position + (self.position - get_viewport_rect().size * 1.5) + (
+		self.position - ($Camera2D.global_position + get_viewport_rect().size * 1.5)
+	)
 
 func touch_firing(isFiring):
 	mob_firing = isFiring
