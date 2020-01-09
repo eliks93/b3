@@ -82,3 +82,8 @@ func _on_HitBox_body_entered(body):
 		explode()
 		if body.has_method("take_damage"):
 			body.take_damage(damage, p_owner)
+
+
+func _on_HitBox_area_entered(area):
+	if (area.get_node("../..").name != str(p_owner)):
+		explode()

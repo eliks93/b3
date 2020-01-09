@@ -25,5 +25,5 @@ func _on_Lifetime_timeout():
 	queue_free()
 
 func _on_Projectile_area_entered(area):
-	if (area.p_owner != p_owner) and area.has_method("start"):
+	if (area.get("p_owner") && area.p_owner != p_owner) and area.has_method("start"):
 		area.explode()
