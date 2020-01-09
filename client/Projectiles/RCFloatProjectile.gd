@@ -24,6 +24,7 @@ var packet = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$EExploson.connect("remove", self, "_delete")
+	add_collision_exception_with(get_parent().get_node("PlayerBoat"))
 	start()
 
 func start(_position = Vector2(1, 1), _direction = Vector2(160, 160)):
