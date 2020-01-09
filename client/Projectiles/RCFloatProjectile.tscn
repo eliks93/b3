@@ -7,11 +7,10 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 26.2026
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 radius = 32.6525
 
-[sub_resource type="Animation" id=2]
-resource_name = "EBall"
+[sub_resource type="Animation" id=3]
 length = 1.6
 loop = true
 tracks/0/type = "value"
@@ -39,7 +38,7 @@ shape = SubResource( 1 )
 [node name="HitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="EBall" type="Sprite" parent="."]
 position = Vector2( -2, 0 )
@@ -51,8 +50,9 @@ frame = 3
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../EBall")
 playback_speed = -1.5
-anims/EBall = SubResource( 2 )
+anims/EBall = SubResource( 3 )
 
 [node name="EExploson" parent="." instance=ExtResource( 3 )]
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]

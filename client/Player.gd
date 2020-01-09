@@ -17,6 +17,11 @@ var map_cellsize
 var death_score
 var leaderboard_info
 var death_screen = preload("res://DeathScreen.tscn")
+
+# NETWORK OPTIMIZATION
+var last_packet_time = 0.0
+var current_time = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	request_respawn()
@@ -61,6 +66,8 @@ remote func _spawn_controlled_projectile(p_name, projectile_type, _position, _di
 	proj.start(_position, _direction)
 
 func _physics_process(delta):
+	current_time += delta
+	
 	if has_node('PlayerBoat'):
 		var packet = {
 			'position': {
@@ -72,7 +79,9 @@ func _physics_process(delta):
 			'velocity': $PlayerBoat.velocity,
 			'mouse_pos': $PlayerBoat.mouse_pos
 		}
-		rpc_unreliable_id(1, "update_position", packet)
+		if current_time >= last_packet_time + 0.03:
+			last_packet_time = current_time
+			rpc_unreliable_id(1, "update_position", packet)
 
 func _on_PlayerBoat_health_changed(hp, p_owner):
 	rpc_id(1, "update_health", hp, p_owner)
