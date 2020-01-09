@@ -6,6 +6,10 @@ var boat = preload("res://RealPlayer.tscn")
 var player_name = "Player"
 var boat_selected = "0"
 
+var EProj = preload("res://RCFloatProjectile.tscn")
+
+var proj_tick = 0
+
 export var score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -14,8 +18,26 @@ func _ready():
 remote func _spawn_projectile(projectile_type, _position, _direction):
 	
 	var player_id = get_tree().get_rpc_sender_id()
-	print("spawning projectile ", player_id)
+	
 	rpc_unreliable("_spawn_projectile", projectile_type, _position, _direction, player_id)
+
+remote func _spawn_controlled_projectile(projectile_type, _position, _direction):
+	
+	var player_id = get_tree().get_rpc_sender_id()
+	
+	var proj = EProj.instance()
+	proj.p_owner = player_id
+	proj.name = str(proj_tick)
+	proj_tick += 1
+	proj.start()
+	add_child(proj)
+	
+	rpc_unreliable("_spawn_controlled_projectile", proj.name, projectile_type, _position, _direction, player_id)
+remote func _spawn_projectile_secondary(_position, _direction):
+	
+	var player_id = get_tree().get_rpc_sender_id()
+	print("spawning projectile_secondary", player_id)
+	rpc_unreliable("_spawn_projectile_secondary", _position, _direction, player_id)
 
 remote func update_position(packet):
 	if ($PlayerBoat):
@@ -53,7 +75,6 @@ remote func update_health(hp, p_owner):
 			print(current_health, "current health")
 			get_node("..").set_score(p_owner)
 		$PlayerBoat.queue_free()
-			
 		temp_score += get_parent().leaderboard[player_id]['score']
 		if current_health > 0:
 			print("score was prior to update", temp_score)
@@ -75,10 +96,24 @@ remote func respawn():
 	var x = 0
 	var y = 0
 	var available_spawns = []
-	for point in get_parent().get_node("Map01").get_node("Spawns").get_children():
-		if point.available:
-			available_spawns.append(point.position)
+	var num_players = get_parent().players.size()
+	var quater_limit
+	var index = 0
+	if num_players < 8:
+		quater_limit = 1
+	elif num_players < 16:
+		quater_limit = 2
+	elif num_players < 16:
+		quater_limit = 3
+	else:
+		quater_limit = 4
+	while index < quater_limit:
+		for point in get_parent().get_node("Map01").get_node("Spawns").get_child(index).get_children():
+			if point.available:
+				available_spawns.append(point.position)
+		index += 1
 	var spawn = available_spawns[int(rand_range(0,(available_spawns.size())-1))]
+	print(available_spawns)
 	var rotation = 0
 	var new_boat = boat.instance()
 	new_boat.position.x = x

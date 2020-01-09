@@ -1,6 +1,7 @@
 extends "res://Boat.gd"
 
 signal fire_turret(group)
+signal fire_turret_secondary
 signal turn_turret(mouse_pos)
 signal death_screen
 onready var bar = $Bar/TextureProgress
@@ -23,6 +24,9 @@ var touch_position = Vector2()
 func _ready():
 	for Turret in $Turrets.get_children():
 		Turret.connect("spawn_projectile", self, "_spawn_projectile")
+	if has_node("TurretsSecondary"):
+		for Turret in $TurretsSecondary.get_children():
+			Turret.connect("spawn_projectile", self, "_spawn_projectile_secondary")
 	var player_max_health = hp
 	bar.max_value = player_max_health
 	update_health(player_max_health)
@@ -45,11 +49,12 @@ func mobile_joystick(x, y):
 	mob_y = y
 
 func touch_aim(position):
-	touch_position = position
 	# This fire relative to the center of the screen, not the boats position.
 	# It also does not continue to fire directly at the event unless the event is moving.
-	touch_position.x += self.position.x - get_viewport_rect().size.x / 2
-	touch_position.y += self.position.y - get_viewport_rect().size.y / 2
+	touch_position = 3 * position + (self.position - get_viewport_rect().size * 1.5) + (
+		self.position - ($Camera2D.global_position + get_viewport_rect().size * 1.5)
+	)
+	# We need to clamp the camera global_position here to account for map bounds.
 
 func touch_firing(isFiring):
 	mob_firing = isFiring
@@ -71,6 +76,9 @@ func get_input():
 	
 	if (Input.is_action_pressed("fire_1")):
 		emit_signal("fire_turret", 1)
+	
+	if (Input.is_action_pressed("fire_2")):
+		emit_signal("fire_turret_secondary", 1)
 	
 	if (touch_enabled):
 		if (mob_x > 0):

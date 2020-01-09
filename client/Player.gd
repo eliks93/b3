@@ -3,13 +3,15 @@ extends Node2D
 var player_init = {}
 var p_name = "Player"
 var projectile = preload('res://Projectile.tscn')
+var projectile_secondary = preload('res://Projectiles/Torpedo.tscn')
 var player_name = "Player"
 var boat_selected = "0"
 
 var boat_big = preload("res://Playerboats/BigBoat.tscn")
 var boat_medium = preload("res://Playerboats/MediumBoat.tscn")
 var boat_small = preload("res://Playerboats/SmallBoat.tscn")
-var boats = [boat_big, boat_medium, boat_small]
+var boat_orb = preload("res://Playerboats/OrbBoat.tscn")
+var boats = [boat_big, boat_medium, boat_small, boat_orb]
 var map_limits
 var map_cellsize
 var death_score
@@ -20,16 +22,40 @@ func _ready():
 	request_respawn()
 
 func req_spawn_projectile(projectile_type, _position, _direction):
-	rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
+	if boat_selected == 3:
+		rpc_unreliable_id(1, "_spawn_controlled_projectile", projectile_type, _position, _direction)
+	else:
+		rpc_unreliable_id(1, "_spawn_projectile", projectile_type, _position, _direction)
+
+func req_spawn_projectile_scondary(_position, _direction):
+	rpc_unreliable_id(1, "_spawn_projectile_secondary", _position, _direction)
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	if boat_selected == 0:
 		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	else:
 		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	var proj = $PlayerBoat.projectile.instance()
+	proj.p_owner = str(mask)
+	add_child(proj)
+	proj.start(_position, _direction)
 
+remote func _spawn_projectile_secondary(_position, _direction, mask):
+	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	var proj = $PlayerBoat.projectile_secondary.instance()
+	proj.p_owner = str(mask)
+	add_child(proj)
+	proj.start(_position, _direction)
+	print($PlayerBoat.get_node("TurretsSecondary").get_child(0).fire_delay)
+	$UI.start_cooldown($PlayerBoat.get_node("TurretsSecondary").get_child(0).fire_delay)
+
+# Currently only used for Energy Projectiles
+remote func _spawn_controlled_projectile(p_name, projectile_type, _position, _direction, mask):
+	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	
 	var proj = $PlayerBoat.projectile.instance()
 	
+	proj.name = p_name
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
@@ -90,7 +116,9 @@ remote func respawn_player(x, y, rotation, ship_type):
 	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
 	for Turret in $PlayerBoat.get_node("Turrets").get_children():
 		Turret.connect("spawn_projectile", self, "req_spawn_projectile")
-	
+	if $PlayerBoat.has_node("TurretsSecondary"):
+		for Turret in $PlayerBoat.get_node("TurretsSecondary").get_children():
+			Turret.connect("spawn_projectile", self, "req_spawn_projectile_scondary")
 	$PlayerBoat.connect("death_screen", self, "death_screen")
 
 func death_screen(leaderboard):

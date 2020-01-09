@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Turrets/ShieldTurret.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/ship_gun_base.png" type="Texture" id=2]
+
+[node name="Turret" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 0, 30 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="FireDelay" type="Timer" parent="."]
+wait_time = 10.0
+[connection signal="timeout" from="FireDelay" to="." method="_on_FireDelay_timeout"]

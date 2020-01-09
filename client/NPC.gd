@@ -8,7 +8,8 @@ var boat_selected = "1"
 var boat_big = preload("res://NPCboats/BigBoatNPC.tscn")
 var boat_medium = preload("res://NPCboats/MediumBoatNPC.tscn")
 var boat_small = preload("res://NPCboats/SmallBoatNPC.tscn")
-var boats = [boat_big, boat_medium, boat_small]
+var boat_orb = preload("res://NPCboats/OrbBoatNPC.tscn")
+var boats = [boat_big, boat_medium, boat_small, boat_orb]
 
 var p_owner
 var player_name = "Player"
@@ -30,6 +31,22 @@ func initialize():
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = get_child(0).projectile.instance()
+	proj.p_owner = str(mask)
+	add_child(proj)
+	proj.start(_position, _direction)
+
+remote func _spawn_projectile_secondary(_position, _direction, mask):
+	var proj = get_child(0).projectile_secondary.instance()
+	proj.p_owner = str(mask)
+	add_child(proj)
+	proj.start(_position, _direction)
+
+# Currently only used for Energy Projectiles
+remote func _spawn_controlled_projectile(p_name, projectile_type, _position, _direction, mask):
+	
+	var proj = $NPCBoat.projectile.instance()
+	
+	proj.name = p_name
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)

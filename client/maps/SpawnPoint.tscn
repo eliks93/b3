@@ -3,7 +3,7 @@
 [ext_resource path="res://maps/SpawnPoint.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 550.192, 271.385 )
+extents = Vector2( 1041.85, 540.52 )
 
 [node name="SpawnPoint" type="Area2D"]
 script = ExtResource( 1 )
