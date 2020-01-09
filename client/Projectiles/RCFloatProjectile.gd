@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export var launch_speed = 0.5
 export var speed = 0.2
-export var damage = 50
+export var damage = 25
 export var life = 8.0
 
 var is_RC = true
@@ -41,7 +41,6 @@ func _physics_process(delta):
 		if (get_parent().get_node("PlayerBoat").touch_enabled):
 			target = get_parent().get_node("PlayerBoat").touch_position
 		var movement = target - position
-#		position += movement * delta
 		move_and_slide(movement)
 		rotation += deg2rad(30) * delta
 		if (p_owner == str(get_tree().get_network_unique_id()) && current_time >= last_packet_time + 0.05):
@@ -73,7 +72,6 @@ func _delete():
 
 func _on_Lifetime_timeout():
 	explode()
-
 
 func _on_HitBox_body_entered(body):
 	if (body.get_node("..").name != p_owner):
