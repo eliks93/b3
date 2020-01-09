@@ -1,5 +1,5 @@
 extends AudioStreamPlayer2D
-
+signal done
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -18,4 +18,5 @@ func _ready():
 
 
 func _on_AudioStreamPlayer2D_finished():
+	emit_signal('done')
 	queue_free()

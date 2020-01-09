@@ -5,13 +5,10 @@
 
 [node name="Turret" type="Node2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 fire_delay = 0.1
 
 [node name="Muzzle" type="Position2D" parent="."]
-position = Vector2( 0, 30 )
+position = Vector2( 0, 25.958 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

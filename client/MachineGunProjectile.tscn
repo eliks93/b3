@@ -39,7 +39,7 @@ frames = SubResource( 1 )
 animation = "Machine"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.64072, -0.631035 )
+position = Vector2( 6.81532, -0.757248 )
 rotation = 1.5708
 shape = SubResource( 2 )
 

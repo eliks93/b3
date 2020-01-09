@@ -40,3 +40,6 @@ position = Vector2( -42.0939, -0.513336 )
 
 [node name="Turret6" parent="Turrets" index="5" instance=ExtResource( 4 )]
 position = Vector2( -70.8409, 0 )
+
+[node name="Explosion" parent="." index="7"]
+animation = "default"

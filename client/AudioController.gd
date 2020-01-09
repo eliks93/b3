@@ -16,6 +16,7 @@ func create_sound(sound, x, y):
 		node.position.y = y
 		add_child(node)
 		node.play()
+		node.connect('finished', self, 'finished')
 	if sound == 'fire':
 		node = fire_sound.instance()
 		node.position.x = x
@@ -34,3 +35,4 @@ func create_sound(sound, x, y):
 		node.position.y = y
 		add_child(node)
 		node.play(0.0)
+	
