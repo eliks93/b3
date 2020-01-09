@@ -1,10 +1,10 @@
 extends StaticBody2D
 signal death_sound(p1, p2)
 signal start
-var hp = 100
+var hp = 50
 onready var bar = $Bar2/TextureProgress
 onready var tween = $Tween
-var animated_health = 100
+var animated_health = 50
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -18,13 +18,13 @@ func _ready():
 func _process(delta):
 	bar.value = animated_health
 		
-func start(position):
-	hp -= 60
+func start():
+	hp -= 5
 
 	if hp <= 0:
 		emit_signal('death_sound', position.x, position.y)
-
-		get_parent().hide()
+		
+		get_node('../buttonStart').hide()
 		$CollisionShape2D.disabled = true
 		$Explosion.show()
 		$Explosion.play('fire')

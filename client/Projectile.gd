@@ -40,7 +40,7 @@ func _on_Projectile_body_entered(body):
 			body.take_damage(damage, p_owner)
 		if body.has_method("start"):
 
-			body.start(position)
+			body.start()
 
 func _on_Explosion_animation_finished():
 	queue_free()

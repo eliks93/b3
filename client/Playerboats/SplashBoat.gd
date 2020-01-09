@@ -2,13 +2,15 @@ extends KinematicBody2D
 
 signal turn_turret(mouse_pos)
 signal fire_turret(group)
+signal fire_turret_secondary
 export var engine_power = 800
 export var wheel_base = 160
 export var steering_angle = 30
 export var fire_rate = 0.5
 var p_owner = 'SplashBoat'
 var ready_to_fire = true
-var projectile = preload('res://Projectile.tscn')
+var projectile = preload('res://MachineGunProjectile.tscn')
+var projectile_secondary = preload('res://Projectiles/Torpedo.tscn')
 var mouse_pos = Vector2()
 var touch_enabled = OS.has_touchscreen_ui_hint()
 var acceleration = Vector2.ZERO
@@ -58,6 +60,9 @@ func get_input():
 	
 	if (Input.is_action_pressed("fire_1")):
 		emit_signal('fire_turret', 1)
+		
+	if (Input.is_action_pressed("fire_2")):
+		emit_signal("fire_turret_secondary", 1)
 	
 	if (touch_enabled):
 		if (mob_x > 0):

@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/images/ship_medium_body_b.png" type="Texture" id=3]
 [ext_resource path="res://explosions/Explosions.tscn" type="PackedScene" id=4]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 8.91448
 height = 47.9843
 
@@ -28,7 +28,7 @@ texture = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 6.17026, -0.220371 )
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Lifetime" type="Timer" parent="."]
 

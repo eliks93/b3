@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Splash.gd" type="Script" id=1]
 [ext_resource path="res://Playerboats/SplashPlayer.tscn" type="PackedScene" id=2]
@@ -32,6 +32,8 @@
 [ext_resource path="res://RigidBody2D.gd" type="Script" id=30]
 [ext_resource path="res://EnemyLifeBar.tscn" type="PackedScene" id=31]
 [ext_resource path="res://explosions/Explosions.tscn" type="PackedScene" id=32]
+[ext_resource path="res://labelTitle2.gd" type="Script" id=33]
+[ext_resource path="res://labelTitle3.gd" type="Script" id=34]
 
 [sub_resource type="AnimatedTexture" id=1]
 flags = 6
@@ -83,7 +85,7 @@ frame_20/delay_sec = 0.0
 texture = ExtResource( 27 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
-[sub_resource type="StyleBoxTexture" id=8]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 27 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
@@ -99,6 +101,15 @@ font_data = ExtResource( 29 )
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 64.7179, 22.4543 )
 
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 29 )
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 29 )
+
+[sub_resource type="DynamicFont" id=10]
+font_data = ExtResource( 29 )
+
 [node name="Splash" type="Node"]
 script = ExtResource( 1 )
 
@@ -111,26 +122,26 @@ script = ExtResource( 5 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
 show_behind_parent = true
+margin_top = -1.10382
 margin_right = 1025.0
-margin_bottom = 599.0
+margin_bottom = 597.896
 texture = SubResource( 1 )
 expand = true
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="buttonStart" type="Button" parent="TextureRect"]
+[node name="Node2D" type="Node2D" parent="TextureRect"]
+
+[node name="buttonStart" type="Button" parent="TextureRect/Node2D"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -67.0
-margin_top = -24.5
-margin_right = 67.0
-margin_bottom = 24.5
+margin_left = 445.5
+margin_top = 275.0
+margin_right = 579.5
+margin_bottom = 324.0
 mouse_default_cursor_shape = 2
 custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 8 )
+custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 custom_fonts/font = SubResource( 6 )
@@ -139,10 +150,11 @@ custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 0.207843, 0.729412, 0.952941, 0 )
 text = "Start Game"
 
-[node name="HitBox" type="StaticBody2D" parent="TextureRect/buttonStart"]
+[node name="HitBox" type="StaticBody2D" parent="TextureRect/Node2D"]
+position = Vector2( 445.5, 275 )
 script = ExtResource( 30 )
 
-[node name="Bar2" parent="TextureRect/buttonStart/HitBox" instance=ExtResource( 31 )]
+[node name="Bar2" parent="TextureRect/Node2D/HitBox" instance=ExtResource( 31 )]
 margin_left = -32.8607
 margin_top = -40.5458
 margin_right = 363.139
@@ -150,23 +162,59 @@ margin_bottom = 12.4542
 rect_scale = Vector2( 0.5, 0.5 )
 script = null
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/buttonStart/HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Node2D/HitBox"]
 position = Vector2( 65.0612, 22.8593 )
 shape = SubResource( 7 )
 
-[node name="Explosion" parent="TextureRect/buttonStart/HitBox" instance=ExtResource( 32 )]
-animation = "default"
+[node name="Explosion" parent="TextureRect/Node2D/HitBox" instance=ExtResource( 32 )]
+visible = false
+position = Vector2( 69.0379, 24.3352 )
+animation = "fire"
 
-[node name="Tween" type="Tween" parent="TextureRect/buttonStart/HitBox"]
+[node name="Tween" type="Tween" parent="TextureRect/Node2D/HitBox"]
 
-[node name="labelTitle" type="Label" parent="TextureRect"]
+[node name="labelTitle" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -20.0
-margin_top = 100.0
-margin_right = 20.0
-margin_bottom = 14.0
+margin_left = -19.5
+margin_top = 98.8962
+margin_right = 20.5
+margin_bottom = 112.896
 text = "Title"
+
+[node name="labelTitle2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -469.198
+margin_top = 345.657
+margin_right = -259.198
+margin_bottom = 359.657
+custom_fonts/font = SubResource( 8 )
+script = ExtResource( 33 )
+
+[node name="labelTitle3" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 184.881
+margin_top = 237.704
+margin_right = 463.881
+margin_bottom = 303.704
+custom_fonts/font = SubResource( 9 )
+autowrap = true
+script = ExtResource( 34 )
+
+[node name="labelTitle4" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.25
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -103.447
+margin_top = 232.896
+margin_right = 105.553
+margin_bottom = -1.35382
+custom_fonts/font = SubResource( 10 )
+text = "Destroy the Start button to play!"
+autowrap = true
 [connection signal="start" from="AudioController" to="." method="_on_AudioController_start"]
-[connection signal="death_sound" from="TextureRect/buttonStart/HitBox" to="SplashPlayer" method="_on_RigidBody2D_death_sound"]
-[connection signal="animation_finished" from="TextureRect/buttonStart/HitBox/Explosion" to="TextureRect/buttonStart/HitBox" method="_on_Explosion_animation_finished"]
+[connection signal="death_sound" from="TextureRect/Node2D/HitBox" to="SplashPlayer" method="_on_RigidBody2D_death_sound"]
+[connection signal="animation_finished" from="TextureRect/Node2D/HitBox/Explosion" to="TextureRect/Node2D/HitBox" method="_on_Explosion_animation_finished"]

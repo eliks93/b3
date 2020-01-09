@@ -11,7 +11,7 @@
 radius = 23.9417
 height = 55.0618
 
-[node name="PlayerBoat" instance=ExtResource( 1 )]
+[node name="PlayerBoat" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 hp = 50
 engine_power = 2500

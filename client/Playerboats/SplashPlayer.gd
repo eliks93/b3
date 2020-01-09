@@ -6,6 +6,7 @@ extends Node2D
 func ready():
 	$SplashBoat.position = Vector2(200.0, 200.0)
 	$SplashBoat/Turret.connect('spawn_projectile', self, '_spawn_projectile')
+	$SplashBoat/Turret2.connect('spawn_projectile', self, '_spawn_projectile_secondary')
 
 func _spawn_projectile(projectile_type, _position, _direction):
 	get_parent().get_node('AudioController').create_sound('fire', self.position.x, self.position.y)
@@ -16,6 +17,13 @@ func _spawn_projectile(projectile_type, _position, _direction):
 	add_child(proj)
 	proj.start(_position, _direction)
 	
+func _spawn_projectile_secondary(_position, _direction):
+	get_parent().get_node('AudioController').create_sound('fire', self.position.x, self.position.y)
+	var proj = $SplashBoat.projectile_secondary.instance()
+	proj.p_owner = 'SplashPlayer'
+	add_child(proj)
+	proj.start(_position, _direction)
+	get_parent().get_node('UI').start_cooldown($SplashBoat/Turret2.fire_delay)
 
 func _on_RigidBody2D_death_sound(p1, p2):
 	print('singal received')

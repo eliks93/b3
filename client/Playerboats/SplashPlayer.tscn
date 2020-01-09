@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Playerboats/SplashPlayer.gd" type="Script" id=1]
 [ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://assets/images/ship_small_body.png" type="Texture" id=6]
 [ext_resource path="res://MachineGunTurret.tscn" type="PackedScene" id=7]
 [ext_resource path="res://SplashMachineGunTurret.gd" type="Script" id=8]
+[ext_resource path="res://Turrets/TorpedoTurret.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Turrets/SpalshTorpedoTurret.gd" type="Script" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -30,7 +32,7 @@ script = ExtResource( 3 )
 
 [node name="SplashBoat" type="KinematicBody2D" parent="."]
 script = ExtResource( 4 )
-fire_rate = 1.0
+fire_rate = 0.1
 
 [node name="BoatRipple" parent="SplashBoat" instance=ExtResource( 5 )]
 position = Vector2( -15.8019, 1.35797 )
@@ -44,7 +46,6 @@ texture = ExtResource( 6 )
 
 [node name="Turret" parent="SplashBoat" instance=ExtResource( 7 )]
 script = ExtResource( 8 )
-fire_delay = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="SplashBoat"]
 
@@ -53,4 +54,8 @@ fire_delay = 1.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SplashBoat"]
 rotation = 1.5708
 polygon = PoolVector2Array( 10, -48.5, 10, -46.2, 17, -38.3, 17, -36, 24, -22, 24, -17.5, 27, 37.7, 27, 39.5, 25.4, 39.5, 23.4, 45.5, 21.7, 45.5, 13.8, 52.5, -15, 52.5, -15, 50.6, -24, 44.6, -24, 42.2, -27, 38.6, -27, 15, -25, 13.5, -25, -18.8, -22.5, -27.5, -21.3, -27.5, -15.3, -41.5, -13.9, -41.5, -5, -52.2, 5, -52.5 )
+
+[node name="Turret2" parent="SplashBoat" instance=ExtResource( 9 )]
+rotation = -1.5708
+script = ExtResource( 10 )
 [connection signal="timeout" from="SplashBoat/FireDelay" to="SplashBoat" method="_on_FireDelay_timeout"]
