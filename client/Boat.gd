@@ -5,6 +5,10 @@ signal health_changed
 
 export var hp = 100
 
+# NETWORK OPTIMIZATION
+var last_packet_time = 0.0
+var current_time = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -28,13 +32,16 @@ var traction_fast = 0.1
 var traction_slow = 0.7
 
 func _physics_process(delta):
+	current_time += delta
 	acceleration = Vector2.ZERO
 	get_input()
 	apply_friction()
 	calculate_steering(delta)
 	velocity += acceleration * delta
 	velocity = move_and_slide(velocity)
-	emit_signal("update_position")
+	if current_time - last_packet_time + 0.03:
+		last_packet_time = current_time
+		emit_signal("update_position")
 
 # Method override in lower boat classes
 func get_input():
