@@ -63,6 +63,8 @@ func explode():
 	velocity = Vector2()
 	if $CollisionShape2D:
 		$CollisionShape2D.queue_free()
+	if $HitBox:
+		$HitBox.queue_free()
 	$EBall.hide()
 	$EExploson/AnimationPlayer.play("EExplosion")
 
