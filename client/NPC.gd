@@ -11,6 +11,7 @@ var boat_small = preload("res://NPCboats/SmallBoatNPC.tscn")
 var boat_orb = preload("res://NPCboats/OrbBoatNPC.tscn")
 var boats = [boat_big, boat_medium, boat_small, boat_orb]
 
+var mapped = false
 var p_owner
 var player_name = "Player"
 

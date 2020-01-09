@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI.gd" type="Script" id=1]
 [ext_resource path="res://Scoreboard.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/UI PACK kenny/PNG/grey_panel.png" type="Texture" id=3]
 [ext_resource path="res://assets/UI PACK kenny/PNG/green_panel.png" type="Texture" id=4]
+[ext_resource path="res://maps/Minimap.tscn" type="PackedScene" id=5]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -45,4 +46,7 @@ margin_bottom = 570.0
 value = 100.0
 texture_under = ExtResource( 3 )
 texture_progress = ExtResource( 4 )
+
+[node name="Minimap" parent="." instance=ExtResource( 5 )]
+position = Vector2( 158.824, 76.9374 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
