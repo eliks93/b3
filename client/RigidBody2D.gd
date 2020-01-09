@@ -1,10 +1,10 @@
 extends StaticBody2D
 signal death_sound(p1, p2)
 signal start
-var hp = 50
+var hp = 1
 onready var bar = $Bar2/TextureProgress
 onready var tween = $Tween
-var animated_health = 50
+var animated_health = 1
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
