@@ -5,6 +5,8 @@ export var speed = 0.2
 export var damage = 50
 export var life = 8.0
 
+var is_RC = true
+
 var alive = true
 
 var velocity = Vector2()
@@ -64,7 +66,6 @@ func explode():
 	$EBall.hide()
 	$EExploson/AnimationPlayer.play("EExplosion")
 
-
 func _delete():
 	queue_free()
 
@@ -75,6 +76,8 @@ func _on_Lifetime_timeout():
 func _on_HitBox_body_entered(body):
 	if (body.get_node("..").name != p_owner):
 		get_parent().get_parent().get_node('AudioController').create_sound('hit', position.x, position.y)
+		if body.get("is_RC"):
+			body.explode()
 		explode()
 		if body.has_method("take_damage"):
 			body.take_damage(damage, p_owner)
