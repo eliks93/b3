@@ -1,11 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Projectiles/RCFloatProjectile.gd" type="Script" id=1]
 [ext_resource path="res://assets/Projectiles/EBall.png" type="Texture" id=2]
 [ext_resource path="res://Projectiles/RCFloatExplosion.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 31.446
+radius = 26.2026
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 32.6525
 
 [sub_resource type="Animation" id=2]
 resource_name = "EBall"
@@ -33,6 +36,11 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource( 3 )
+
 [node name="EBall" type="Sprite" parent="."]
 position = Vector2( -2, 0 )
 texture = ExtResource( 2 )
@@ -47,3 +55,4 @@ anims/EBall = SubResource( 2 )
 
 [node name="EExploson" parent="." instance=ExtResource( 3 )]
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
