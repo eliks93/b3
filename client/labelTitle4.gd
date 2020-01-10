@@ -1,8 +1,7 @@
 extends Label
 
 func _ready():
-	var ui = get_node('../UI')
-	if ui.has_node('TouchControls'):
+	if get_parent().touch:
 		self.text = "Click Start to Begin!"
 	else:
 		self.text = 'Destroy the Start Button to begin!'

@@ -15,44 +15,44 @@
 [ext_resource path="res://NPCboats/BigBoatNPC.tscn" type="PackedScene" id=13]
 [ext_resource path="res://NPCboats/SmallBoatNPC.tscn" type="PackedScene" id=14]
 
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=12]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 190, 45 )
 
-[sub_resource type="StyleBoxTexture" id=10]
+[sub_resource type="StyleBoxTexture" id=13]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 190, 45 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=14]
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=15]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxTexture" id=16]
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=17]
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=18]
 size = 40
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=19]
 texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=9]
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=10]
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=11]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -68,9 +68,9 @@ margin_left = -76.0
 margin_top = -90.0
 margin_right = 76.0
 margin_bottom = -66.0
-custom_styles/focus = SubResource( 9 )
-custom_styles/normal = SubResource( 10 )
-custom_fonts/font = SubResource( 11 )
+custom_styles/focus = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 align = 1
 
@@ -81,9 +81,9 @@ margin_left = -116.0
 margin_top = 60.0
 margin_right = 116.0
 margin_bottom = 143.0
-custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 2 )
-custom_styles/normal = SubResource( 3 )
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/normal = SubResource( 17 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 text = "Open Lobby"
 
@@ -97,7 +97,7 @@ margin_left = 2520.0
 margin_top = 1480.0
 margin_right = 2709.0
 margin_bottom = 1759.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 18 )
 text = "Speed:
 Damage:
 Life:"
@@ -107,7 +107,7 @@ margin_left = 2720.0
 margin_top = 1480.0
 margin_right = 2870.0
 margin_bottom = 1759.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 18 )
 text = "2/4
 2/4
 2/4"
@@ -117,10 +117,10 @@ margin_left = 2044.0
 margin_top = 1440.0
 margin_right = 2517.0
 margin_bottom = 1751.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
 toggle_mode = true
 
 [node name="NPCBoat" parent="MediumLayer/Medium" instance=ExtResource( 10 )]
@@ -137,7 +137,7 @@ margin_left = 916.001
 margin_top = 1480.0
 margin_right = 1105.0
 margin_bottom = 1759.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 18 )
 text = "Speed:
 Damage:
 Life:"
@@ -147,7 +147,7 @@ margin_left = 1116.0
 margin_top = 1480.0
 margin_right = 1266.0
 margin_bottom = 1759.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 18 )
 text = "1/4
 4/4
 3/4"
@@ -157,10 +157,10 @@ margin_left = 440.0
 margin_top = 1440.0
 margin_right = 913.0
 margin_bottom = 1751.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
 toggle_mode = true
 
 [node name="NPCBoat2" parent="OrbLayer/Orb" instance=ExtResource( 12 )]
@@ -177,7 +177,7 @@ margin_left = 1720.0
 margin_top = 1480.0
 margin_right = 1909.0
 margin_bottom = 1759.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 18 )
 text = "Speed:
 Damage:
 Life:"
@@ -187,7 +187,7 @@ margin_left = 1920.0
 margin_top = 1480.0
 margin_right = 2070.0
 margin_bottom = 1759.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 18 )
 text = "2/4
 3/4
 4/4"
@@ -197,10 +197,10 @@ margin_left = 1240.0
 margin_top = 1440.0
 margin_right = 1713.0
 margin_bottom = 1751.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
 toggle_mode = true
 
 [node name="NPCBoat" parent="BigLayer/Big" instance=ExtResource( 13 )]
@@ -217,7 +217,7 @@ margin_left = 3320.0
 margin_top = 1480.0
 margin_right = 3509.0
 margin_bottom = 1759.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 18 )
 text = "Speed:
 Damage:
 Life:"
@@ -227,7 +227,7 @@ margin_left = 3520.0
 margin_top = 1480.0
 margin_right = 3670.0
 margin_bottom = 1759.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 18 )
 text = "4/4
 1/4
 1/4"
@@ -237,10 +237,10 @@ margin_left = 2840.0
 margin_top = 1440.0
 margin_right = 3313.0
 margin_bottom = 1768.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/focus = SubResource( 7 )
-custom_styles/normal = SubResource( 8 )
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
 toggle_mode = true
 
 [node name="NPCBoat" parent="SmallLayer/Small" instance=ExtResource( 14 )]

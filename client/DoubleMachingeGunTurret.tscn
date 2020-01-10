@@ -1,13 +1,17 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://MachineGunTurret.gd" type="Script" id=1]
-[ext_resource path="res://assets/images/ship_big_gun.png" type="Texture" id=2]
+[ext_resource path="res://DoubleMachingeGunTurret.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/ship_big_gun_dual.png" type="Texture" id=2]
 
 [node name="Turret" type="Node2D"]
 script = ExtResource( 1 )
+fire_delay = 0.2
 
 [node name="Muzzle" type="Position2D" parent="."]
-position = Vector2( 0, 25.958 )
+position = Vector2( -5.71426, 29.8604 )
+
+[node name="Muzzle2" type="Position2D" parent="."]
+position = Vector2( 5.85361, 29.9998 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

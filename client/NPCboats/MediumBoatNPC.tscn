@@ -4,15 +4,20 @@
 [ext_resource path="res://NPCboats/MediumBoatNPC.gd" type="Script" id=2]
 [ext_resource path="res://src/animate/BoatRipple.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/images/ship_medium_body.png" type="Texture" id=4]
-[ext_resource path="res://Turret.tscn" type="PackedScene" id=5]
+[ext_resource path="res://DoubleMachingeGunTurret.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Turrets/InvisTurret.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 19.277
 height = 131.953
 
-[node name="NPCBoat" instance=ExtResource( 1 )]
+[node name="NPCBoat" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+hp = 65
+engine_power = 1700
+steering_angle = 33
+friction = -0.008
+drag = -0.001
 
 [node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
 position = Vector2( -7.8028, -0.487686 )
@@ -30,10 +35,10 @@ animation = "default"
 [node name="Turrets" type="Node2D" parent="." index="7"]
 
 [node name="Turret" parent="Turrets" index="0" instance=ExtResource( 5 )]
-position = Vector2( -49.9299, -1.10956 )
+position = Vector2( 26.737, -1.17664 )
 
 [node name="Turret2" parent="Turrets" index="1" instance=ExtResource( 5 )]
-position = Vector2( 26.737, -1.17664 )
+position = Vector2( -49.9299, -1.10956 )
 
 [node name="TurretsSecondary" type="Node2D" parent="." index="8"]
 
