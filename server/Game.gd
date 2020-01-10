@@ -76,6 +76,7 @@ remote func spawn_for(p_name):
 remote func get_spawn_point():
 	var player_id = get_tree().get_rpc_sender_id()
 
+# Always called to increase a score.
 remote func set_score(p_owner):
 #	get_node(p_owner).score += 1
 	print("Set score called")

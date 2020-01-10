@@ -18,6 +18,8 @@ var mob_x = 0
 var mob_y = 0
 var mob_firing = false
 
+var player_max_health = 0
+
 var touch_position = Vector2()
 
 # Called when the node enters the scene tree for the first time.
@@ -27,13 +29,12 @@ func _ready():
 	if has_node("TurretsSecondary"):
 		for Turret in $TurretsSecondary.get_children():
 			Turret.connect("spawn_projectile", self, "_spawn_projectile_secondary")
-	var player_max_health = hp
+	player_max_health = hp
 	bar.max_value = player_max_health
 	update_health(player_max_health)
 
 func _process(delta):
 	# Override mouse position with touch here
-	
 	if !touch_enabled:
 		mouse_pos = get_global_mouse_position()
 	else:

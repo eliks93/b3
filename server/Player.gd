@@ -4,11 +4,19 @@ var proj = preload("res://Projectile.tscn")
 var boat = preload("res://RealPlayer.tscn")
 
 var player_name = "Player"
-var boat_selected = "0"
+var boat_selected = 0
+var max_hp = 0
 
 var EProj = preload("res://RCFloatProjectile.tscn")
 
 var proj_tick = 0
+
+var max_health = {
+	0: 100,
+	1: 65,
+	2: 50,
+	3: 100
+}
 
 export var score = 0
 # Called when the node enters the scene tree for the first time.
@@ -40,7 +48,7 @@ remote func _spawn_projectile_secondary(_position, _direction):
 	rpc_unreliable("_spawn_projectile_secondary", _position, _direction, player_id)
 
 remote func update_position(packet):
-	if ($PlayerBoat):
+	if (has_node("PlayerBoat")):
 		$PlayerBoat.position.x = packet.position.x
 		$PlayerBoat.position.y = packet.position.y
 		$PlayerBoat.rotation = packet.rotation
@@ -61,8 +69,7 @@ remote func update_health(hp, p_owner):
 		current_health = $PlayerBoat.hp
 	var player_id = get_tree().get_rpc_sender_id()
 	var saved_score = get_parent().leaderboard
-#	if hp == null:
-#		hp = 0
+
 	if $PlayerBoat:
 		$PlayerBoat.hp = hp
 	if (hp > 0):
@@ -71,17 +78,19 @@ remote func update_health(hp, p_owner):
 		for player in get_node("..").players:
 			rpc_unreliable("destroy", saved_score)
 		if current_health > 0:
-			print(current_health, "current health")
 			get_node("..").set_score(p_owner)
 		$PlayerBoat.queue_free()
 		temp_score += get_parent().leaderboard[player_id]['score']
 		if current_health > 0:
-			print("score was prior to update", temp_score)
-			print (get_parent().leaderboard[player_id]['score'])
 			if temp_score > 0:
 				get_parent().leaderboard[player_id]['score'] = round(temp_score / 2)
-				print (get_parent().leaderboard[player_id]['score'], " after score minus 1!!!")
 		get_parent().render_leaderboard()
+		
+		# Heal player that scored the kill.
+		get_parent().get_node(str(p_owner)).rpc_unreliable("heal")
+
+remote func set_max_health(max_hp):
+	self.max_hp = max_hp
 
 func send_leaderboard_info(p_owner):
 	rpc_unreliable_id(int(get_node(".").name), "update_leaderboard", p_owner)
