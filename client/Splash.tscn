@@ -125,6 +125,7 @@ script = ExtResource( 4 )
 script = ExtResource( 6 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
+editor/display_folded = true
 show_behind_parent = true
 margin_top = -1.10382
 margin_right = 1025.0
