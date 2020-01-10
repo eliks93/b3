@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Playerboats/SplashPlayer.gd" type="Script" id=1]
 [ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://SplashMachineGunTurret.gd" type="Script" id=8]
 [ext_resource path="res://Turrets/TorpedoTurret.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Turrets/SpalshTorpedoTurret.gd" type="Script" id=10]
-[ext_resource path="res://UI.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 2 )
@@ -59,6 +58,4 @@ polygon = PoolVector2Array( 10, -48.5, 10, -46.2, 17, -38.3, 17, -36, 24, -22, 2
 [node name="Turret2" parent="SplashBoat" instance=ExtResource( 9 )]
 rotation = -1.5708
 script = ExtResource( 10 )
-
-[node name="UI" parent="." instance=ExtResource( 11 )]
 [connection signal="timeout" from="SplashBoat/FireDelay" to="SplashBoat" method="_on_FireDelay_timeout"]
