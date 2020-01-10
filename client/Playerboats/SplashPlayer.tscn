@@ -46,6 +46,7 @@ texture = ExtResource( 6 )
 
 [node name="Turret" parent="SplashBoat" instance=ExtResource( 7 )]
 script = ExtResource( 8 )
+fire_delay = 0.1
 
 [node name="Camera2D" type="Camera2D" parent="SplashBoat"]
 
