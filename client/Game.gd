@@ -6,6 +6,7 @@ var npc_ship = preload("res://NPC.tscn")
 #var respawn_npc_ship = preload("res://NPCBoat.tscn")
 
 var leader_board
+var sorted_boi
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Announce ready to spawn here.
@@ -25,6 +26,7 @@ remote func update_leaderboard(leaderboard_info):
 	var player_id = get_tree().get_network_unique_id()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
+	sorted_boi = sorted_leaderboard
 	for leader in sorted_leaderboard:
 
 		var id = leader.values()[0].keys()[0]
@@ -35,7 +37,6 @@ remote func update_leaderboard(leaderboard_info):
 			player_name = name.left(7) + "..."
 		else:
 			player_name = name
-
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
 
