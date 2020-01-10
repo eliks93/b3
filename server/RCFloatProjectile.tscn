@@ -5,4 +5,6 @@
 
 [node name="Projectile" index="0" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+damage = 10
+life = 10.0
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

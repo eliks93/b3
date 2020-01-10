@@ -49,11 +49,25 @@ func mobile_joystick(x, y):
 	mob_y = y
 
 func touch_aim(position):
+	var zoom = 3
+	var foo = self.position - get_viewport_rect().size * zoom / 2
+	
 	# This fire relative to the center of the screen, not the boats position.
 	# It also does not continue to fire directly at the event unless the event is moving.
-	touch_position = 3 * position + (self.position - get_viewport_rect().size * 1.5) + (
-		self.position - ($Camera2D.global_position + get_viewport_rect().size * 1.5)
-	)
+	
+## this is wrong but it hauntingly smells of correctness
+#	touch_position = zoom * position + foo + (
+#		self.position - ($Camera2D.global_position + get_viewport_rect().size * zoom / 2)
+#	)
+	
+	touch_position = $Camera2D.get_camera_position() + 3 * position
+	
+	print("Camera upper left: ", $Camera2D.get_camera_position())
+	print("Boat position: ", self.position)
+	print("Raw touch even: ", position)
+	print("Hypothesis: ", touch_position)
+	
+	
 	# We need to clamp the camera global_position here to account for map bounds.
 
 func touch_firing(isFiring):
