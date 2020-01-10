@@ -45,7 +45,7 @@ func custom_sort(a, b):
 		return true
 	return false
 
-remote func spawn_player(p_id, p_name, boat_type):
+remote func spawn_player(p_id, p_name, boat_type, alive):
 	if (p_id == get_tree().get_network_unique_id()):
 		var ship = player_ship.instance()
 		ship.name = str(get_tree().get_network_unique_id())
@@ -59,6 +59,8 @@ remote func spawn_player(p_id, p_name, boat_type):
 		ship.name = str(p_id)
 		ship.boat_selected = boat_type
 		ship.player_name = p_name
+		ship.alive = alive
+		print(alive)
 		self.add_child(ship)
 		ship.initialize()
 

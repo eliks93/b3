@@ -19,7 +19,6 @@ func _process(delta):
 		$Sprite.scale.y = 0.04
 	if get_node("../../../..").has_node(p_owner):
 		if get_node("../../../..").get_node(p_owner).has_node("NPCBoat"):
-			print("oooo")
 			$Sprite.show()
 			position.x = (get_node("../../../..").get_node(p_owner).get_node("NPCBoat").position.x)/25
 			position.y = (get_node("../../../..").get_node(p_owner).get_node("NPCBoat").position.y)/25
