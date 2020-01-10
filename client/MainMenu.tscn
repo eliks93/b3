@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/UI PACK kenny/PNG/green_button08.png" type="Texture" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/UI/uipack_fixed/PNG/blue_button10.png" type="Texture" id=6]
 [ext_resource path="res://NPCboats/MediumBoatNPC.tscn" type="PackedScene" id=7]
-[ext_resource path="res://NPCboats/OrbBoatNPC.tscn" type="PackedScene" id=8]
-[ext_resource path="res://NPCboats/BigBoatNPC.tscn" type="PackedScene" id=9]
-[ext_resource path="res://NPCboats/SmallBoatNPC.tscn" type="PackedScene" id=10]
+[ext_resource path="res://SelectBoat.gd" type="Script" id=8]
+[ext_resource path="res://NPCboats/OrbBoatNPC.tscn" type="PackedScene" id=9]
+[ext_resource path="res://NPCboats/BigBoatNPC.tscn" type="PackedScene" id=10]
+[ext_resource path="res://NPCboats/SmallBoatNPC.tscn" type="PackedScene" id=11]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -105,7 +106,7 @@ toggle_mode = true
 
 [node name="NPCBoat" parent="MediumLayer/Medium" instance=ExtResource( 7 )]
 position = Vector2( 238.305, 166.167 )
-script = null
+script = ExtResource( 8 )
 
 [node name="OrbLayer" type="CanvasLayer" parent="."]
 rotation = 1.74846e-07
@@ -143,9 +144,9 @@ custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 toggle_mode = true
 
-[node name="NPCBoat2" parent="OrbLayer/Orb" instance=ExtResource( 8 )]
+[node name="NPCBoat2" parent="OrbLayer/Orb" instance=ExtResource( 9 )]
 position = Vector2( 238.305, 166.167 )
-script = null
+script = ExtResource( 8 )
 
 [node name="BigLayer" type="CanvasLayer" parent="."]
 rotation = 1.74846e-07
@@ -183,9 +184,9 @@ custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 toggle_mode = true
 
-[node name="NPCBoat" parent="BigLayer/Big" instance=ExtResource( 9 )]
+[node name="NPCBoat" parent="BigLayer/Big" instance=ExtResource( 10 )]
 position = Vector2( 238.305, 166.167 )
-script = null
+script = ExtResource( 8 )
 
 [node name="SmallLayer" type="CanvasLayer" parent="."]
 rotation = 1.74846e-07
@@ -223,9 +224,9 @@ custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 toggle_mode = true
 
-[node name="NPCBoat" parent="SmallLayer/Small" instance=ExtResource( 10 )]
+[node name="NPCBoat" parent="SmallLayer/Small" instance=ExtResource( 11 )]
 position = Vector2( 238.305, 166.167 )
-script = null
+script = ExtResource( 8 )
 [connection signal="text_changed" from="editName" to="." method="_on_editName_text_changed"]
 [connection signal="pressed" from="buttonLobby" to="." method="_on_buttonLobby_pressed"]
 [connection signal="pressed" from="MediumLayer/Medium" to="." method="_on_Medium_pressed"]

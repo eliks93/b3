@@ -31,16 +31,10 @@ position = Vector2( -0.903748, -0.451881 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="PlayerName" parent="." index="4"]
-visible = false
-
 [node name="Turrets" type="Node2D" parent="." index="5"]
 rotation = 1.5708
 
 [node name="Turret" parent="Turrets" index="0" instance=ExtResource( 5 )]
-
-[node name="Bar" parent="." index="6"]
-visible = false
 
 [node name="Explosion" parent="." index="7"]
 animation = "default"

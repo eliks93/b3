@@ -24,12 +24,6 @@ texture = ExtResource( 4 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="PlayerName" parent="." index="4"]
-visible = false
-
-[node name="Bar" parent="." index="5"]
-visible = false
-
 [node name="Explosion" parent="." index="6"]
 animation = "default"
 
