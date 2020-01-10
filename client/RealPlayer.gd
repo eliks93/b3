@@ -137,6 +137,8 @@ func set_camera_position():
 	$Camera2D.global_position[1] = self.global_position[1] - (get_viewport_rect().size.y * 3) / 2 + y_offset
 
 func explode():
+	modulate.a = 1
+
 	velocity = Vector2()
 	$Sprite.hide()
 	if has_node('Turrets'):

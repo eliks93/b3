@@ -8,5 +8,6 @@ func _process(delta):
 		$Sprite.show()
 		position.x = (get_node("../../..").get_node("PlayerBoat").position.x)/25
 		position.y = (get_node("../../..").get_node("PlayerBoat").position.y)/25
+		rotation = get_node("../../..").get_node("PlayerBoat").rotation
 	else:
 		$Sprite.hide()
