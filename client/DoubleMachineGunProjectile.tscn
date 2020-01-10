@@ -20,26 +20,26 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 1.29706, 20.3757 )
+extents = Vector2( 2.43295, 23.7834 )
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource( 1 )
 speed = 2500
-damage = 1
-life = 1.0
+damage = 5
+life = 1.5
 
 [node name="WateryExplosion" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 0.7, 0.7 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-modulate = Color( 0.972549, 0.960784, 0.219608, 1 )
-position = Vector2( 0.143372, -0.0193596 )
-scale = Vector2( 0.143394, 0.148548 )
+modulate = Color( 0.992157, 0.886275, 0.466667, 1 )
+position = Vector2( 8.83466, -2.66976 )
+scale = Vector2( 0.198218, 0.205343 )
 frames = SubResource( 1 )
 animation = "Machine"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 3.9125, 1.52588e-05 )
+position = Vector2( 8.70846, -2.65039 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
