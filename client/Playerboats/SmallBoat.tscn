@@ -11,7 +11,7 @@
 radius = 23.9417
 height = 55.0618
 
-[node name="PlayerBoat" index="0" instance=ExtResource( 1 )]
+[node name="PlayerBoat" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 hp = 50
 engine_power = 2500
@@ -32,6 +32,12 @@ texture = ExtResource( 4 )
 position = Vector2( -0.832169, 0.27739 )
 rotation = 1.5708
 shape = SubResource( 1 )
+
+[node name="PlayerName" parent="." index="5"]
+visible = false
+
+[node name="Bar" parent="." index="6"]
+visible = false
 
 [node name="Turrets" type="Node2D" parent="." index="7"]
 
