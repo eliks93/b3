@@ -1,10 +1,10 @@
 extends StaticBody2D
 signal death_sound(p1, p2)
 signal start
-var hp = 1
+var hp = 100
 onready var bar = $Bar2/TextureProgress
 onready var tween = $Tween
-var animated_health = 1
+var animated_health = 100
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -19,7 +19,7 @@ func _process(delta):
 	bar.value = animated_health
 		
 func start():
-	hp -= 5
+	hp -= 20
 
 	if hp <= 0:
 		emit_signal('death_sound', position.x, position.y)

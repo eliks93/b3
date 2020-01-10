@@ -11,4 +11,6 @@ func _on_AudioController_start():
 
 
 func _on_buttonStart_pressed():
-	get_node("..").swap_scene(get_node("."), MainMenu.instance())
+
+	if has_node('UI/TouchControls'):
+		get_node("..").swap_scene(get_node("."), MainMenu.instance())
