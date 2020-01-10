@@ -10,8 +10,6 @@ var EProj = preload("res://RCFloatProjectile.tscn")
 
 var proj_tick = 0
 
-# NETWORK
-
 export var score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,6 +33,7 @@ remote func _spawn_controlled_projectile(projectile_type, _position, _direction)
 	add_child(proj)
 	
 	rpc_unreliable("_spawn_controlled_projectile", proj.name, projectile_type, _position, _direction, player_id)
+
 remote func _spawn_projectile_secondary(_position, _direction):
 	
 	var player_id = get_tree().get_rpc_sender_id()

@@ -19,6 +19,12 @@ animation = "Big"
 rotation = 1.5708
 shape = SubResource( 1 )
 
+[node name="PlayerName" parent="." index="5"]
+visible = false
+
+[node name="Bar" parent="." index="6"]
+visible = false
+
 [node name="Turrets" type="Node2D" parent="." index="8"]
 
 [node name="RCMissileTurret" parent="Turrets" index="0" instance=ExtResource( 4 )]
