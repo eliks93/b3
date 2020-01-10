@@ -15,4 +15,6 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Lifetime" type="Timer" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
