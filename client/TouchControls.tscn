@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://mobileControls/VirtualJoystick.tscn" type="PackedScene" id=1]
 [ext_resource path="res://AimControls.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/GUI/fullscreen.png" type="Texture" id=3]
+[ext_resource path="res://Button.gd" type="Script" id=4]
 
 [node name="TouchControls" type="Control"]
 margin_right = 40.0
@@ -14,3 +16,16 @@ margin_right = 165.596
 margin_bottom = 562.134
 
 [node name="AimControls" parent="." instance=ExtResource( 2 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2( 0.02, 0.02 )
+transform = Transform2D( 0.02, 0, 0, 0.02, 0, 0 )
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+margin_left = 104.154
+margin_top = 57.4475
+margin_right = 1096.15
+margin_bottom = 1043.45
+icon = ExtResource( 3 )
+script = ExtResource( 4 )
+[connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_Button_pressed"]

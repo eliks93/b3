@@ -43,9 +43,9 @@ position = Vector2( -14739.4, -4908.73 )
 scale = Vector2( 10, 10 )
 
 [node name="Spawns" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Q1" type="Node2D" parent="Spawns"]
+editor/display_folded = true
 
 [node name="SpawnPoint" parent="Spawns/Q1" instance=ExtResource( 7 )]
 

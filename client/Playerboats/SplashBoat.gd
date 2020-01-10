@@ -16,9 +16,11 @@ var mouse_pos = Vector2()
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 var steer_angle = 0
+
 var mob_x = 0
 var mob_y = 0
 var mob_firing = false
+
 var ripple_opacity = 0
 var rng = RandomNumberGenerator.new()
 var touch_position = Vector2()
@@ -74,7 +76,7 @@ func apply_friction():
 	if velocity.length() < 100:
 		friction_force *= 3
 	acceleration += drag_force + friction_force
-	
+
 func calculate_steering(delta):
 	var rear_wheel = position - transform.x * wheel_base / 4.0
 	var front_wheel = position + transform.x * wheel_base / 2.0
@@ -118,7 +120,7 @@ func touch_aim(position):
 
 func touch_firing(isFiring):
 	mob_firing = isFiring
-	
+
 func set_camera_position():
 	var offset = get_viewport().get_mouse_position() - self.global_position
 	var x_offset = get_viewport().get_mouse_position()[0] - get_viewport_rect().size.x / 2
