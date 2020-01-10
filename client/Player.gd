@@ -7,11 +7,12 @@ var projectile_secondary = preload('res://Projectiles/Torpedo.tscn')
 var player_name = "Player"
 var boat_selected = "0"
 
-var boat_big = preload("res://Playerboats/BigBoat.tscn")
-var boat_medium = preload("res://Playerboats/MediumBoat.tscn")
-var boat_small = preload("res://Playerboats/SmallBoat.tscn")
-var boat_orb = preload("res://Playerboats/OrbBoat.tscn")
-var boats = [boat_big, boat_medium, boat_small, boat_orb]
+var boats = [
+	preload("res://Playerboats/BigBoat.tscn"), 
+	preload("res://Playerboats/MediumBoat.tscn"), 
+	preload("res://Playerboats/SmallBoat.tscn"), 
+	preload("res://Playerboats/OrbBoat.tscn")
+]
 var map_limits
 var map_cellsize
 var death_score
@@ -86,6 +87,12 @@ func _physics_process(delta):
 func _on_PlayerBoat_health_changed(hp, p_owner):
 	rpc_id(1, "update_health", hp, p_owner)
 
+remote func heal():
+	var new_hp = clamp(($PlayerBoat.player_max_health / 2) + $PlayerBoat.hp, 0, $PlayerBoat.player_max_health)
+	print("Healed for ", new_hp)
+	$PlayerBoat.update_health(new_hp)
+	$PlayerBoat.hp = new_hp
+
 remote func update_health(hp):
 	$PlayerBoat.update_health(hp)
 	$PlayerBoat.hp = hp
@@ -111,7 +118,6 @@ func request_respawn():
 func update_ship_type(ship_type):
 	rpc_unreliable_id(1, "update_ship_type", ship_type)
 
-
 remote func respawn_player(x, y, rotation, ship_type):
 	boat_selected = ship_type
 	var new_boat = boats[int(boat_selected)].instance()
@@ -120,6 +126,7 @@ remote func respawn_player(x, y, rotation, ship_type):
 	new_boat.rotation = rotation
 	new_boat.get_node("PlayerName").set_name(player_name)
 	add_child(new_boat)
+	rpc_unreliable_id(1, "set_max_health", new_boat.hp)
 	GameState.player_info.actor = new_boat
 	set_camera_limits()
 	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
