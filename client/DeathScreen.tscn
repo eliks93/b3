@@ -1,24 +1,27 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://DeathScreen.gd" type="Script" id=1]
-[ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/images/ship_large_body.png" type="Texture" id=3]
-[ext_resource path="res://assets/images/ship_medium_body.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/ship_small_body.png" type="Texture" id=5]
+[ext_resource path="res://OrbLayer2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://MediumLayer2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SmallLayer2.tscn" type="PackedScene" id=5]
+[ext_resource path="res://BigLayer2.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 56
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 26
-font_data = ExtResource( 2 )
+font_data = ExtResource( 3 )
 
 [node name="DeathScreen" type="CanvasLayer"]
 script = ExtResource( 1 )
+
+[node name="OrbLayer" parent="." instance=ExtResource( 2 )]
 
 [node name="Label3" type="Label" parent="."]
 margin_left = 441.645
@@ -69,38 +72,21 @@ margin_right = 665.345
 margin_bottom = 216.326
 text = "34"
 
-[node name="Big" type="Button" parent="."]
-margin_left = 219.7
-margin_top = 215.823
-margin_right = 353.7
-margin_bottom = 589.823
-toggle_mode = true
-icon = ExtResource( 3 )
+[node name="MediumLayer" parent="." instance=ExtResource( 4 )]
 
-[node name="Medium" type="Button" parent="."]
-margin_left = 492.385
-margin_top = 390.29
-margin_right = 566.385
-margin_bottom = 575.29
-toggle_mode = true
-icon = ExtResource( 4 )
+[node name="SmallLayer" parent="." instance=ExtResource( 5 )]
 
-[node name="Small" type="Button" parent="."]
-margin_left = 708.208
-margin_top = 425.183
-margin_right = 774.208
-margin_bottom = 536.183
-toggle_mode = true
-icon = ExtResource( 5 )
-
-[node name="Orb" type="Button" parent="."]
-margin_left = 854.0
-margin_top = 453.0
-margin_right = 930.0
-margin_bottom = 491.0
-text = "Orb"
+[node name="BigLayer" parent="." instance=ExtResource( 6 )]
+[connection signal="pressed" from="OrbLayer/Orb" to="." method="_on_Orb_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Big" to="." method="_on_Big_pressed"]
-[connection signal="pressed" from="Medium" to="." method="_on_Medium_pressed"]
-[connection signal="pressed" from="Small" to="." method="_on_Small_pressed"]
-[connection signal="pressed" from="Orb" to="." method="_on_Orb_pressed"]
+[connection signal="pressed" from="MediumLayer/Medium" to="." method="_on_Medium_pressed"]
+[connection signal="pressed" from="SmallLayer/Small" to="." method="_on_Small_pressed"]
+[connection signal="pressed" from="BigLayer/Big" to="." method="_on_Big_pressed"]
+
+[editable path="OrbLayer"]
+
+[editable path="MediumLayer"]
+
+[editable path="SmallLayer"]
+
+[editable path="BigLayer"]

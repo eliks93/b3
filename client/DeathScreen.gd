@@ -8,17 +8,25 @@ var current_score = 0
 func _ready():
 	$Score.text = str(current_score)
 	if get_parent().boat_selected == 2:
-		$Big.pressed = false
-		$Medium.pressed = false
-		$Small.pressed = true
+		$BigLayer/Big.pressed = false
+		$MediumLayer/Medium.pressed = false
+		$SmallLayer/Small.pressed = true
+		$OrbLayer/Orb.pressed = false
 	elif get_parent().boat_selected == 1:
-		$Big.pressed = false
-		$Medium.pressed = true
-		$Small.pressed = false
+		$BigLayer/Big.pressed = false
+		$MediumLayer/Medium.pressed = true
+		$SmallLayer/Small.pressed = false
+		$OrbLayer/Orb.pressed = false
+	elif get_parent().boat_selected == 3:
+		$BigLayer/Big.pressed = false
+		$MediumLayer/Medium.pressed = false
+		$SmallLayer/Small.pressed = false
+		$OrbLayer/Orb.pressed = true
 	else:
-		$Big.pressed = true
-		$Medium.pressed = false
-		$Small.pressed = false
+		$BigLayer/Big.pressed = true
+		$MediumLayer/Medium.pressed = false
+		$SmallLayer/Small.pressed = false
+		$OrbLayer/Orb.pressed = false
 
 
 func _on_Button_pressed():
@@ -26,38 +34,38 @@ func _on_Button_pressed():
 	get_parent().remove_child(self)
 
 func _on_Big_pressed():
-	$Big.pressed = true
-	$Medium.pressed = false
-	$Small.pressed = false
-	$Orb.pressed = false
+	$BigLayer/Big.pressed = true
+	$MediumLayer/Medium.pressed = false
+	$SmallLayer/Small.pressed = false
+	$OrbLayer/Orb.pressed = false
 	GameState.ship_info.ship_type = 0
 	get_parent().boat_selected = 0
 	get_parent().update_ship_type(0)
 
 func _on_Medium_pressed():
-	$Big.pressed = false
-	$Medium.pressed = true
-	$Small.pressed = false
-	$Orb.pressed = false
+	$BigLayer/Big.pressed = false
+	$MediumLayer/Medium.pressed = true
+	$SmallLayer/Small.pressed = false
+	$OrbLayer/Orb.pressed = false
 	GameState.ship_info.ship_type = 1
 	get_parent().boat_selected = 1
 	get_parent().update_ship_type(1)
 
 func _on_Small_pressed():
-	$Big.pressed = false
-	$Medium.pressed = false
-	$Small.pressed = true
-	$Orb.pressed = false
+	$BigLayer/Big.pressed = false
+	$MediumLayer/Medium.pressed = false
+	$SmallLayer/Small.pressed = true
+	$OrbLayer/Orb.pressed = false
 	GameState.ship_info.ship_type = 2
 	get_parent().boat_selected = 2
 	get_parent().update_ship_type(2)
 
 
 func _on_Orb_pressed():
-	$Big.pressed = false
-	$Medium.pressed = false
-	$Small.pressed = false
-	$Orb.pressed = true
+	$BigLayer/Big.pressed = false
+	$MediumLayer/Medium.pressed = false
+	$SmallLayer/Small.pressed = false
+	$OrbLayer/Orb.pressed = true
 	GameState.ship_info.ship_type = 3
 	get_parent().boat_selected = 3
 	get_parent().update_ship_type(3)

@@ -1,27 +1,41 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://assets/UI PACK kenny/PNG/green_button08.png" type="Texture" id=2]
-[ext_resource path="res://assets/UI/uipack_fixed/PNG/green_button08.png" type="Texture" id=3]
-[ext_resource path="res://assets/UI PACK kenny/PNG/blue_button08.png" type="Texture" id=4]
+[ext_resource path="res://Background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/UI PACK kenny/PNG/green_button03.png" type="Texture" id=3]
+[ext_resource path="res://assets/UI PACK kenny/PNG/blue_button03.png" type="Texture" id=4]
 [ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://assets/UI/uipack_fixed/PNG/blue_button10.png" type="Texture" id=6]
-[ext_resource path="res://NPCboats/MediumBoatNPC.tscn" type="PackedScene" id=7]
-[ext_resource path="res://SelectBoat.gd" type="Script" id=8]
-[ext_resource path="res://NPCboats/OrbBoatNPC.tscn" type="PackedScene" id=9]
-[ext_resource path="res://NPCboats/BigBoatNPC.tscn" type="PackedScene" id=10]
-[ext_resource path="res://NPCboats/SmallBoatNPC.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/UI PACK kenny/PNG/green_button08.png" type="Texture" id=6]
+[ext_resource path="res://assets/UI/uipack_fixed/PNG/green_button08.png" type="Texture" id=7]
+[ext_resource path="res://assets/UI PACK kenny/PNG/blue_button08.png" type="Texture" id=8]
+[ext_resource path="res://assets/UI/uipack_fixed/PNG/blue_button10.png" type="Texture" id=9]
+[ext_resource path="res://NPCboats/MediumBoatNPC.tscn" type="PackedScene" id=10]
+[ext_resource path="res://SelectBoat.gd" type="Script" id=11]
+[ext_resource path="res://NPCboats/OrbBoatNPC.tscn" type="PackedScene" id=12]
+[ext_resource path="res://NPCboats/BigBoatNPC.tscn" type="PackedScene" id=13]
+[ext_resource path="res://NPCboats/SmallBoatNPC.tscn" type="PackedScene" id=14]
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 190, 45 )
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 190, 45 )
+
+[sub_resource type="DynamicFont" id=11]
+font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
 [sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 3 )
+texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
 [sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 4 )
+texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -29,11 +43,11 @@ size = 40
 font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 6 )
+texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
 [sub_resource type="StyleBoxTexture" id=6]
-texture = ExtResource( 4 )
+texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
 [sub_resource type="StyleBoxEmpty" id=7]
@@ -42,6 +56,8 @@ region_rect = Rect2( 0, 0, 49, 45 )
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource( 1 )
+
+[node name="TextureRect" parent="." instance=ExtResource( 2 )]
 
 [node name="editName" type="LineEdit" parent="."]
 anchor_left = 0.5
@@ -52,7 +68,10 @@ margin_left = -76.0
 margin_top = -90.0
 margin_right = 76.0
 margin_bottom = -66.0
-text = "PlayerName"
+custom_styles/focus = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 align = 1
 
 [node name="buttonLobby" type="Button" parent="."]
@@ -104,9 +123,9 @@ custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 toggle_mode = true
 
-[node name="NPCBoat" parent="MediumLayer/Medium" instance=ExtResource( 7 )]
+[node name="NPCBoat" parent="MediumLayer/Medium" instance=ExtResource( 10 )]
 position = Vector2( 238.305, 166.167 )
-script = ExtResource( 8 )
+script = ExtResource( 11 )
 
 [node name="OrbLayer" type="CanvasLayer" parent="."]
 rotation = 1.74846e-07
@@ -144,9 +163,9 @@ custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 toggle_mode = true
 
-[node name="NPCBoat2" parent="OrbLayer/Orb" instance=ExtResource( 9 )]
+[node name="NPCBoat2" parent="OrbLayer/Orb" instance=ExtResource( 12 )]
 position = Vector2( 238.305, 166.167 )
-script = ExtResource( 8 )
+script = ExtResource( 11 )
 
 [node name="BigLayer" type="CanvasLayer" parent="."]
 rotation = 1.74846e-07
@@ -184,9 +203,9 @@ custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 toggle_mode = true
 
-[node name="NPCBoat" parent="BigLayer/Big" instance=ExtResource( 10 )]
+[node name="NPCBoat" parent="BigLayer/Big" instance=ExtResource( 13 )]
 position = Vector2( 238.305, 166.167 )
-script = ExtResource( 8 )
+script = ExtResource( 11 )
 
 [node name="SmallLayer" type="CanvasLayer" parent="."]
 rotation = 1.74846e-07
@@ -224,9 +243,9 @@ custom_styles/focus = SubResource( 7 )
 custom_styles/normal = SubResource( 8 )
 toggle_mode = true
 
-[node name="NPCBoat" parent="SmallLayer/Small" instance=ExtResource( 11 )]
+[node name="NPCBoat" parent="SmallLayer/Small" instance=ExtResource( 14 )]
 position = Vector2( 238.305, 166.167 )
-script = ExtResource( 8 )
+script = ExtResource( 11 )
 [connection signal="text_changed" from="editName" to="." method="_on_editName_text_changed"]
 [connection signal="pressed" from="buttonLobby" to="." method="_on_buttonLobby_pressed"]
 [connection signal="pressed" from="MediumLayer/Medium" to="." method="_on_Medium_pressed"]
