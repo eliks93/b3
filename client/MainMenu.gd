@@ -16,30 +16,30 @@ func _on_editName_text_changed(new_text):
 	GameState.player_info.name = $editName.text
 
 func _on_Big_pressed():
-	$Big.pressed = true
-	$Medium.pressed = false
-	$Small.pressed = false
-	$Orb.pressed = false
+	$BigLayer/Big.pressed = true
+	$MediumLayer/Medium.pressed = false
+	$SmallLayer/Small.pressed = false
+	$OrbLayer/Orb.pressed = false
 	GameState.ship_info.ship_type = 0
 
 func _on_Medium_pressed():
-	$Big.pressed = false
-	$Medium.pressed = true
-	$Small.pressed = false
-	$Orb.pressed = false
+	$BigLayer/Big.pressed = false
+	$MediumLayer/Medium.pressed = true
+	$SmallLayer/Small.pressed = false
+	$OrbLayer/Orb.pressed = false
 	GameState.ship_info.ship_type = 1
 
 func _on_Small_pressed():
-	$Big.pressed = false
-	$Medium.pressed = false
-	$Small.pressed = true
-	$Orb.pressed = false
+	$BigLayer/Big.pressed = false
+	$MediumLayer/Medium.pressed = false
+	$SmallLayer/Small.pressed = true
+	$OrbLayer/Orb.pressed = false
 	GameState.ship_info.ship_type = 2
 
 
 func _on_Orb_pressed():
-	$Big.pressed = false
-	$Medium.pressed = false
-	$Small.pressed = false
-	$Orb.pressed = true
+	$BigLayer/Big.pressed = false
+	$MediumLayer/Medium.pressed = false
+	$SmallLayer/Small.pressed = false
+	$OrbLayer/Orb.pressed = true
 	GameState.ship_info.ship_type = 3

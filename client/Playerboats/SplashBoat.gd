@@ -12,7 +12,7 @@ var ready_to_fire = true
 var projectile = preload('res://MachineGunProjectile.tscn')
 var projectile_secondary = preload('res://Projectiles/Torpedo.tscn')
 var mouse_pos = Vector2()
-var touch_enabled = OS.has_touchscreen_ui_hint()
+
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 var steer_angle = 0
@@ -64,21 +64,6 @@ func get_input():
 	if (Input.is_action_pressed("fire_2")):
 		emit_signal("fire_turret_secondary", 1)
 	
-	if (touch_enabled):
-		if (mob_x > 0):
-			turn += mob_x
-		if (mob_x < 0):
-			turn += mob_x
-		
-		steer_angle = turn * deg2rad(steering_angle)
-		
-		if (mob_y > 0):
-			acceleration = transform.x * (engine_power * mob_y)
-		if (mob_y < 0):
-			acceleration = -transform.x * (braking * mob_y)
-		
-		if (mob_firing):
-			emit_signal('fire_turret', 1)
 	
 func apply_friction():
 	if velocity.length() < 8:
@@ -114,11 +99,8 @@ func calculate_steering(delta):
 func _process(delta):
 	# Override mouse position with touch here
 	
-	if !touch_enabled:
-		mouse_pos = get_global_mouse_position()
-	else:
-		mouse_pos = touch_position # Mobile pos
-
+	
+	mouse_pos = get_global_mouse_position()
 	emit_signal("turn_turret", mouse_pos)
 	set_camera_position()
 	ripple_visibility()

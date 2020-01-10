@@ -13,5 +13,5 @@ func _process(delta):
 			position.y = (get_node("../../../..").get_node(p_owner).get_node("NPCBoat").position.y)/25
 		else:
 			$Sprite.hide()
-#	else:
-#		queue_free()
+	else:
+		queue_free()

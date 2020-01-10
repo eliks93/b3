@@ -8,7 +8,7 @@ extends Label
 func _ready():
 	var ui = get_node('../UI')
 	if ui.has_node('TouchControls'):
-		self.text = "Use the joystick to navigate!"
+		self.text = ""
 	else:
 		self.text = 'Use WASD keys to move around!'
 		
