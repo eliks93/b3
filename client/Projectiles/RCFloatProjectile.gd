@@ -16,6 +16,8 @@ var direction
 var p_owner
 signal explode_projectile
 
+var hit_ticks = 0
+
 # NETWORK OPTIMIZATION
 var last_packet_time = 0.0
 var current_time = 0.0
@@ -85,4 +87,6 @@ func _on_HitBox_body_entered(body):
 
 func _on_HitBox_area_entered(area):
 	if (area.get_node("../..").name != str(p_owner)):
-		explode()
+		hit_ticks +=1 
+		if hit_ticks >= 3:
+			explode()
