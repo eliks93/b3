@@ -20,8 +20,9 @@ remote func update_leaderboard(leaderboard_info):
 	leader_board = leaderboard_info
 	for leader in leaderboard_info:
 		sorted_leaderboard.append({leaderboard_info[leader]['score']: { leader: leaderboard_info[leader]['name'] } })
+	print (sorted_leaderboard)
 	sorted_leaderboard.sort_custom(self, "custom_sort")
-
+	print(sorted_leaderboard, " post sort")
 	var player_id = get_tree().get_network_unique_id()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
@@ -40,7 +41,7 @@ remote func update_leaderboard(leaderboard_info):
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
 
 func custom_sort(a, b):
-	if a.keys() < b.keys():
+	if a.keys()[0] > b.keys()[0]:
 		return true
 	return false
 

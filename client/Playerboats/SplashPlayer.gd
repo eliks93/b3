@@ -27,6 +27,6 @@ func _spawn_projectile_secondary(_position, _direction):
 	get_parent().get_node('UI').start_cooldown($SplashBoat/Turret2.fire_delay)
 
 func _on_RigidBody2D_death_sound(p1, p2):
-	print('singal received')
+	
 	get_node('..').get_node('AudioController').create_sound('death', p1, p2)
 

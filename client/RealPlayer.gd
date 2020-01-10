@@ -63,10 +63,7 @@ func touch_aim(position):
 	
 	touch_position = $Camera2D.get_camera_position() + 3 * position
 	
-	print("Camera upper left: ", $Camera2D.get_camera_position())
-	print("Boat position: ", self.position)
-	print("Raw touch even: ", position)
-	print("Hypothesis: ", touch_position)
+
 	
 	
 	# We need to clamp the camera global_position here to account for map bounds.
