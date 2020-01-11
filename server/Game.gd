@@ -20,6 +20,7 @@ func _player_added(id, name, ship):
 			'id': id,
 			'name': name,
 			'ship_type': ship,
+			'alive': false,
 			'mouse_pos': [0, 0],
 			'position': {
 				'x': 0,
@@ -60,12 +61,12 @@ func _render_player_list():
 func spawn_players(id, p_name):
 	for player in players:
 		if (player != id):
-			rpc_id(id, "spawn_player", player, players[player].name, players[player].ship_type)
+			rpc_id(id, "spawn_player", player, players[player].name, players[player].ship_type, players[player].alive)
 
 # Spawns a single player for all existing players.
 func spawn_player(id, p_name):
 	for player in players:
-		rpc_id(player, "spawn_player", id, p_name, players[id].ship_type)
+		rpc_id(player, "spawn_player", id, p_name, players[id].ship_type, players[id].alive)
 	
 remote func spawn_for(p_name):
 	var player_id = get_tree().get_rpc_sender_id()

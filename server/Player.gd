@@ -76,6 +76,7 @@ remote func update_health(hp, p_owner):
 		rpc_unreliable("update_health", hp)
 	elif has_node('PlayerBoat'):
 		for player in get_node("..").players:
+			get_node("..").players[player_id].alive = false
 			rpc_unreliable("destroy", saved_score)
 		if current_health > 0:
 			get_node("..").set_score(p_owner)
@@ -128,6 +129,8 @@ remote func respawn():
 	new_boat.position.y = spawn.y
 	new_boat.rotation = rotation
 	add_child(new_boat)
+	var player_id = get_tree().get_rpc_sender_id()
+	get_node("..").players[player_id].alive = true
 	rpc_unreliable("respawn_player", spawn.x, spawn.y, rotation, boat_selected)
 
 

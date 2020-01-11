@@ -24,7 +24,6 @@ func _spawn_projectile_secondary(_position, _direction):
 	proj.p_owner = 'SplashPlayer'
 	add_child(proj)
 	proj.start(_position, _direction)
-	get_parent().get_node('UI').start_cooldown($SplashBoat/Turret2.fire_delay)
 
 func _on_RigidBody2D_death_sound(p1, p2):
 	
