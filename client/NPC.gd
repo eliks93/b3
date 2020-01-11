@@ -11,6 +11,7 @@ var boat_small = preload("res://NPCboats/SmallBoatNPC.tscn")
 var boat_orb = preload("res://NPCboats/OrbBoatNPC.tscn")
 var boats = [boat_big, boat_medium, boat_small, boat_orb]
 
+var alive
 var mapped = false
 var p_owner
 var player_name = "Player"
@@ -20,15 +21,16 @@ func _ready():
 	pass
 
 func initialize():
-	var new_boat = boats[int(boat_selected)].instance()
-	new_boat.position.x = 0
-	new_boat.position.y = 0
-	new_boat.rotation = 0
-	add_child(new_boat)
-	get_child(0).set_name("NPCBoat")
-	$NPCBoat.collision_layer = 1
-	$NPCBoat.collision_mask = 1
-	$NPCBoat/PlayerName.set_name(player_name)
+	if alive:
+		var new_boat = boats[int(boat_selected)].instance()
+		new_boat.position.x = 0
+		new_boat.position.y = 0
+		new_boat.rotation = 0
+		add_child(new_boat)
+		get_child(0).set_name("NPCBoat")
+		$NPCBoat.collision_layer = 1
+		$NPCBoat.collision_mask = 1
+		$NPCBoat/PlayerName.set_name(player_name)
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	var proj = get_child(0).projectile.instance()

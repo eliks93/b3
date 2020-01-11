@@ -41,7 +41,7 @@ func _physics_process(delta):
 	current_time += delta
 	if alive && p_owner == str(get_tree().get_network_unique_id()):
 		var target = get_global_mouse_position()
-		if (get_parent().get_node("PlayerBoat").touch_enabled):
+		if (get_parent().has_node("PlayerBoat") && get_parent().get_node("PlayerBoat").touch_enabled):
 			target = get_parent().get_node("PlayerBoat").touch_position
 		var movement = target - position
 		move_and_slide(movement)
