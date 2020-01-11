@@ -10,11 +10,13 @@ var ripple_opacity = 0
 
 var mouse_pos = Vector2()
 
+var npc_max_health = 0
+
 var player_init = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var npc_max_health = hp
+	npc_max_health = hp
 	bar.max_value = npc_max_health
 	update_health(npc_max_health)
 

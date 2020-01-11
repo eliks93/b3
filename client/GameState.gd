@@ -1,6 +1,6 @@
 extends Node
 
-var boat = preload("res://RealPlayer.tscn")
+var boat = preload("res://Playerboats/BigBoat.tscn")
 
 var player_info = {
 	'name': "Player",

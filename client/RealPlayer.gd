@@ -9,7 +9,7 @@ onready var tween = $Tween
 
 var mouse_pos = Vector2()
 
-var animated_health = 100
+var animated_health = 0
 var ripple_opacity = 0
 
 var touch_enabled = OS.has_touchscreen_ui_hint()
@@ -30,6 +30,7 @@ func _ready():
 		for Turret in $TurretsSecondary.get_children():
 			Turret.connect("spawn_projectile", self, "_spawn_projectile_secondary")
 	player_max_health = hp
+	animated_health = hp
 	bar.max_value = player_max_health
 	update_health(player_max_health)
 
