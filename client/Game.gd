@@ -21,7 +21,7 @@ remote func update_leaderboard(leaderboard_info):
 	for leader in leaderboard_info:
 		sorted_leaderboard.append({leaderboard_info[leader]['score']: { leader: leaderboard_info[leader]['name'] } })
 	print (sorted_leaderboard)
-	sorted_leaderboard.sort_custom(self, "custom_sort")
+	sorted_leaderboard.sort_custom(self, "sort_array_of_dict")
 	print(sorted_leaderboard, " post sort")
 	var player_id = get_tree().get_network_unique_id()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
@@ -40,7 +40,7 @@ remote func update_leaderboard(leaderboard_info):
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
 
-func custom_sort(a, b):
+func sort_array_of_dict(a, b):
 	if a.keys()[0] > b.keys()[0]:
 		return true
 	return false
