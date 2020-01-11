@@ -55,7 +55,7 @@ func _control_ship(analog_pos):
 			y = -analog_pos.y / 11
 		else:
 			y = -analog_pos.y / 11
-	print(x, " ", y)
+	
 	GameState.player_info.actor.mobile_joystick(x, y)
 
 

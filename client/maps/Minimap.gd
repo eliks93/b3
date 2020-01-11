@@ -10,7 +10,7 @@ func _process(delta):
 	for player in get_node("../../..").get_children():
 		if !player.has_node("UI") && !player.get("mapped") == null:
 			if !player.mapped:
-				print("dada")
+				
 				var npc_spot = npc_mini.instance()
 				npc_spot.p_owner = player.name
 				player.mapped = true

@@ -31,7 +31,7 @@ func _fire(group):
 		var direction = Vector2(0, 1).rotated(self.global_rotation)
 		direction.y += my_random_number
 		direction.x += my_random_number
-		print(shoot.name)
+		
 		emit_signal("spawn_projectile", 1, shoot.global_position, direction)
 		$FireDelay.start(fire_delay)
 		_ready_to_fire = false

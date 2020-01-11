@@ -26,6 +26,6 @@ func _spawn_projectile_secondary(_position, _direction):
 	proj.start(_position, _direction)
 
 func _on_RigidBody2D_death_sound(p1, p2):
-	print('singal received')
+	
 	get_node('..').get_node('AudioController').create_sound('death', p1, p2)
 

@@ -33,7 +33,7 @@ func explode():
 
 func _on_Projectile_body_entered(body):
 	if (body.get_node("..").name != p_owner):
-		print(p_owner)
+		
 		get_parent().get_parent().get_node('AudioController').create_sound('hit', position.x, position.y)
 		explode()
 		if body.has_method("take_damage"):

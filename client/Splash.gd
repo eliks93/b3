@@ -1,11 +1,11 @@
 extends Node
 var touch = OS.has_touchscreen_ui_hint()
 
-var MainMenu = preload("res://MainMenu.tscn")
-	
+var MainMenu = preload("res://MainMenu.tscn").instance()
+
 	
 func _on_AudioController_start():
-	get_node("..").swap_scene(get_node("."), MainMenu.instance())
+	get_node("..").swap_scene(get_node("."), MainMenu)
 
 
 func _on_buttonStart_pressed():
