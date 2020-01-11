@@ -52,7 +52,7 @@ remote func _spawn_projectile_secondary(_position, _direction, mask):
 	proj.p_owner = str(mask)
 	add_child(proj)
 	proj.start(_position, _direction)
-	print($PlayerBoat.get_node("TurretsSecondary").get_child(0).fire_delay)
+	
 	$UI.start_cooldown($PlayerBoat.get_node("TurretsSecondary").get_child(0).fire_delay)
 
 # Currently only used for Energy Projectiles
@@ -89,7 +89,7 @@ func _on_PlayerBoat_health_changed(hp, p_owner):
 
 remote func heal():
 	var new_hp = clamp(($PlayerBoat.player_max_health / 2) + $PlayerBoat.hp, 0, $PlayerBoat.player_max_health)
-	print("Healed for ", new_hp)
+	
 	$PlayerBoat.update_health(new_hp)
 	$PlayerBoat.hp = new_hp
 
@@ -98,7 +98,7 @@ remote func update_health(hp):
 	$PlayerBoat.hp = hp
 
 remote func destroy(leaderboard):
-	print(leaderboard)
+	
 	GameState.player_info.actor = null
 	get_parent().get_node('AudioController').create_sound('death', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	$PlayerBoat.explode()
@@ -138,9 +138,9 @@ remote func respawn_player(x, y, rotation, ship_type):
 	$PlayerBoat.connect("death_screen", self, "death_screen")
 
 func death_screen(leaderboard):
-	print(leaderboard)
+	
 	var current_score = leaderboard[get_tree().get_network_unique_id()]['score']
-	print(current_score, 'current score')
+	
 	var screen = death_screen.instance()
 	screen.current_score = current_score
 	add_child(screen)
