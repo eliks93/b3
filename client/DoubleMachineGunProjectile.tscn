@@ -2,29 +2,29 @@
 
 [ext_resource path="res://MachineGunProjectile.gd" type="Script" id=1]
 [ext_resource path="res://explosions/WateryExplosion.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/Projectiles/pure/Pure_09.png" type="Texture" id=3]
-[ext_resource path="res://assets/GUI/energy_bar_fill.png" type="Texture" id=4]
+[ext_resource path="res://assets/GUI/energy_bar_fill.png" type="Texture" id=3]
+[ext_resource path="res://assets/Projectiles/pure/Pure_09.png" type="Texture" id=4]
 [ext_resource path="res://explosions/Explosions.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "Basic",
+"name": "Machine",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "Machine",
+"name": "Basic",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 2.43295, 23.7834 )
+extents = Vector2( 2.43295, 31.6084 )
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource( 1 )
-speed = 2500
+speed = 4000
 damage = 5
 life = 1.5
 
