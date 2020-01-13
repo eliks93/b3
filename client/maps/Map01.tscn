@@ -111,7 +111,7 @@ scale = Vector2( 7, 7 )
 
 [node name="Island3" parent="Islands" instance=ExtResource( 27 )]
 position = Vector2( 10662.2, 3999.58 )
-scale = Vector2( 9, 9 )
+scale = Vector2( 7, 7 )
 
 [node name="Island4" parent="Islands" instance=ExtResource( 27 )]
 position = Vector2( -755.8, 6917.84 )
@@ -120,4 +120,4 @@ scale = Vector2( 4, 4 )
 
 [node name="Island5" parent="Islands" instance=ExtResource( 28 )]
 position = Vector2( -14739.4, -4908.73 )
-scale = Vector2( 10, 10 )
+scale = Vector2( 6, 6 )
