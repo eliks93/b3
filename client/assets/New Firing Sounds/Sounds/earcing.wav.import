@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/earcing.wav-51859f7f994b1aa8a128143f89fea6c6.sample"
+
+[deps]
+
+source_file="res://assets/New Firing Sounds/Sounds/earcing.wav"
+dest_files=[ "res://.import/earcing.wav-51859f7f994b1aa8a128143f89fea6c6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

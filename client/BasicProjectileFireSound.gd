@@ -14,8 +14,6 @@ func _ready():
 	# Need to create manual panning based on max distance and actual distance.  Ratio for each earpiece.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 
 func _on_AudioStreamPlayer2D_finished():

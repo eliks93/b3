@@ -62,6 +62,7 @@ remote func update_position(packet):
 			rpc_unreliable_id(player, "set_position", packet)
 
 remote func update_health(hp, p_owner):
+	print(hp, p_owner)
 	var current_health = 0
 	var temp_score = 0
 	
