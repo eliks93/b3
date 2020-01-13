@@ -14,7 +14,6 @@ func _process(delta):
 
 
 func start_cooldown(cooldown):
-
 	set_cooldown = cooldown
 	$Timer.wait_time = cooldown
 	$Timer.start()
