@@ -1,51 +1,74 @@
 extends KinematicBody2D
 
 signal update_position
+signal health_changed
 
 export var hp = 100
+
+# NETWORK OPTIMIZATION
+var last_packet_time = 0.0
+var current_time = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
 
-export var engine_power = 800
+export var engine_power = 1200
 export var wheel_base = 160
-export var steering_angle = 30
+export var steering_angle = 15
 
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 var steer_angle = 0
 
-export var braking = -450
+var reset_vel = false
+
+export var braking = -800
 export var max_speed_reverse = 250
 
 export var friction = -0.01
-export var drag = -0.0015
-
-export var slip_speed = 400
-var traction_fast = 0.1
-var traction_slow = 0.7
+export var drag = -0.002
 
 func _physics_process(delta):
-	acceleration = Vector2.ZERO
+	var old_vel = null
+	current_time += delta
+	
+	if velocity.length() != 0:
+		old_vel = {}
+		old_vel.x = velocity.x > 0
+		old_vel.y = velocity.y > 0
+	
 	get_input()
 	apply_friction()
 	calculate_steering(delta)
+	
+	
+	
 	velocity += acceleration * delta
+	print(velocity)
+	print('LENGTH: ', velocity.length())
+	if (old_vel && (old_vel.x != (velocity.x > 0) || velocity.x == 0) && 
+		(old_vel.y != (velocity.y > 0) || velocity.y == 0)):
+		velocity = Vector2.ZERO
+		acceleration = Vector2.ZERO
+	
 	velocity = move_and_slide(velocity)
-	emit_signal("update_position")
+	if current_time - last_packet_time + 0.03:
+		last_packet_time = current_time
+		emit_signal("update_position")
 
+# Method override in lower boat classes
 func get_input():
 	pass
 
 func apply_friction():
+	# No good value to stop wobble with revamp.
+	# Need new solution.
 	if velocity.length() < 8:
 		velocity = Vector2.ZERO
 	var friction_force = velocity * velocity.length() * friction
 	var drag_force = velocity * velocity.length() * drag
 	
-	if velocity.length() < 100:
-		friction_force *= 3
 	acceleration += drag_force + friction_force
 
 func calculate_steering(delta):
@@ -56,20 +79,10 @@ func calculate_steering(delta):
 	front_wheel += velocity.rotated(steer_angle) * delta
 	
 	var new_heading = (front_wheel - rear_wheel).normalized()
-	var traction = traction_slow
-	if velocity.length() > slip_speed:
-		traction = traction_fast
 	
-	var d = new_heading.dot(velocity.normalized())
-	
-	if d > 0:
-		velocity = velocity.linear_interpolate(new_heading * velocity.length(), traction)
-	if d < 0:
-		velocity = -new_heading * min(velocity.length(), max_speed_reverse)
-
 	rotation = new_heading.angle()
 
-func take_damage(dmg):
+func take_damage(dmg, p_owner):
 	hp -= dmg
-	if (hp <= 0):
-		queue_free()
+	emit_signal("health_changed", hp, p_owner)
+

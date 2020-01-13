@@ -54,20 +54,7 @@ func touch_aim(position):
 	var zoom = 3
 	var foo = self.position - get_viewport_rect().size * zoom / 2
 	
-	# This fire relative to the center of the screen, not the boats position.
-	# It also does not continue to fire directly at the event unless the event is moving.
-	
-## this is wrong but it hauntingly smells of correctness
-#	touch_position = zoom * position + foo + (
-#		self.position - ($Camera2D.global_position + get_viewport_rect().size * zoom / 2)
-#	)
-	
 	touch_position = $Camera2D.get_camera_position() + 3 * position
-	
-
-	
-	
-	# We need to clamp the camera global_position here to account for map bounds.
 
 func touch_firing(isFiring):
 	mob_firing = isFiring
