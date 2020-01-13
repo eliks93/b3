@@ -92,6 +92,11 @@ remote func respawn_player(x, y, rotation, ship_type):
 	if has_node('NPCBoat/PlayerName'):
 		$NPCBoat/PlayerName.set_name(player_name)
 
+remote func heal():
+	var new_hp = clamp(($NPCBoat.npc_max_health / 2) + $NPCBoat.hp, 0, $NPCBoat.npc_max_health)
+	
+	$NPCBoat.update_health(new_hp)
+	$NPCBoat.hp = new_hp
 
 
 

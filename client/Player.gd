@@ -39,6 +39,8 @@ func req_spawn_projectile_scondary(_position, _direction):
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	if boat_selected == 0:
 		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	elif boat_selected == 2:
+				get_parent().get_node('AudioController').create_sound('machine_fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	else:
 		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	var proj = $PlayerBoat.projectile.instance()

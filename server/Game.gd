@@ -79,8 +79,6 @@ remote func get_spawn_point():
 
 # Always called to increase a score.
 remote func set_score(p_owner):
-#	get_node(p_owner).score += 1
-	print("Set score called")
 	update_leaderboard(p_owner)
 
 func update_leaderboard(p_owner):
