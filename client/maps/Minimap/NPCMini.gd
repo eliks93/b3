@@ -12,11 +12,11 @@ func _process(delta):
 			$Sprite.modulate = Color(1,1,1,1)
 			$Sprite.scale.x = 1.5
 			$Sprite.scale.y = 1.5
-	else:
-		$Sprite.set_texture(npc_icon)
-		$Sprite.modulate = Color(0.8,0.01,0.01,1)
-		$Sprite.scale.x = 0.04
-		$Sprite.scale.y = 0.04
+		else:
+			$Sprite.set_texture(npc_icon)
+			$Sprite.modulate = Color(0.8,0.01,0.01,1)
+			$Sprite.scale.x = 0.04
+			$Sprite.scale.y = 0.04
 	if get_node("../../../..").has_node(p_owner):
 		if get_node("../../../..").get_node(p_owner).has_node("NPCBoat"):
 			$Sprite.show()

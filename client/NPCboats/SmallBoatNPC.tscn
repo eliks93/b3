@@ -13,11 +13,10 @@ height = 56.1217
 [node name="NPCBoat" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 hp = 50
-engine_power = 2500
-steering_angle = 40
+engine_power = 1400
+steering_angle = 25
 max_speed_reverse = 400
 friction = -0.005
-drag = -0.001
 
 [node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
 position = Vector2( -18.7526, 2.03341 )
@@ -35,6 +34,3 @@ shape = SubResource( 1 )
 rotation = 1.5708
 
 [node name="Turret" parent="Turrets" index="0" instance=ExtResource( 5 )]
-
-[node name="Explosion" parent="." index="7"]
-animation = "default"

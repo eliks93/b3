@@ -14,10 +14,9 @@ height = 128.549
 [node name="PlayerBoat" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 hp = 65
-engine_power = 1700
-steering_angle = 33
+engine_power = 1000
+steering_angle = 18
 friction = -0.008
-drag = -0.001
 
 [node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
 
