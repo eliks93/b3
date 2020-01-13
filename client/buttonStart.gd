@@ -11,4 +11,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
+func _input(event):
+	print(event)
+	if event is InputEventScreenTouch:
+		emit_signal('start_pressed')
+
 
