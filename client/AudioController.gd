@@ -4,6 +4,7 @@ var death_sound = preload('res://BasicBoatDetonation.tscn')
 var fire_sound = preload('res://BasicProjectileFireSound.tscn')
 var hit_sound = preload('res://BasicProjectileSound.tscn')
 var machine_gun_sound = preload('res://MachineGunProjectileSound.tscn')
+var machine_gun_fire = preload('res://MachineGunProjectileFireSound.tscn')
 func _ready():
 	pass # Replace with function body.
 
@@ -22,7 +23,7 @@ func create_sound(sound, x, y):
 		node.position.x = x
 		node.position.y = y
 		add_child(node)
-		node.play(0.1)
+		node.play(0.3)
 	if sound == 'hit':
 		node = hit_sound.instance()
 		node.position.x = x
@@ -31,6 +32,12 @@ func create_sound(sound, x, y):
 		node.play(0.0)
 	if sound == 'machine_hit':
 		node = machine_gun_sound.instance()
+		node.position.x = x
+		node.position.y = y
+		add_child(node)
+		node.play(0.0)
+	if sound == 'machine_fire':
+		node = machine_gun_fire.instance()
 		node.position.x = x
 		node.position.y = y
 		add_child(node)

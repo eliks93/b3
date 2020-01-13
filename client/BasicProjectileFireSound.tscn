@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/Sounds/Loud_Bang-Osama_Bin_Laden-925764326.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/Sounds/basic_explosion.wav" type="AudioStream" id=1]
 [ext_resource path="res://BasicProjectileFireSound.gd" type="Script" id=2]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
-volume_db = -27.436
+volume_db = -24.0
 autoplay = true
 bus = "L/R"
 script = ExtResource( 2 )

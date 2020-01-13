@@ -3,12 +3,17 @@ var touch = OS.has_touchscreen_ui_hint()
 
 var MainMenu = preload("res://MainMenu.tscn").instance()
 
-	
+
 func _on_AudioController_start():
 	get_node("..").swap_scene(get_node("."), MainMenu)
 
 
-func _on_buttonStart_pressed():
+#func _on_buttonStart_pressed():
+#
+##	if self.touch:
+##		get_node("..").swap_scene(get_node("."), MainMenu)
 
-	if has_node('UI/TouchControls'):
-		get_node("..").swap_scene(get_node("."), MainMenu.instance())
+
+func _on_buttonStart_start_pressed():
+	print('heelo')
+	get_node("..").swap_scene(get_node("."), MainMenu)
