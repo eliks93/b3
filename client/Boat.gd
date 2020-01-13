@@ -37,8 +37,6 @@ func _physics_process(delta):
 	var old_vel = Vector2(velocity.x, velocity.y)
 	
 	velocity += acceleration * delta
-	print("ACC: ", acceleration)
-	print("VEL: ", velocity.length())
 	
 	if (old_vel.length() > velocity.length()):
 		acceleration = Vector2.ZERO

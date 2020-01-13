@@ -13,44 +13,34 @@ var current_time = 0.0
 func _ready():
 	pass
 
-export var engine_power = 1200
+export var engine_power = 600
 export var wheel_base = 160
-export var steering_angle = 15
+export var steering_angle = 10
 
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
 var steer_angle = 0
 
-var reset_vel = false
-
 export var braking = -800
 export var max_speed_reverse = 250
 
-export var friction = -0.01
-export var drag = -0.002
+export var friction = -0.4
+export var drag = -0.001
 
 func _physics_process(delta):
-	var old_vel = null
 	current_time += delta
-	
-	if velocity.length() != 0:
-		old_vel = {}
-		old_vel.x = velocity.x > 0
-		old_vel.y = velocity.y > 0
 	
 	get_input()
 	apply_friction()
 	calculate_steering(delta)
 	
-	
+	var old_vel = Vector2(velocity.x, velocity.y)
 	
 	velocity += acceleration * delta
-	print(velocity)
-	print('LENGTH: ', velocity.length())
-	if (old_vel && (old_vel.x != (velocity.x > 0) || velocity.x == 0) && 
-		(old_vel.y != (velocity.y > 0) || velocity.y == 0)):
-		velocity = Vector2.ZERO
+	
+	if (old_vel.length() > velocity.length()):
 		acceleration = Vector2.ZERO
+		velocity *= 0.98
 	
 	velocity = move_and_slide(velocity)
 	if current_time - last_packet_time + 0.03:
@@ -62,11 +52,7 @@ func get_input():
 	pass
 
 func apply_friction():
-	# No good value to stop wobble with revamp.
-	# Need new solution.
-	if velocity.length() < 8:
-		velocity = Vector2.ZERO
-	var friction_force = velocity * velocity.length() * friction
+	var friction_force = velocity * friction
 	var drag_force = velocity * velocity.length() * drag
 	
 	acceleration += drag_force + friction_force
