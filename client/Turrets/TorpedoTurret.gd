@@ -4,6 +4,8 @@ signal spawn_projectile(projectile_type)
 signal fire_turret
 export var baseBullet = preload("res://Projectile.tscn")
 export var fire_delay = 1.0
+var target = null
+var locked = false
 
 var _ready_to_fire
 # Called when the node enters the scene tree for the first time.
@@ -11,6 +13,13 @@ var _ready_to_fire
 func _ready():
 	get_node("../..").connect("fire_turret_secondary", self, "_fire")
 	_ready_to_fire = true
+
+func _process(delta):
+	if locked:
+		look_at(target.position)
+		rotation_degrees -= 90
+	else:
+		rotation_degrees = -90
 
 func _fire(group):
 	if (_ready_to_fire):
@@ -23,3 +32,19 @@ func _fire(group):
 
 func _on_FireDelay_timeout():
 	_ready_to_fire = true
+
+
+func _on_Area2D_body_entered(body):
+	print("entered")
+	if !locked and body.name == "NPCBoat":
+		if body.has_method('take_damage'):
+			target = body
+			locked = true
+
+
+func _on_Area2D_body_exited(body):
+	if target == body:
+		target = null
+		locked = false
+		$Area2D/CollisionShape2D.scale.x = 0
+		$Area2D/CollisionShape2D.scale.y = 1
