@@ -4,9 +4,10 @@ signal spawn_projectile(projectile_type)
 signal fire_turret
 export var fire_delay = 0.3
 var rng = RandomNumberGenerator.new()
-var turret = 1
+var turret = 0
 var _ready_to_fire
-# Called when the node enters the scene tree for the first time.
+var shoot
+var flash
 
 func _ready():
 	get_node("../..").connect("fire_turret", self, "_fire")
@@ -18,12 +19,13 @@ func _turn(mouse_pos):
 	rotation_degrees -= 90
 
 func _fire(group):
-	var shoot
-	if turret == 1:
+	if turret == 0:
+		flash = $MuzzleAnimation
 		shoot = $Muzzle
 		turret += 1
 	else:
 		shoot = $Muzzle2
+		flash = $MuzzleAnimation2
 		turret -= 1
 	if (_ready_to_fire):
 		rng.randomize()
@@ -33,8 +35,19 @@ func _fire(group):
 		direction.x += my_random_number
 		
 		emit_signal("spawn_projectile", 1, shoot.global_position, direction)
+		flash.show()
+		flash.set_frame(0)
+		flash.play('MissileFlare')
 		$FireDelay.start(fire_delay)
 		_ready_to_fire = false
 
 func _on_FireDelay_timeout():
 	_ready_to_fire = true
+
+
+func _on_MuzzleAnimation_animation_finished():
+	$MuzzleAnimation.hide()
+
+
+func _on_MuzzleAnimation2_animation_finished():
+	$MuzzleAnimation2.hide()
