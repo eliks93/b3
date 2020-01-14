@@ -10,4 +10,4 @@ func _input(event):
 				GameState.player_info.actor.touch_firing(true)
 				return
 		
-	GameState.player_info.actor.touch_firing(false)
+		GameState.player_info.actor.touch_firing(false)

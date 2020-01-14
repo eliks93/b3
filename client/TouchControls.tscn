@@ -52,3 +52,4 @@ custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 script = ExtResource( 5 )
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_Button_pressed"]
+[connection signal="gui_input" from="SpecialAbility" to="SpecialAbility" method="_on_SpecialAbility_gui_input"]
