@@ -25,5 +25,10 @@ func _on_Lifetime_timeout():
 	queue_free()
 
 func _on_Projectile_area_entered(area):
+	print("area")
 	if (area.get("p_owner") && area.p_owner != p_owner) and area.has_method("start"):
-		area.explode()
+		area.velocity.x = -area.velocity.x
+		area.velocity.y = -area.velocity.y
+		area.p_owner = p_owner
+	if area.get_parent().has_node("EBall"):
+		area.get_parent().explode()
