@@ -27,8 +27,11 @@ func update(room_list):
 	for room in room_list:
 		$RoomList/listNames.add_item(room)
 		$RoomList/listPlayers.add_item(str(room_list[room].players) + "/" + str(room_list[room].max_players))
-
+	$RoomList/listNames.select(0)
+	$RoomList/listPlayers.select(0)
+	
 func _on_listNames_item_selected(index):
+	$RoomList/listPlayers.select(index)
 	GameState.room_info.name = $RoomList/listNames.get_item_text(index)
 
 
