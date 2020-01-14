@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://RealPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Playerboats/SmallBoat.gd" type="Script" id=2]
@@ -10,6 +10,10 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 23.9417
 height = 55.0618
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 16.9566
+height = 45.6647
 
 [node name="PlayerBoat" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -42,3 +46,7 @@ position = Vector2( 0.277405, 7.62939e-06 )
 [node name="Turret2" parent="TurretsSecondary" index="0" instance=ExtResource( 6 )]
 position = Vector2( 10.8181, 0.554763 )
 rotation = -1.5708
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+rotation = 1.5708
+shape = SubResource( 2 )
