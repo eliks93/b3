@@ -136,9 +136,15 @@ func explode():
 
 func _on_Explosion_animation_finished():
 #	get_parent().add_child(death_screen.instance())
+	print("asdas")
 	queue_free()
 	emit_signal("death_screen")
 
 
 func _on_WateryExplosion_animation_finished():
 	pass # Replace with function body.
+
+
+func _on_Area2D_body_entered(body):
+	if not body.get("island") == null:
+		take_damage(hp, get_parent().name)
