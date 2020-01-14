@@ -147,4 +147,4 @@ func _on_WateryExplosion_animation_finished():
 
 func _on_Area2D_body_entered(body):
 	if not body.get("island") == null:
-		explode()
+		take_damage(hp, get_parent().name)
