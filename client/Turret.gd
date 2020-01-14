@@ -23,8 +23,15 @@ func _fire(group):
 #		$PlayFireSound.play(0.1)
 		var direction = Vector2(0, 1).rotated(self.global_rotation)
 		emit_signal("spawn_projectile", 1, $Muzzle.global_position, direction)
+		$MuzzleAnimation.show()
+		$MuzzleAnimation.set_frame(0)
+		$MuzzleAnimation.play('MissileFlare')
 		$FireDelay.start(fire_delay)
 		_ready_to_fire = false
 
 func _on_FireDelay_timeout():
 	_ready_to_fire = true
+
+
+func _on_MuzzleAnimation_animation_finished():
+	$MuzzleAnimation.hide()

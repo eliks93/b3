@@ -1,19 +1,25 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Turret.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/ship_big_gun.png" type="Texture" id=2]
+[ext_resource path="res://MuzzleAnimation.tscn" type="PackedScene" id=3]
 
 [node name="Turret" type="Node2D"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Muzzle" type="Position2D" parent="."]
-position = Vector2( 0, 30 )
+position = Vector2( 0.103611, 34.4554 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
 [node name="FireDelay" type="Timer" parent="."]
+
+[node name="MuzzleAnimation" parent="." instance=ExtResource( 3 )]
+visible = false
+position = Vector2( -6.11316, 38.7512 )
+animation = "default"
+frame = 4
+speed_scale = 0.8
 [connection signal="timeout" from="FireDelay" to="." method="_on_FireDelay_timeout"]
+[connection signal="animation_finished" from="MuzzleAnimation" to="." method="_on_MuzzleAnimation_animation_finished"]

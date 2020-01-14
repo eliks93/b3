@@ -29,3 +29,7 @@ func _on_RigidBody2D_death_sound(p1, p2):
 	
 	get_node('..').get_node('AudioController').create_sound('death', p1, p2)
 
+
+
+func _on_MuzzleAnimation_animation_finished():
+	pass # Replace with function body.

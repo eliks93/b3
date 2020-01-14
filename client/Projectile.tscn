@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Projectile.gd" type="Script" id=1]
-[ext_resource path="res://assets/Projectiles/pure/Pure_07.png" type="Texture" id=2]
+[ext_resource path="res://assets/onlyObjects_retina_rotated.png" type="Texture" id=2]
 [ext_resource path="res://explosions/Explosions.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
@@ -10,11 +10,16 @@ height = 47.9843
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource( 1 )
+speed = 2000
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 7.00964, 2.00275 )
-scale = Vector2( 0.5, 0.5 )
+modulate = Color( 0.976471, 0.976471, 0.976471, 1 )
+position = Vector2( 9.76307, 1.0508 )
+rotation = 3.14159
+scale = Vector2( 0.898398, 0.65 )
 texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 464, 58, 60, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 4.5062, 0.500694 )
