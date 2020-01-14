@@ -17,3 +17,7 @@ func _fire(group):
 		get_node('../..')._spawn_projectile_secondary($Muzzle.global_position, direction)
 		$FireDelay.start(fire_delay)
 		_ready_to_fire = false
+
+
+func _on_MuzzleAnimation_animation_finished():
+	pass # Replace with function body.

@@ -1,9 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://mobileControls/VirtualJoystick.tscn" type="PackedScene" id=1]
 [ext_resource path="res://AimControls.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/GUI/fullscreen.png" type="Texture" id=3]
 [ext_resource path="res://Button.gd" type="Script" id=4]
+[ext_resource path="res://SpecialAbility.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
 
 [node name="TouchControls" type="Control"]
 margin_right = 40.0
@@ -28,4 +39,17 @@ margin_right = 1096.15
 margin_bottom = 1043.45
 icon = ExtResource( 3 )
 script = ExtResource( 4 )
+
+[node name="SpecialAbility" type="Button" parent="."]
+margin_left = 808.051
+margin_top = 439.377
+margin_right = 954.051
+margin_bottom = 569.377
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+script = ExtResource( 5 )
 [connection signal="pressed" from="CanvasLayer/Button" to="CanvasLayer/Button" method="_on_Button_pressed"]
+[connection signal="gui_input" from="SpecialAbility" to="SpecialAbility" method="_on_SpecialAbility_gui_input"]

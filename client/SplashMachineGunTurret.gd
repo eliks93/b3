@@ -17,5 +17,11 @@ func _fire(group):
 		direction.y += my_random_number
 		direction.x += my_random_number
 		get_node('../..')._spawn_projectile(1, $Muzzle.global_position, direction)
+		$MuzzleAnimation.show()
+		$MuzzleAnimation.set_frame(0)
+		$MuzzleAnimation.play('MissileFlare')
 		$FireDelay.start(fire_delay)
 		_ready_to_fire = false
+
+func _on_MuzzleAnimation_animation_finished():
+	$MuzzleAnimation.hide()

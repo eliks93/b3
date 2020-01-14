@@ -33,6 +33,12 @@ func initialize():
 		$NPCBoat/PlayerName.set_name(player_name)
 
 remote func _spawn_projectile(projectile_type, _position, _direction, mask):
+	if boat_selected == 0:
+		get_parent().get_node('AudioController').create_sound('fire', $NPCBoat.position.x, $NPCBoat.position.y)
+	elif boat_selected == 2:
+		get_parent().get_node('AudioController').create_sound('machine_fire', $NPCBoat.position.x, $NPCBoat.position.y)
+	else:
+		get_parent().get_node('AudioController').create_sound('fire', $NPCBoat.position.x, $NPCBoat.position.y)
 	var proj = get_child(0).projectile.instance()
 	proj.p_owner = str(mask)
 	add_child(proj)
