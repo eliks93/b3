@@ -6,7 +6,5 @@
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
 stream = ExtResource( 1 )
 volume_db = -10.0
-max_distance = 1000.0
-attenuation = 2.46229
 script = ExtResource( 2 )
 [connection signal="finished" from="." to="." method="_on_AudioStreamPlayer2D_finished"]
