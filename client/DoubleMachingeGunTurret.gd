@@ -19,15 +19,15 @@ func _turn(mouse_pos):
 	rotation_degrees -= 90
 
 func _fire(group):
-	if turret == 0:
-		flash = $MuzzleAnimation
-		shoot = $Muzzle
-		turret += 1
-	else:
-		shoot = $Muzzle2
-		flash = $MuzzleAnimation2
-		turret -= 1
 	if (_ready_to_fire):
+		if turret == 0:
+			flash = $MuzzleAnimation
+			shoot = $Muzzle
+			turret += 1
+		else:
+			shoot = $Muzzle2
+			flash = $MuzzleAnimation2
+			turret -= 1
 		rng.randomize()
 		var my_random_number = rng.randf_range(-0.04, 0.04)
 		var direction = Vector2(0, 1).rotated(self.global_rotation)
