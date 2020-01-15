@@ -84,10 +84,10 @@ text = "Respawn"
 [node name="Timer" type="Timer" parent="."]
 
 [node name="Score" type="Label" parent="."]
-margin_left = 570.0
-margin_top = 107.741
-margin_right = 650.0
-margin_bottom = 127.741
+margin_left = 580.0
+margin_top = 120.0
+margin_right = 660.0
+margin_bottom = 140.0
 custom_fonts/font = SubResource( 8 )
 
 [node name="BigLayer" parent="." instance=ExtResource( 5 )]
@@ -118,9 +118,7 @@ margin_top = 1400.0
 margin_bottom = 1679.0
 
 [node name="Label3" parent="OrbLayer" index="1"]
-margin_left = 560.0
 margin_top = 1280.0
-margin_right = 791.0
 margin_bottom = 1340.0
 
 [node name="Label4" parent="OrbLayer" index="2"]
@@ -137,15 +135,11 @@ margin_top = 1280.0
 margin_bottom = 1340.0
 
 [node name="Label2" parent="OrbLayer" index="5"]
-margin_left = 1116.0
 margin_top = 1400.0
-margin_right = 1266.0
 margin_bottom = 1679.0
 
 [node name="Orb" parent="OrbLayer" index="6"]
-margin_left = 440.0
 margin_top = 1360.0
-margin_right = 913.0
 margin_bottom = 1671.0
 
 [node name="MediumLayer" parent="." instance=ExtResource( 7 )]
@@ -159,9 +153,7 @@ margin_top = 1600.0
 margin_bottom = 1857.0
 
 [node name="Label5" parent="MediumLayer" index="2"]
-margin_left = 1720.0
 margin_top = 1600.0
-margin_right = 2002.0
 margin_bottom = 1909.0
 
 [node name="Label6" parent="MediumLayer" index="3"]
