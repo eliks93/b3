@@ -7,7 +7,7 @@ func _input(event):
 		OS.window_fullscreen = !OS.window_fullscreen
 
 func _ready():
-	pass
+	Input.set_custom_mouse_cursor(load("res://assets/UI/crossair_red.png"), Input.CURSOR_ARROW, Vector2(16,16))
 
 func _process(delta):
 	if (peer.get_connection_status() == NetworkedMultiplayerPeer.CONNECTION_CONNECTED ||
