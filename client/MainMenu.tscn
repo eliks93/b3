@@ -8,11 +8,11 @@
 [ext_resource path="res://assets/UI PACK kenny/PNG/green_button08.png" type="Texture" id=6]
 [ext_resource path="res://assets/UI/uipack_fixed/PNG/green_button08.png" type="Texture" id=7]
 [ext_resource path="res://assets/UI PACK kenny/PNG/blue_button08.png" type="Texture" id=8]
-[ext_resource path="res://assets/UI/uipack_fixed/PNG/blue_button10.png" type="Texture" id=9]
-[ext_resource path="res://NPCboats/MediumBoatNPC.tscn" type="PackedScene" id=10]
-[ext_resource path="res://SelectBoat.gd" type="Script" id=11]
-[ext_resource path="res://NPCboats/OrbBoatNPC.tscn" type="PackedScene" id=12]
-[ext_resource path="res://NPCboats/BigBoatNPC.tscn" type="PackedScene" id=13]
+[ext_resource path="res://DeathLayer2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://DeathScreenLayer1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://assets/UI/uipack_fixed/PNG/blue_button10.png" type="Texture" id=11]
+[ext_resource path="res://NPCboats/BigBoatNPC.tscn" type="PackedScene" id=12]
+[ext_resource path="res://SelectBoat.gd" type="Script" id=13]
 [ext_resource path="res://NPCboats/SmallBoatNPC.tscn" type="PackedScene" id=14]
 
 [sub_resource type="StyleBoxTexture" id=1]
@@ -43,7 +43,7 @@ size = 40
 font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxTexture" id=8]
-texture = ExtResource( 9 )
+texture = ExtResource( 11 )
 region_rect = Rect2( 0, 0, 49, 45 )
 
 [sub_resource type="StyleBoxTexture" id=9]
@@ -87,85 +87,9 @@ custom_styles/normal = SubResource( 6 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 text = "Open Lobby"
 
-[node name="MediumLayer" type="CanvasLayer" parent="."]
-rotation = 1.74846e-07
-scale = Vector2( 0.25, 0.25 )
-transform = Transform2D( 0.25, 4.37114e-08, -4.37114e-08, 0.25, 0, 0 )
+[node name="MediumLayer" parent="." instance=ExtResource( 9 )]
 
-[node name="Label" type="Label" parent="MediumLayer"]
-margin_left = 2520.0
-margin_top = 1480.0
-margin_right = 2709.0
-margin_bottom = 1759.0
-custom_fonts/font = SubResource( 7 )
-text = "Speed:
-Damage:
-Life:"
-
-[node name="Label2" type="Label" parent="MediumLayer"]
-margin_left = 2720.0
-margin_top = 1480.0
-margin_right = 2870.0
-margin_bottom = 1759.0
-custom_fonts/font = SubResource( 7 )
-text = "2/4
-2/4
-2/4"
-
-[node name="Medium" type="Button" parent="MediumLayer"]
-margin_left = 2044.0
-margin_top = 1440.0
-margin_right = 2517.0
-margin_bottom = 1751.0
-custom_styles/hover = SubResource( 8 )
-custom_styles/pressed = SubResource( 9 )
-custom_styles/focus = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
-toggle_mode = true
-
-[node name="NPCBoat" parent="MediumLayer/Medium" instance=ExtResource( 10 )]
-position = Vector2( 238.305, 166.167 )
-script = ExtResource( 11 )
-
-[node name="OrbLayer" type="CanvasLayer" parent="."]
-rotation = 1.74846e-07
-scale = Vector2( 0.25, 0.25 )
-transform = Transform2D( 0.25, 4.37114e-08, -4.37114e-08, 0.25, 0, 0 )
-
-[node name="Label" type="Label" parent="OrbLayer"]
-margin_left = 916.001
-margin_top = 1480.0
-margin_right = 1105.0
-margin_bottom = 1759.0
-custom_fonts/font = SubResource( 7 )
-text = "Speed:
-Damage:
-Life:"
-
-[node name="Label2" type="Label" parent="OrbLayer"]
-margin_left = 1116.0
-margin_top = 1480.0
-margin_right = 1266.0
-margin_bottom = 1759.0
-custom_fonts/font = SubResource( 7 )
-text = "1/4
-4/4
-3/4"
-
-[node name="Orb" type="Button" parent="OrbLayer"]
-margin_left = 440.0
-margin_top = 1440.0
-margin_right = 913.0
-margin_bottom = 1751.0
-custom_styles/hover = SubResource( 8 )
-custom_styles/pressed = SubResource( 9 )
-custom_styles/focus = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
-toggle_mode = true
-
-[node name="NPCBoat2" parent="OrbLayer/Orb" instance=ExtResource( 12 )]
-position = Vector2( 238.305, 166.167 )
-script = ExtResource( 11 )
+[node name="OrbLayer" parent="." instance=ExtResource( 10 )]
 
 [node name="BigLayer" type="CanvasLayer" parent="."]
 rotation = 1.74846e-07
@@ -203,9 +127,9 @@ custom_styles/focus = SubResource( 10 )
 custom_styles/normal = SubResource( 11 )
 toggle_mode = true
 
-[node name="NPCBoat" parent="BigLayer/Big" instance=ExtResource( 13 )]
+[node name="NPCBoat" parent="BigLayer/Big" instance=ExtResource( 12 )]
 position = Vector2( 238.305, 166.167 )
-script = ExtResource( 11 )
+script = ExtResource( 13 )
 
 [node name="SmallLayer" type="CanvasLayer" parent="."]
 rotation = 1.74846e-07
@@ -245,10 +169,14 @@ toggle_mode = true
 
 [node name="NPCBoat" parent="SmallLayer/Small" instance=ExtResource( 14 )]
 position = Vector2( 238.305, 166.167 )
-script = ExtResource( 11 )
+script = ExtResource( 13 )
 [connection signal="text_changed" from="editName" to="." method="_on_editName_text_changed"]
 [connection signal="pressed" from="buttonLobby" to="." method="_on_buttonLobby_pressed"]
 [connection signal="pressed" from="MediumLayer/Medium" to="." method="_on_Medium_pressed"]
 [connection signal="pressed" from="OrbLayer/Orb" to="." method="_on_Orb_pressed"]
 [connection signal="pressed" from="BigLayer/Big" to="." method="_on_Big_pressed"]
 [connection signal="pressed" from="SmallLayer/Small" to="." method="_on_Small_pressed"]
+
+[editable path="MediumLayer"]
+
+[editable path="OrbLayer"]

@@ -1,0 +1,99 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/UI/uipack_fixed/PNG/blue_button10.png" type="Texture" id=2]
+[ext_resource path="res://assets/UI PACK kenny/PNG/blue_button08.png" type="Texture" id=3]
+[ext_resource path="res://NPCboats/MediumBoatNPC.tscn" type="PackedScene" id=4]
+[ext_resource path="res://SelectBoat.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=7]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 49, 45 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 49, 45 )
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[node name="MediumLayer" type="CanvasLayer"]
+rotation = 1.74846e-07
+scale = Vector2( 0.25, 0.25 )
+transform = Transform2D( 0.25, 4.37114e-08, -4.37114e-08, 0.25, 0, 0 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 2520.0
+margin_top = 1480.0
+margin_right = 2709.0
+margin_bottom = 1759.0
+custom_fonts/font = SubResource( 7 )
+text = "Speed:
+Damage:
+Life:"
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 2520.0
+margin_top = 1680.0
+margin_right = 2802.0
+margin_bottom = 1937.0
+custom_fonts/font = SubResource( 7 )
+text = "Fast boat that can turn invinsible to trick enemies."
+autowrap = true
+
+[node name="Label5" type="Label" parent="."]
+margin_left = 1720.0
+margin_top = 1680.0
+margin_right = 2002.0
+margin_bottom = 1937.0
+custom_fonts/font = SubResource( 7 )
+text = "Slow, powerful boat. Can create a shield to protect itself."
+autowrap = true
+
+[node name="Label6" type="Label" parent="."]
+margin_left = 920.0
+margin_top = 1680.0
+margin_right = 1202.0
+margin_bottom = 2197.0
+custom_fonts/font = SubResource( 7 )
+text = "Slow boat. Creates energy orbs that can be controlled. Also can phase out of existence to dodge attacks."
+autowrap = true
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 3320.0
+margin_top = 1680.0
+margin_right = 3600.0
+margin_bottom = 1989.0
+custom_fonts/font = SubResource( 7 )
+text = "Fastest boat in the fleet. Can launch a devastating torpedo attack."
+autowrap = true
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 2720.0
+margin_top = 1480.0
+margin_right = 2870.0
+margin_bottom = 1759.0
+custom_fonts/font = SubResource( 7 )
+text = "2/4
+2/4
+2/4"
+
+[node name="Medium" type="Button" parent="."]
+margin_left = 2040.0
+margin_top = 1440.0
+margin_right = 2513.0
+margin_bottom = 1751.0
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+toggle_mode = true
+
+[node name="NPCBoat" type="KinematicBody2D" parent="Medium" instance=ExtResource( 4 )]
+position = Vector2( 238.305, 166.167 )
+script = ExtResource( 5 )
