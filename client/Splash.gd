@@ -15,5 +15,4 @@ func _on_AudioController_start():
 
 
 func _on_buttonStart_start_pressed():
-	print('heelo')
 	get_node("..").swap_scene(get_node("."), MainMenu)

@@ -43,3 +43,12 @@ func _on_Orb_pressed():
 	$SmallLayer/Small.pressed = false
 	$OrbLayer/Orb.pressed = true
 	GameState.ship_info.ship_type = 3
+
+
+func _on_editName_focus_entered():
+	if OS.has_touchscreen_ui_hint():
+		OS.show_virtual_keyboard("")
+
+
+func _on_editName_focus_exited():
+	OS.hide_virtual_keyboard()
