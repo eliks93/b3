@@ -5,6 +5,7 @@ signal health_changed
 
 export var hp = 100
 var shield_on = false
+var invisible = false
 # NETWORK OPTIMIZATION
 var last_packet_time = 0.0
 var current_time = 0.0
