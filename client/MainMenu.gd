@@ -7,7 +7,6 @@ func _ready():
 	$editName.placeholder_text = "YourNameHere!"
 	$editName.grab_focus()
 	
-
 func _on_buttonLobby_pressed():
 	get_node("..").connect_to("44.226.231.200", 4587)
 #	get_node("..").connect_to("127.0.0.1", 4587)
