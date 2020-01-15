@@ -4,7 +4,7 @@ signal update_position
 signal health_changed
 
 export var hp = 100
-
+var shield_on = false
 # NETWORK OPTIMIZATION
 var last_packet_time = 0.0
 var current_time = 0.0
@@ -69,6 +69,7 @@ func calculate_steering(delta):
 	rotation = new_heading.angle()
 
 func take_damage(dmg, p_owner):
-	hp -= dmg
-	emit_signal("health_changed", hp, p_owner)
+	if !shield_on:
+		hp -= dmg
+		emit_signal("health_changed", hp, p_owner)
 

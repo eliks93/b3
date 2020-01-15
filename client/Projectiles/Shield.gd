@@ -12,9 +12,9 @@ func start(_position, _direction):
 	$Lifetime.wait_time = life
 	$Lifetime.start()
 	if get_parent().has_node("PlayerBoat"):
-		get_parent().get_node("PlayerBoat").get_node("CollisionShape2D").disabled = true
+		get_parent().get_node("PlayerBoat").shield_on = true
 	if get_parent().has_node("NPCBoat"):
-		get_parent().get_node("NPCBoat").get_node("CollisionShape2D").disabled = true
+		get_parent().get_node("NPCBoat").shield_on = true
 
 func _process(delta):
 	if get_parent().has_node("PlayerBoat"):
@@ -26,10 +26,9 @@ func _process(delta):
 
 func _on_Lifetime_timeout():
 	if get_parent().has_node("PlayerBoat"):
-		get_parent().get_node("PlayerBoat").get_node("CollisionShape2D").disabled = false
-		get_parent().get_node("PlayerBoat").get_node("Area2D").get_node("CollisionShape2D").disabled = false
+		get_parent().get_node("PlayerBoat").shield_on = false
 	if get_parent().has_node("NPCBoat"):
-		get_parent().get_node("NPCBoat").get_node("CollisionShape2D").disabled = false
+		get_parent().get_node("NPCBoat").shield_on = false
 	queue_free()
 
 func _on_Projectile_area_entered(area):
