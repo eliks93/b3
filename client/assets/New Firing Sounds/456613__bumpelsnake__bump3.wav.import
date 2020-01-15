@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/456613__bumpelsnake__bump3.wav-cc749bd577b1087241892a2ce4e37c07.sample"
+
+[deps]
+
+source_file="res://assets/New Firing Sounds/456613__bumpelsnake__bump3.wav"
+dest_files=[ "res://.import/456613__bumpelsnake__bump3.wav-cc749bd577b1087241892a2ce4e37c07.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -40,7 +40,7 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	if boat_selected == 0:
 		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	elif boat_selected == 2:
-				get_parent().get_node('AudioController').create_sound('machine_fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+		get_parent().get_node('AudioController').create_sound('machine_fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	else:
 		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	var proj = $PlayerBoat.projectile.instance()
@@ -49,7 +49,14 @@ remote func _spawn_projectile(projectile_type, _position, _direction, mask):
 	proj.start(_position, _direction)
 
 remote func _spawn_projectile_secondary(_position, _direction, mask):
-	get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	if boat_selected == 0:
+		get_parent().get_node('AudioController').create_sound('shield', $PlayerBoat.position.x, $PlayerBoat.position.y)
+	elif boat_selected == 1:
+		get_parent().get_node('AudioController').create_sound('invis', $PlayerBoat.position.x, $PlayerBoat.position.y)	
+	elif boat_selected == 2:
+		get_parent().get_node('AudioController').create_sound('fire', $PlayerBoat.position.x, $PlayerBoat.position.y)	
+	else:
+		get_parent().get_node('AudioController').create_sound('phase', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	var proj = $PlayerBoat.projectile_secondary.instance()
 	proj.p_owner = str(mask)
 	add_child(proj)

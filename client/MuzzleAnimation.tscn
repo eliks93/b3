@@ -35,6 +35,6 @@ animations = [ {
 
 [node name="MuzzleAnimation" type="AnimatedSprite"]
 frames = SubResource( 1 )
-animation = "MachineFlare"
 frame = 10
+speed_scale = 2.0
 playing = true
