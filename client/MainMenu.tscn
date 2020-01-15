@@ -171,6 +171,8 @@ toggle_mode = true
 [node name="NPCBoat" parent="SmallLayer/Small" instance=ExtResource( 14 )]
 position = Vector2( 238.305, 166.167 )
 script = ExtResource( 13 )
+[connection signal="focus_entered" from="editName" to="." method="_on_editName_focus_entered"]
+[connection signal="focus_exited" from="editName" to="." method="_on_editName_focus_exited"]
 [connection signal="text_changed" from="editName" to="." method="_on_editName_text_changed"]
 [connection signal="pressed" from="buttonLobby" to="." method="_on_buttonLobby_pressed"]
 [connection signal="pressed" from="MediumLayer/Medium" to="." method="_on_Medium_pressed"]

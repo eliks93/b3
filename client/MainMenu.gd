@@ -7,7 +7,6 @@ func _ready():
 	$editName.placeholder_text = "YourNameHere!"
 	$editName.grab_focus()
 	
-
 func _on_buttonLobby_pressed():
 	get_node("..").connect_to("44.226.231.200", 4587)
 #	get_node("..").connect_to("127.0.0.1", 4587)
@@ -44,3 +43,12 @@ func _on_Orb_pressed():
 	$SmallLayer/Small.pressed = false
 	$OrbLayer/Orb.pressed = true
 	GameState.ship_info.ship_type = 3
+
+
+func _on_editName_focus_entered():
+	if OS.has_touchscreen_ui_hint():
+		OS.show_virtual_keyboard("")
+
+
+func _on_editName_focus_exited():
+	OS.hide_virtual_keyboard()

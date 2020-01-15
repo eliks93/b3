@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://ScoreList.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -37,4 +36,3 @@ size_flags_vertical = 3
 custom_styles/bg = SubResource( 3 )
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
-script = ExtResource( 2 )
