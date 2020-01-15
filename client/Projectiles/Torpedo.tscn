@@ -12,7 +12,7 @@ height = 47.9843
 [node name="Projectile" type="Area2D"]
 scale = Vector2( 0.6, 0.6 )
 script = ExtResource( 1 )
-speed = 1500
+speed = 2500
 damage = 50
 
 [node name="BoatRipple" parent="." instance=ExtResource( 2 )]
