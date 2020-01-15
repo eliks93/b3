@@ -7,13 +7,13 @@ var p_owner
 func start(_position, _direction):
 	if get_parent().has_node("PlayerBoat"):
 		var sprite = get_parent().get_node("PlayerBoat")
-		tween.interpolate_property(sprite, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0.5), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		tween.interpolate_property(sprite, "modulate", Color(1, 1, 1, 1), Color(0, 0.93, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		get_parent().get_node("PlayerBoat").get_node("CollisionShape2D").disabled = true
 		get_parent().get_node("PlayerBoat").get_node("Area2D").get_node("CollisionShape2D").disabled = true
 		tween.start()
 	if get_parent().has_node("NPCBoat"):
 		var sprite = get_parent().get_node("NPCBoat")
-		tween.interpolate_property(sprite, "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0.5), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+		tween.interpolate_property(sprite, "modulate", Color(1, 1, 1, 1), Color(0, 0.93, 1, 1), 0.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 		get_parent().get_node("NPCBoat").get_node("CollisionShape2D").disabled = true
 		tween.start()
 	$Lifetime.wait_time = life
@@ -21,10 +21,10 @@ func start(_position, _direction):
 
 func _on_Lifetime_timeout():
 	if get_parent().has_node("PlayerBoat"):
-		get_parent().get_node("PlayerBoat").modulate.a = 1
+		get_parent().get_node("PlayerBoat").modulate = Color(1, 1, 1, 1)
 		get_parent().get_node("PlayerBoat").get_node("CollisionShape2D").disabled = false
 		get_parent().get_node("PlayerBoat").get_node("Area2D").get_node("CollisionShape2D").disabled = false
 	if get_parent().has_node("NPCBoat"):
-		get_parent().get_node("NPCBoat").modulate.a = 1
+		get_parent().get_node("NPCBoat").modulate = Color(1, 1, 1, 1)
 		get_parent().get_node("NPCBoat").get_node("CollisionShape2D").disabled = false
 	queue_free()
