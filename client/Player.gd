@@ -107,12 +107,13 @@ remote func update_health(hp):
 	$PlayerBoat.hp = hp
 
 remote func destroy(leaderboard):
-	
+	var positionx = $PlayerBoat.position.x
+	var positiony = $PlayerBoat.position.y
 	GameState.player_info.actor = null
 	get_parent().get_node('AudioController').create_sound('death', $PlayerBoat.position.x, $PlayerBoat.position.y)
 	$PlayerBoat.explode()
 	if !has_node('DeathScreen'):
-		death_screen(leaderboard)
+		death_screen(leaderboard, positionx, positiony)
 	
 
 func set_camera_limits():
@@ -146,10 +147,12 @@ remote func respawn_player(x, y, rotation, ship_type):
 			Turret.connect("spawn_projectile", self, "req_spawn_projectile_scondary")
 	$PlayerBoat.connect("death_screen", self, "death_screen")
 
-func death_screen(leaderboard):
+func death_screen(leaderboard, x, y):
 	
 	var current_score = leaderboard[get_tree().get_network_unique_id()]['score']
 	
 	var screen = death_screen.instance()
 	screen.current_score = current_score
+	screen.x = x
+	screen.y = y
 	add_child(screen)

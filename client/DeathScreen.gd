@@ -1,11 +1,13 @@
 extends CanvasLayer
+var x = 0.0
+var y = 0.0
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+
 var current_score = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print (x, y)
+	set_transform(Transform2D(0.0, Vector2(x,y)))
 	$Score.text = str(current_score)
 	if get_parent().boat_selected == 2:
 		$BigLayer/Big.pressed = false
