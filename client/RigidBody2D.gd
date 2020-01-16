@@ -37,5 +37,8 @@ func update_health(new_value):
 		tween.start()
 
 func _on_Explosion_animation_finished():
-	queue_free()
+	update_health(0)
 
+func _on_Tween_tween_all_completed():
+	if !animated_health > 0:
+		queue_free()
