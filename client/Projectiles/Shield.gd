@@ -32,7 +32,7 @@ func _on_Lifetime_timeout():
 
 func _on_Projectile_area_entered(area):
 	if (area.get("p_owner") && area.p_owner != p_owner) and area.has_method("start"):
-		if area.has_variable("velocity"):
+		if not area.get("velocity") == null:
 			area.velocity.x = -area.velocity.x
 			area.velocity.y = -area.velocity.y
 			area.p_owner = p_owner
