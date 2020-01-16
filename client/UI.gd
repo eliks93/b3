@@ -20,6 +20,8 @@ func _build_mobile_UI():
 func _process(delta):
 	if cooldown_initiated:
 		$Cooldown.value = ((set_cooldown - $Timer.get_time_left())/set_cooldown)*100
+	else:
+		$Cooldown.value = 100
 
 
 func start_cooldown(cooldown):

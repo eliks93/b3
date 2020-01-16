@@ -135,8 +135,7 @@ func explode():
 	
 
 func _on_Explosion_animation_finished():
-#	get_parent().add_child(death_screen.instance())
-	print("asdas")
+	get_parent().get_node("UI").cooldown_initiated = false
 	queue_free()
 	emit_signal("death_screen")
 
