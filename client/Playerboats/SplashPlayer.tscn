@@ -1,37 +1,23 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Playerboats/SplashPlayer.gd" type="Script" id=1]
-[ext_resource path="res://assets/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Playerboats/Label.gd" type="Script" id=3]
-[ext_resource path="res://Playerboats/SplashBoat.gd" type="Script" id=4]
-[ext_resource path="res://src/animate/BoatRipple.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/images/ship_small_body.png" type="Texture" id=6]
-[ext_resource path="res://MachineGunTurret.tscn" type="PackedScene" id=7]
-[ext_resource path="res://SplashMachineGunTurret.gd" type="Script" id=8]
-[ext_resource path="res://Turrets/TorpedoTurret.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Turrets/SpalshTorpedoTurret.gd" type="Script" id=10]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 2 )
+[ext_resource path="res://Playerboats/SplashBoat.gd" type="Script" id=2]
+[ext_resource path="res://src/animate/BoatRipple.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/images/ship_small_body.png" type="Texture" id=4]
+[ext_resource path="res://MachineGunTurret.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SplashMachineGunTurret.gd" type="Script" id=6]
+[ext_resource path="res://Turrets/TorpedoTurret.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Turrets/SpalshTorpedoTurret.gd" type="Script" id=8]
 
 [node name="SplashPlayer" type="Node2D"]
 z_index = 1
 script = ExtResource( 1 )
 
-[node name="Label" type="Label" parent="."]
-margin_left = -80.9955
-margin_top = -70.516
-margin_right = 81.0045
-margin_bottom = -50.516
-custom_fonts/font = SubResource( 1 )
-text = "Boats!Boats!Boats!"
-script = ExtResource( 3 )
-
 [node name="SplashBoat" type="KinematicBody2D" parent="."]
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 fire_rate = 0.1
 
-[node name="BoatRipple" parent="SplashBoat" instance=ExtResource( 5 )]
+[node name="BoatRipple" parent="SplashBoat" instance=ExtResource( 3 )]
 position = Vector2( -15.8019, 1.35797 )
 animation = "Small"
 
@@ -39,13 +25,10 @@ animation = "Small"
 
 [node name="Sprite" type="Sprite" parent="SplashBoat"]
 rotation = 1.5708
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 
-[node name="Turret" parent="SplashBoat" instance=ExtResource( 7 )]
-script = ExtResource( 8 )
-
-[node name="MuzzleAnimation" parent="SplashBoat/Turret" index="3"]
-animation = "default"
+[node name="Turret" parent="SplashBoat" instance=ExtResource( 5 )]
+script = ExtResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="SplashBoat"]
 
@@ -55,9 +38,9 @@ animation = "default"
 rotation = 1.5708
 polygon = PoolVector2Array( 10, -48.5, 10, -46.2, 17, -38.3, 17, -36, 24, -22, 24, -17.5, 27, 37.7, 27, 39.5, 25.4, 39.5, 23.4, 45.5, 21.7, 45.5, 13.8, 52.5, -15, 52.5, -15, 50.6, -24, 44.6, -24, 42.2, -27, 38.6, -27, 15, -25, 13.5, -25, -18.8, -22.5, -27.5, -21.3, -27.5, -15.3, -41.5, -13.9, -41.5, -5, -52.2, 5, -52.5 )
 
-[node name="Turret2" parent="SplashBoat" instance=ExtResource( 9 )]
+[node name="Turret2" parent="SplashBoat" instance=ExtResource( 7 )]
 rotation = -1.5708
-script = ExtResource( 10 )
+script = ExtResource( 8 )
 [connection signal="timeout" from="SplashBoat/FireDelay" to="SplashBoat" method="_on_FireDelay_timeout"]
 
 [editable path="SplashBoat/Turret"]

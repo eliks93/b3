@@ -38,11 +38,19 @@ func _ready():
 	position = Vector2(200.0, 200.0)
 
 func _physics_process(delta):
-	acceleration = Vector2.ZERO
+	
 	get_input()
 	apply_friction()
 	calculate_steering(delta)
+	
+	var old_vel = Vector2(velocity.x, velocity.y)
+	
 	velocity += acceleration * delta
+	
+	if (old_vel.length() > velocity.length()):
+		acceleration = Vector2.ZERO
+		velocity *= 0.98
+	
 	velocity = move_and_slide(velocity)
 	
 func get_input():
@@ -68,13 +76,9 @@ func get_input():
 	
 	
 func apply_friction():
-	if velocity.length() < 8:
-		velocity = Vector2.ZERO
-	var friction_force = velocity * velocity.length() * friction
+	var friction_force = velocity * friction
 	var drag_force = velocity * velocity.length() * drag
 	
-	if velocity.length() < 100:
-		friction_force *= 3
 	acceleration += drag_force + friction_force
 
 func calculate_steering(delta):
@@ -85,18 +89,9 @@ func calculate_steering(delta):
 	front_wheel += velocity.rotated(steer_angle) * delta
 	
 	var new_heading = (front_wheel - rear_wheel).normalized()
-	var traction = traction_slow
-	if velocity.length() > slip_speed:
-		traction = traction_fast
 	
-	var d = new_heading.dot(velocity.normalized())
-	
-	if d > 0:
-		velocity = velocity.linear_interpolate(new_heading * velocity.length(), traction)
-	if d < 0:
-		velocity = -new_heading * min(velocity.length(), max_speed_reverse)
-
 	rotation = new_heading.angle()
+	
 
 func _process(delta):
 	# Override mouse position with touch here
