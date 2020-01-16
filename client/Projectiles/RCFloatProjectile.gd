@@ -53,6 +53,8 @@ func _physics_process(delta):
 			}
 			last_packet_time = current_time
 			rpc_unreliable_id(1, "update_position", packet)
+	if !get_parent().has_node("PlayerBoat") and !get_parent().has_node("NPCBoat"):
+		explode()
 
 remote func update_position(packet):
 	if p_owner != str(get_tree().get_network_unique_id()):
