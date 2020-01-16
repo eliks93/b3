@@ -18,7 +18,6 @@ texture = ExtResource( 2 )
 [node name="MuzzleAnimation" parent="." instance=ExtResource( 3 )]
 visible = false
 position = Vector2( -6.11316, 38.7512 )
-animation = "default"
 frame = 4
 speed_scale = 0.8
 [connection signal="timeout" from="FireDelay" to="." method="_on_FireDelay_timeout"]

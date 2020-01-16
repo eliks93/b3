@@ -28,8 +28,12 @@ remote func update_leaderboard(leaderboard_info):
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').clear()
 	get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').clear()
 	sorted_boi = sorted_leaderboard
-	for leader in sorted_leaderboard:
-
+	var index = 0
+	
+	while index < 8 and index < sorted_leaderboard.size():
+		if !sorted_leaderboard[index]:
+			break
+		var leader = sorted_leaderboard[index]
 		var id = leader.values()[0].keys()[0]
 		var name = leader.values()[0][id]
 		var player_name
@@ -40,7 +44,7 @@ remote func update_leaderboard(leaderboard_info):
 			player_name = name
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./PlayerList').add_item(player_name)
 		get_node(str(player_id)).get_node('UI').get_node('HBoxContainer').get_node('./ScoreList').add_item(str(leader.keys()[0]))
-
+		index += 1
 func sort_array_of_dict(a, b):
 	if a.keys()[0] > b.keys()[0]:
 		return true
