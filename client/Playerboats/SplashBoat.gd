@@ -102,19 +102,6 @@ func _process(delta):
 	set_camera_position()
 	ripple_visibility()
 
-func mobile_joystick(x, y):
-	mob_x = x
-	mob_y = y
-
-func touch_aim(position):
-	touch_position = position
-	# This fire relative to the center of the screen, not the boats position.
-	# It also does not continue to fire directly at the event unless the event is moving.
-	touch_position.x += self.position.x - get_viewport_rect().size.x / 2
-	touch_position.y += self.position.y - get_viewport_rect().size.y / 2
-
-func touch_firing(isFiring):
-	mob_firing = isFiring
 
 func set_camera_position():
 	var offset = get_viewport().get_mouse_position() - self.global_position
