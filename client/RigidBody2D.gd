@@ -22,6 +22,7 @@ func start():
 	hp -= 20
 
 	if hp <= 0:
+		update_health(0)
 		emit_signal('death_sound', position.x, position.y)
 		
 		get_node('../buttonStart').hide()
@@ -37,7 +38,7 @@ func update_health(new_value):
 		tween.start()
 
 func _on_Explosion_animation_finished():
-	update_health(0)
+	queue_free()
 
 func _on_Tween_tween_all_completed():
 	if !animated_health > 0:
