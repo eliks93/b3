@@ -4,10 +4,14 @@ var y = 0.0
 
 
 var current_score = 0
-# Called when the node enters the scene tree for the first time.
+
+	
+	
 func _ready():
-	print (x, y)
-	set_transform(Transform2D(0.0, Vector2(x,y)))
+	print(x, y)
+	print ($DeathCam.position, "before")
+	$DeathCam.position = Vector2(x, y)
+	print ($DeathCam.position, "after")
 	$Score.text = str(current_score)
 	if get_parent().boat_selected == 2:
 		$BigLayer/Big.pressed = false

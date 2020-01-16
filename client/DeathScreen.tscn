@@ -185,6 +185,10 @@ margin_bottom = 1679.0
 [node name="Small" parent="SmallLayer" index="2"]
 margin_top = 1360.0
 margin_bottom = 1688.0
+
+[node name="DeathCam" type="Camera2D" parent="."]
+position = Vector2( 510, 300 )
+current = true
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="BigLayer/Big" to="." method="_on_Big_pressed"]
 [connection signal="pressed" from="OrbLayer/Orb" to="." method="_on_Orb_pressed"]
