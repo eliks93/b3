@@ -28,9 +28,6 @@ texture = ExtResource( 4 )
 rotation = 1.5708
 shape = SubResource( 1 )
 
-[node name="Bar" parent="." index="5"]
-visible = false
-
 [node name="Turrets" type="Node2D" parent="." index="7"]
 
 [node name="Turret" parent="Turrets" index="0" instance=ExtResource( 5 )]

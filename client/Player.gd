@@ -97,10 +97,10 @@ func _on_PlayerBoat_health_changed(hp, p_owner):
 	rpc_id(1, "update_health", hp, p_owner)
 
 remote func heal():
-	var new_hp = clamp(($PlayerBoat.player_max_health / 2) + $PlayerBoat.hp, 0, $PlayerBoat.player_max_health)
-	
-	$PlayerBoat.update_health(new_hp)
-	$PlayerBoat.hp = new_hp
+	if has_node("PlayerBoat"):
+		var new_hp = clamp(($PlayerBoat.player_max_health / 2) + $PlayerBoat.hp, 0, $PlayerBoat.player_max_health)
+		$PlayerBoat.update_health(new_hp)
+		$PlayerBoat.hp = new_hp
 
 remote func update_health(hp):
 	$PlayerBoat.update_health(hp)
