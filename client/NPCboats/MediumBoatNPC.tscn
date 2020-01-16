@@ -19,7 +19,7 @@ steering_angle = 18
 friction = -0.008
 
 [node name="BoatRipple" parent="." index="0" instance=ExtResource( 3 )]
-position = Vector2( -7.8028, -0.487686 )
+position = Vector2( -15.6436, -0.688736 )
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 4 )
@@ -27,6 +27,9 @@ texture = ExtResource( 4 )
 [node name="CollisionShape2D" parent="." index="2"]
 rotation = 1.5708
 shape = SubResource( 1 )
+
+[node name="Bar" parent="." index="5"]
+visible = false
 
 [node name="Turrets" type="Node2D" parent="." index="7"]
 
