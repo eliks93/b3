@@ -140,8 +140,9 @@ remote func respawn_player(x, y, rotation, ship_type):
 	GameState.player_info.actor = new_boat
 	set_camera_limits()
 	$PlayerBoat.connect("health_changed", self, "_on_PlayerBoat_health_changed")
-	for Turret in $PlayerBoat.get_node("Turrets").get_children():
-		Turret.connect("spawn_projectile", self, "req_spawn_projectile")
+	if $PlayerBoat.has_node("Turrets"):
+		for Turret in $PlayerBoat.get_node("Turrets").get_children():
+			Turret.connect("spawn_projectile", self, "req_spawn_projectile")
 	if $PlayerBoat.has_node("TurretsSecondary"):
 		for Turret in $PlayerBoat.get_node("TurretsSecondary").get_children():
 			Turret.connect("spawn_projectile", self, "req_spawn_projectile_scondary")

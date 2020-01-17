@@ -1,6 +1,7 @@
 extends CanvasLayer
 var x = 0.0
 var y = 0.0
+var lock_respawn = true
 
 
 var current_score = 0
@@ -8,6 +9,7 @@ var current_score = 0
 	
 	
 func _ready():
+	$Timer.start()
 	print(x, y)
 	print ($DeathCam.position, "before")
 	$DeathCam.position = Vector2(x, y)
@@ -36,8 +38,10 @@ func _ready():
 
 
 func _on_Button_pressed():
-	get_parent().request_respawn() # Request respawn on player object.
-	get_parent().remove_child(self)
+	print(lock_respawn)
+	if !lock_respawn:
+		get_parent().request_respawn() # Request respawn on player object.
+		get_parent().remove_child(self)
 
 func _on_Big_pressed():
 	$BigLayer/Big.pressed = true
@@ -75,3 +79,7 @@ func _on_Orb_pressed():
 	GameState.ship_info.ship_type = 3
 	get_parent().boat_selected = 3
 	get_parent().update_ship_type(3)
+
+
+func _on_Timer_timeout():
+	lock_respawn = false

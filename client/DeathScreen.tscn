@@ -82,6 +82,7 @@ custom_fonts/font = SubResource( 7 )
 text = "Respawn"
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.51
 
 [node name="Score" type="Label" parent="."]
 margin_left = 580.0
@@ -190,6 +191,7 @@ margin_bottom = 1688.0
 position = Vector2( 510, 300 )
 current = true
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="pressed" from="BigLayer/Big" to="." method="_on_Big_pressed"]
 [connection signal="pressed" from="OrbLayer/Orb" to="." method="_on_Orb_pressed"]
 [connection signal="pressed" from="MediumLayer/Medium" to="." method="_on_Medium_pressed"]
